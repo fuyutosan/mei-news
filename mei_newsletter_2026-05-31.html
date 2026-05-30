@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>デイリーめいちゃんニュース 第004号 — 2026年5月31日</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green1: #4caf73;
+      --green2: #2e7d52;
+      --card-bg: rgba(255,255,255,0.92);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background: #f0f7f2;
+      min-height: 100vh;
+      position: relative;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: url("https://fuyutosan.github.io/mei-news/panda.png");
+      background-size: 100px;
+      opacity: 0.10;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ヘッダー */
+    .header {
+      background: linear-gradient(135deg, var(--green1), var(--green2));
+      border-radius: 20px;
+      padding: 28px 24px 24px;
+      text-align: center;
+      color: #fff;
+      margin-bottom: 16px;
+      box-shadow: 0 4px 20px rgba(46,125,82,0.3);
+    }
+    .header-panda-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .header-panda {
+      width: 96px;
+      background: transparent;
+      animation: wobble 2.5s ease-in-out infinite;
+    }
+    .panda-power {
+      color: #fff;
+      font-size: 20px;
+      font-weight: 900;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    .header h1 {
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: 0.03em;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+    .header .issue-info {
+      margin-top: 6px;
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    @keyframes wobble {
+      0%,100% { transform: rotate(-5deg); }
+      50%      { transform: rotate(5deg); }
+    }
+
+    /* カード共通 */
+    .card {
+      background: var(--card-bg);
+      backdrop-filter: blur(8px);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 14px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+    .card h2 {
+      font-size: 15px;
+      font-weight: 900;
+      color: var(--green2);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* 挨拶 */
+    .greeting-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .greeting-panda {
+      width: 44px;
+      background: transparent;
+      flex-shrink: 0;
+    }
+    .greeting-text {
+      font-size: 14px;
+      line-height: 1.7;
+      color: #333;
+    }
+
+    /* 公式リンク */
+    .links-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .link-btn {
+      display: block;
+      text-align: center;
+      padding: 10px 8px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      color: #fff;
+      background: linear-gradient(135deg, var(--green1), var(--green2));
+      transition: opacity 0.2s;
+    }
+    .link-btn:hover { opacity: 0.85; }
+
+    /* 更新情報カード */
+    a.news-card {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      background: var(--card-bg);
+      backdrop-filter: blur(8px);
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin-bottom: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+      border-left: 4px solid var(--green1);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    a.news-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    }
+    .news-source {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--green2);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 4px;
+    }
+    .news-title {
+      font-size: 15px;
+      font-weight: 900;
+      color: #222;
+      margin-bottom: 4px;
+    }
+    .news-desc {
+      font-size: 13px;
+      color: #555;
+      line-height: 1.6;
+    }
+    .news-arrow {
+      text-align: right;
+      font-size: 18px;
+      color: var(--green1);
+      margin-top: 4px;
+    }
+
+    /* イベント */
+    .event-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 10px 0;
+      border-bottom: 1px solid #e8f0eb;
+    }
+    .event-item:last-child { border-bottom: none; }
+    .event-date-box {
+      background: linear-gradient(135deg, var(--green1), var(--green2));
+      color: #fff;
+      border-radius: 10px;
+      padding: 8px 10px;
+      text-align: center;
+      min-width: 56px;
+      flex-shrink: 0;
+    }
+    .event-date-box .month { font-size: 11px; font-weight: 700; opacity: 0.9; }
+    .event-date-box .day   { font-size: 22px; font-weight: 900; line-height: 1.1; }
+    .event-detail { flex: 1; }
+    .event-detail .event-name { font-size: 14px; font-weight: 700; color: #222; }
+    .event-detail .event-note { font-size: 12px; color: #666; margin-top: 2px; }
+
+    /* フッター */
+    .footer {
+      text-align: center;
+      padding: 24px 16px 32px;
+      color: #555;
+      font-size: 14px;
+    }
+    .footer-panda {
+      width: 52px;
+      background: transparent;
+      animation: wobble 2s ease-in-out infinite;
+      margin-bottom: 8px;
+    }
+    .footer-text { font-weight: 700; color: var(--green2); }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- ヘッダー -->
+    <div class="header">
+      <div class="header-panda-row">
+        <img src="https://fuyutosan.github.io/mei-news/panda.png" class="header-panda" style="background:transparent;" alt="パンダさん">
+        <span class="panda-power">パンダさんパワー！</span>
+      </div>
+      <h1>🐼 デイリーめいちゃんニュース</h1>
+      <div class="issue-info">第004号 ／ 2026年5月31日（日）</div>
+    </div>
+
+    <!-- 挨拶 -->
+    <div class="card">
+      <div class="greeting-row">
+        <img src="https://fuyutosan.github.io/mei-news/panda.png" class="greeting-panda" style="background:transparent;" alt="パンダさん">
+        <div class="greeting-text">
+          おはよう〜！🌿 パンダさんニュース第004号だよ♪<br>
+          今日も山﨑愛生（めいちゃん）の最新情報をお届けするよ〜！<br>
+          素敵な日曜日になりますように (^o^)/
+        </div>
+      </div>
+    </div>
+
+    <!-- 公式リンク -->
+    <div class="card">
+      <h2>🔗 公式リンク</h2>
+      <div class="links-grid">
+        <a class="link-btn" href="https://ameblo.jp/morningmusume15ki/theme-10109826705.html" target="_blank">📝 アメブロ</a>
+        <a class="link-btn" href="https://www.instagram.com/mei_yamazaki.official/" target="_blank">📸 Instagram</a>
+        <a class="link-btn" href="https://www.helloproject.com/morningmusume/profile/mei_yamazaki/" target="_blank">🌐 公式HP</a>
+        <a class="link-btn" href="https://www.helloproject.com/morningmusume/" target="_blank">💚 モーニング娘。'26</a>
+      </div>
+    </div>
+
+    <!-- 最新ブログ更新 -->
+    <div class="card">
+      <h2>📝 最新ブログ更新</h2>
+
+      <a class="news-card" href="https://ameblo.jp/morningmusume15ki/entry-12967807759.html" target="_blank">
+        <div class="news-source">アメブロ ／ 2026.05.30</div>
+        <div class="news-title">No.2254 石田さん！</div>
+        <div class="news-desc">昨日のブログ更新✨ 石田亜佑美さんについて書いてくれたよ〜！写真もいっぱい💚</div>
+        <div class="news-arrow">→</div>
+      </a>
+
+      <a class="news-card" href="https://ameblo.jp/morningmusume15ki/entry-12967603125.html" target="_blank">
+        <div class="news-source">アメブロ ／ 2026.05.28</div>
+        <div class="news-title">No.2253 おめでとう〜！</div>
+        <div class="news-desc">誰かのお祝い記事♪ 温かいめいちゃんらしいメッセージが届いているよ💚</div>
+        <div class="news-arrow">→</div>
+      </a>
+
+      <a class="news-card" href="https://ameblo.jp/morningmusume15ki/entry-12967495148.html" target="_blank">
+        <div class="news-source">アメブロ ／ 2026.05.27</div>
+        <div class="news-title">No.2252 Juice=Juiceさん♪</div>
+        <div class="news-desc">Juice=Juiceとの共演についてレポートしてくれたよ〜！めいちゃんの感想も必読📖</div>
+        <div class="news-arrow">→</div>
+      </a>
+    </div>
+
+    <!-- 最新ニュース -->
+    <div class="card">
+      <h2>📰 最新ニュース</h2>
+
+      <a class="news-card" href="https://ameblo.jp/morningmusume15ki/entry-12967391493.html" target="_blank">
+        <div class="news-source">モーニング娘。'26 公式 ／ 2026.05</div>
+        <div class="news-title">🎉 新メンバー加入決定！</div>
+        <div class="news-desc">モーニング娘。'26に新メンバーが加入することが発表されたよ！2025年研修生発表会でベストパフォーマンス賞を受賞した実力派。めいちゃんにも後輩が増えるね💚</div>
+        <div class="news-arrow">→</div>
+      </a>
+
+      <a class="news-card" href="https://natalie.mu/music/news/673805" target="_blank">
+        <div class="news-source">音楽ナタリー</div>
+        <div class="news-title">🎵 モーニング娘。'26 77thシングル 9月9日発売決定！</div>
+        <div class="news-desc">77thシングルが2026年9月9日（水）に発売決定！タイトルはまだ未定だけど楽しみだね〜♪</div>
+        <div class="news-arrow">→</div>
+      </a>
+
+      <a class="news-card" href="https://www.upfc.jp/helloproject/" target="_blank">
+        <div class="news-source">ハロプロ公式 / デジタルコレクション</div>
+        <div class="news-title">🎴 HAPPY BIRTHDAY 山﨑愛生 トレカ追加！</div>
+        <div class="news-desc">Hello! Projectデジタルコレクションに「HAPPY BIRTHDAY 山﨑愛生」の新トレカが追加されたよ🐼 バースデーイベントの写真が入ってるって！</div>
+        <div class="news-arrow">→</div>
+      </a>
+
+      <a class="news-card" href="https://www.fighters.co.jp/news/detail/202600884940.html" target="_blank">
+        <div class="news-source">北海道日本ハムファイターズ</div>
+        <div class="news-title">⚾ 日ハムとのコラボグッズ一般販売中！</div>
+        <div class="news-desc">モーニング娘。'26×北海道日本ハムファイターズのコラボグッズがオフィシャルストアで一般販売中！オンラインでは再受注販売もあるよ〜</div>
+        <div class="news-arrow">→</div>
+      </a>
+    </div>
+
+    <!-- イベント情報 -->
+    <div class="card">
+      <h2>📅 イベント情報</h2>
+
+      <div class="event-item">
+        <div class="event-date-box">
+          <div class="month">6月</div>
+          <div class="day">30</div>
+        </div>
+        <div class="event-detail">
+          <div class="event-name">🎂 山﨑愛生 バースデーイベント</div>
+          <div class="event-note">荒川区民会館 大ホール／FC会員限定／顔認証入場</div>
+        </div>
+      </div>
+
+      <div class="event-item">
+        <div class="event-date-box">
+          <div class="month">9月</div>
+          <div class="day">9</div>
+        </div>
+        <div class="event-detail">
+          <div class="event-name">🎵 77thシングル 発売日</div>
+          <div class="event-note">モーニング娘。'26 ／ タイトル未定</div>
+        </div>
+      </div>
+
+      <div class="event-item">
+        <div class="event-date-box">
+          <div class="month">6月</div>
+          <div class="day">〜</div>
+        </div>
+        <div class="event-detail">
+          <div class="event-name">🌱 Hello! Project 研修生発表会 2026 6月 ～若葉～</div>
+          <div class="event-note">FC先行受付あり ／ 新メンバーのデビューに注目！</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- フッター -->
+    <div class="footer">
+      <div>
+        <img src="https://fuyutosan.github.io/mei-news/panda.png" class="footer-panda" style="background:transparent;" alt="パンダさん">
+      </div>
+      <div class="footer-text">パンダさん大好き山﨑愛生でした (^o^)/</div>
+      <div style="margin-top:8px;font-size:12px;color:#888;">デイリーめいちゃんニュース 第004号 ／ 2026.05.31</div>
+    </div>
+
+  </div>
+</body>
+</html>
