@@ -159,7 +159,6 @@
       font-size: 11px;
       font-weight: 700;
       color: var(--green2);
-      text-transform: uppercase;
       letter-spacing: 0.05em;
       margin-bottom: 4px;
     }
@@ -179,6 +178,53 @@
       font-size: 18px;
       color: var(--green1);
       margin-top: 4px;
+    }
+
+    /* HOTニュース */
+    a.news-card.hot {
+      background: linear-gradient(135deg, #fff8e1, #fff3cd);
+      border-left: 4px solid #f57c00;
+      box-shadow: 0 4px 16px rgba(245,124,0,0.25);
+      animation: hotpulse 2.5s ease-in-out infinite;
+    }
+    a.news-card.hot:hover {
+      box-shadow: 0 6px 24px rgba(245,124,0,0.35);
+    }
+    a.news-card.hot .news-source { color: #e65100; }
+    a.news-card.hot .news-title  { color: #bf360c; font-size: 16px; }
+    a.news-card.hot .news-arrow  { color: #f57c00; }
+    @keyframes hotpulse {
+      0%,100% { box-shadow: 0 4px 16px rgba(245,124,0,0.25); }
+      50%      { box-shadow: 0 4px 24px rgba(245,124,0,0.45); }
+    }
+    .hot-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #ff5722, #f57c00);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 900;
+      padding: 2px 8px;
+      border-radius: 20px;
+      margin-bottom: 6px;
+      letter-spacing: 0.05em;
+      animation: badgepop 0.8s ease-in-out infinite alternate;
+    }
+    @keyframes badgepop {
+      from { transform: scale(1); }
+      to   { transform: scale(1.05); }
+    }
+
+    /* NEWバッジ */
+    .new-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #1976d2, #42a5f5);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 900;
+      padding: 2px 8px;
+      border-radius: 20px;
+      margin-bottom: 6px;
+      letter-spacing: 0.05em;
     }
 
     /* イベント */
@@ -262,21 +308,22 @@
       <h2>📝 最新ブログ更新</h2>
 
       <a class="news-card" href="https://ameblo.jp/morningmusume15ki/entry-12967807759.html" target="_blank">
-        <div class="news-source">アメブロ ／ 2026.05.30</div>
+        <div class="new-badge">🆕 NEW</div>
+        <div class="news-source">📝 アメブロ（モーニング娘。'26 15期公式）／ 投稿日: 2026年5月30日(土)</div>
         <div class="news-title">No.2254 石田さん！</div>
-        <div class="news-desc">昨日のブログ更新✨ 石田亜佑美さんについて書いてくれたよ〜！写真もいっぱい💚</div>
+        <div class="news-desc">石田亜佑美さんについて書いてくれたよ〜！写真もいっぱい💚</div>
         <div class="news-arrow">→</div>
       </a>
 
       <a class="news-card" href="https://ameblo.jp/morningmusume15ki/entry-12967603125.html" target="_blank">
-        <div class="news-source">アメブロ ／ 2026.05.28</div>
+        <div class="news-source">📝 アメブロ（モーニング娘。'26 15期公式）／ 投稿日: 2026年5月28日(木)</div>
         <div class="news-title">No.2253 おめでとう〜！</div>
         <div class="news-desc">誰かのお祝い記事♪ 温かいめいちゃんらしいメッセージが届いているよ💚</div>
         <div class="news-arrow">→</div>
       </a>
 
       <a class="news-card" href="https://ameblo.jp/morningmusume15ki/entry-12967495148.html" target="_blank">
-        <div class="news-source">アメブロ ／ 2026.05.27</div>
+        <div class="news-source">📝 アメブロ（モーニング娘。'26 15期公式）／ 投稿日: 2026年5月27日(水)</div>
         <div class="news-title">No.2252 Juice=Juiceさん♪</div>
         <div class="news-desc">Juice=Juiceとの共演についてレポートしてくれたよ〜！めいちゃんの感想も必読📖</div>
         <div class="news-arrow">→</div>
@@ -288,30 +335,31 @@
       <h2>📰 最新ニュース</h2>
 
       <a class="news-card" href="https://ameblo.jp/morningmusume15ki/entry-12967391493.html" target="_blank">
-        <div class="news-source">モーニング娘。'26 公式 ／ 2026.05</div>
+        <div class="news-source">📝 アメブロ（モーニング娘。'26 15期公式）／ 投稿日: 2026年5月26日(火)</div>
         <div class="news-title">🎉 新メンバー加入決定！</div>
         <div class="news-desc">モーニング娘。'26に新メンバーが加入することが発表されたよ！2025年研修生発表会でベストパフォーマンス賞を受賞した実力派。めいちゃんにも後輩が増えるね💚</div>
         <div class="news-arrow">→</div>
       </a>
 
       <a class="news-card" href="https://natalie.mu/music/news/673805" target="_blank">
-        <div class="news-source">音楽ナタリー</div>
+        <div class="news-source">🎵 音楽ナタリー／ 取得日: 2026年5月31日（WebSearch経由）</div>
         <div class="news-title">🎵 モーニング娘。'26 77thシングル 9月9日発売決定！</div>
         <div class="news-desc">77thシングルが2026年9月9日（水）に発売決定！タイトルはまだ未定だけど楽しみだね〜♪</div>
         <div class="news-arrow">→</div>
       </a>
 
-      <a class="news-card" href="https://www.upfc.jp/helloproject/" target="_blank">
-        <div class="news-source">ハロプロ公式 / デジタルコレクション</div>
-        <div class="news-title">🎴 HAPPY BIRTHDAY 山﨑愛生 トレカ追加！</div>
-        <div class="news-desc">Hello! Projectデジタルコレクションに「HAPPY BIRTHDAY 山﨑愛生」の新トレカが追加されたよ🐼 バースデーイベントの写真が入ってるって！</div>
+      <a class="news-card hot" href="https://www.fighters.co.jp/expansion/aftergame/2026/index.html" target="_blank">
+        <div class="hot-badge">🔥 TODAY HOT NEWS</div>
+        <div class="news-source">⚾ 北海道日本ハムファイターズ公式／ 投稿日: 2026年5月27日(水)</div>
+        <div class="news-title">🎤 本日開催！AFTER GAMEにモーニング娘。'26が出演！</div>
+        <div class="news-desc">今日5月31日(日)のエスコンフィールド試合終了後イベント〈AFTER GAME〉にモーニング娘。'26が出演！コラボグッズはオンラインストアで6月8日まで再受注販売中🛒 めいちゃんのコラボグッズもあるよ♪</div>
         <div class="news-arrow">→</div>
       </a>
 
       <a class="news-card" href="https://www.fighters.co.jp/news/detail/202600884940.html" target="_blank">
-        <div class="news-source">北海道日本ハムファイターズ</div>
-        <div class="news-title">⚾ 日ハムとのコラボグッズ一般販売中！</div>
-        <div class="news-desc">モーニング娘。'26×北海道日本ハムファイターズのコラボグッズがオフィシャルストアで一般販売中！オンラインでは再受注販売もあるよ〜</div>
+        <div class="news-source">⚾ 北海道日本ハムファイターズ公式／ 投稿日: 2026年5月27日(水)</div>
+        <div class="news-title">⚾ 日ハム×モーニング娘。'26 コラボグッズ一般販売中！</div>
+        <div class="news-desc">コラボグッズがファイターズフラッグシップストアで一般販売中！レプリカユニフォーム・直筆応援タオル・シークレットハンドタオルなど。山﨑愛生バージョンもあり🐼</div>
         <div class="news-arrow">→</div>
       </a>
     </div>
@@ -319,6 +367,18 @@
     <!-- イベント情報 -->
     <div class="card">
       <h2>📅 イベント情報</h2>
+
+      <div class="event-item" style="background:linear-gradient(135deg,#fff8e1,#fff3cd);border-radius:10px;padding:10px;margin-bottom:4px;border-left:3px solid #f57c00;">
+        <div class="event-date-box" style="background:linear-gradient(135deg,#ff5722,#f57c00);">
+          <div class="month">5月</div>
+          <div class="day">31</div>
+        </div>
+        <div class="event-detail">
+          <div style="display:inline-block;background:linear-gradient(135deg,#ff5722,#f57c00);color:#fff;font-size:10px;font-weight:900;padding:1px 7px;border-radius:20px;margin-bottom:4px;">🔥 TODAY</div>
+          <div class="event-name">🎤 AFTER GAME 出演（エスコンフィールド）</div>
+          <div class="event-note">北海道日本ハムファイターズ×モーニング娘。'26／試合終了後イベント</div>
+        </div>
+      </div>
 
       <div class="event-item">
         <div class="event-date-box">
