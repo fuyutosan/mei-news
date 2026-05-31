@@ -223,6 +223,28 @@
     margin-top: 6px;
   }
 
+  /* ===== SNS CARD ===== */
+  .sns-card {
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(8px);
+    border-radius: 16px;
+    padding: 16px 18px;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    border-left: 4px solid #e1306c;
+    transition: transform 0.15s;
+  }
+  .sns-card:hover { transform: translateY(-2px); }
+  .sns-icon { font-size: 32px; flex-shrink: 0; }
+  .sns-body .sns-name { font-size: 11px; color: #888; margin-bottom: 3px; }
+  .sns-body .sns-text { font-size: 14px; font-weight: 700; color: #222; line-height: 1.4; }
+  .sns-body .sns-sub  { font-size: 12px; color: #777; margin-top: 4px; }
+
   /* ===== EVENT LIST ===== */
   .event-item {
     background: rgba(255,255,255,0.92);
@@ -256,17 +278,6 @@
   .event-date-box .dow   { font-size: 10px; }
 
   .event-item.today .event-date-box { background: var(--accent); }
-
-  .event-info .today-badge {
-    display: inline-block;
-    background: var(--accent);
-    color: #fff;
-    font-size: 10px;
-    font-weight: 900;
-    padding: 2px 8px;
-    border-radius: 20px;
-    margin-bottom: 4px;
-  }
 
   .event-info .event-name {
     font-size: 14px;
@@ -347,68 +358,62 @@
     </a>
   </div>
 
-  <!-- NEWS -->
-  <div class="section-title">📰 最新ニュース</div>
+  <!-- ① ブログ更新 -->
+  <div class="section-title">📝 最新ブログ更新</div>
 
-  <!-- ブログ最新（昨日更新 → NEW badge） -->
   <a class="news-card" href="https://ameblo.jp/morningmusume15ki/entry-12967901382.html" target="_blank">
     <div class="new-badge">🆕 NEW</div>
     <div class="card-source">アメブロ ｜ 2026年5月31日(日)</div>
     <div class="card-title">No.2255 エスコンミニライブ♪♪♪ 山﨑愛生</div>
-    <div class="card-desc">エスコンフィールドでのミニライブについてめいちゃんがブログ更新！昨日アップされたばかりのホカホカ記事✨ どんな内容だったのか要チェック！</div>
+    <div class="card-desc">エスコンフィールドでのミニライブについてめいちゃんがブログ更新！昨日アップされたばかりのホカホカ記事✨ 公演の感想や写真など要チェック！</div>
     <div class="card-arrow">→</div>
   </a>
 
-  <!-- No.2254（一昨日更新） -->
   <a class="news-card" href="https://ameblo.jp/morningmusume15ki/entry-12967807759.html" target="_blank">
     <div class="card-source">アメブロ ｜ 2026年5月30日(土)</div>
     <div class="card-title">No.2254 石田さん！ 山﨑愛生</div>
-    <div class="card-desc">石田亜佑美さんへの感謝やコンサートツアーの思い出を綴ったブログ。温かい内容で読み応えあり🌿</div>
+    <div class="card-desc">石田亜佑美さんへの感謝やコンサートツアーの思い出を綴ったブログ🌿 温かい内容で読み応えあり。</div>
     <div class="card-arrow">→</div>
   </a>
 
-  <!-- 新メンバー加入ニュース -->
+  <!-- ② SNS更新 -->
+  <div class="section-title">📸 SNS更新</div>
+
+  <a class="sns-card" href="https://www.instagram.com/mei_yamazaki.official/?hl=ja" target="_blank">
+    <div class="sns-icon">📸</div>
+    <div class="sns-body">
+      <div class="sns-name">Instagram ｜ @mei_yamazaki.official</div>
+      <div class="sns-text">最新投稿はInstagramをチェック！</div>
+      <div class="sns-sub">フォロワー67K・投稿580件（取得日: 2026-06-01）</div>
+    </div>
+  </a>
+
+  <!-- ③ 最新ニュース -->
+  <div class="section-title">📰 最新ニュース</div>
+
   <a class="news-card" href="https://ameblo.jp/morningmusume15ki/entry-12967391493.html" target="_blank">
-    <div class="card-source">アメブロ ｜ 2026年5月26日(火)</div>
-    <div class="card-title">No.2251 新メンバー加入します！ 石川華望ちゃんがモーニング娘。'26へ</div>
-    <div class="card-desc">石川華望（いしかわはなの）ちゃんがモーニング娘。'26に加入することが発表🎉 2025年研修生発表会でベストパフォーマンス賞を受賞した実力派。めいちゃんブログでも喜びの声が！</div>
+    <div class="card-source">アメブロ（公式発表） ｜ 2026年5月26日(火)</div>
+    <div class="card-title">🎉 石川華望ちゃんがモーニング娘。'26に加入決定！</div>
+    <div class="card-desc">2025年研修生発表会でベストパフォーマンス賞を受賞した石川華望（いしかわはなの）ちゃんが加入。めいちゃんブログでも喜びのコメントが！</div>
     <div class="card-arrow">→</div>
   </a>
 
-  <!-- バーイベ開催決定 -->
   <a class="news-card" href="https://www.upfc.jp/helloproject/news_detail.php?%40uid=rdwEdwDwx07vBMps" target="_blank">
     <div class="card-source">UPFC（ハロプロFC公式） ｜ 2026年5月（取得日: 2026-06-01）</div>
-    <div class="card-title">「ENPLEX × Hello! Project 山﨑愛生バースデーイベント in 名古屋」開催決定！</div>
-    <div class="card-desc">7月9日(木)にミッドランドスクエア シネマ2（愛知）でバースデーイベント開催決定🎂 トーク＆ライブ＋お見送り会あり。ファンクラブ限定イベントなので要チェック！</div>
+    <div class="card-title">🎂 「山﨑愛生バースデーイベント in 名古屋」開催決定！（ENPLEX）</div>
+    <div class="card-desc">7月9日(木)ミッドランドスクエア シネマ2（愛知）でバースデーイベント開催🎂 トーク＆ライブ＋お見送り会あり。ファンクラブ限定イベント！</div>
     <div class="card-arrow">→</div>
   </a>
 
-  <!-- サンリオキャラクター大賞 -->
   <a class="news-card" href="https://helloproject.com/morningmusume/" target="_blank">
     <div class="card-source">各種メディア ｜ 取得日: 2026-06-01（WebSearch経由）</div>
     <div class="card-title">🎀 サンリオキャラクター大賞2026 結果発表は6月28日！</div>
-    <div class="card-desc">山﨑愛生がサンリオキャラクター大賞2026に関わっているとの情報あり。結果発表は6月28日(日)予定。みんなで応援しよう！🐼</div>
+    <div class="card-desc">山﨑愛生がサンリオキャラクター大賞2026に応援参加。結果発表は6月28日(日)予定。みんなで応援しよう！🐼</div>
     <div class="card-arrow">→</div>
   </a>
 
-  <!-- Rays Of Light Final -->
-  <a class="news-card" href="https://helloproject.com/morningmusume/schedule/" target="_blank">
-    <div class="card-source">ハロプロ公式 ｜ 取得日: 2026-06-01（WebSearch経由）</div>
-    <div class="card-title">🎤 コンサートツアー春「Rays Of Light Final ～牧野真莉愛 卒業スペシャル～」</div>
-    <div class="card-desc">6月24日(水)18:00〜日本武道館（東京）で開催予定。牧野真莉愛さんの卒業スペシャル公演。めいちゃんも出演！ツアーのフィナーレを飾る特別な一夜。</div>
-    <div class="card-arrow">→</div>
-  </a>
-
-  <!-- 直近コンサート大阪 -->
-  <a class="news-card" href="https://helloproject.com/morningmusume/schedule/" target="_blank">
-    <div class="card-source">ハロプロ公式 ｜ 取得日: 2026-06-01（WebSearch経由）</div>
-    <div class="card-title">🎵 コンサートツアー春「Rays Of Light」NHK大阪ホール公演</div>
-    <div class="card-desc">6月6日(土)にNHK大阪ホールで2公演（14:30〜 / 18:15〜）開催予定。大阪のみんなはぜひ！遠征勢も要チェック✈️</div>
-    <div class="card-arrow">→</div>
-  </a>
-
-  <!-- EVENTS -->
-  <div class="section-title">📅 直近イベント（〜7月1日まで）</div>
+  <!-- ④ イベント情報 -->
+  <div class="section-title">📅 イベント情報（〜7月1日まで）</div>
 
   <div class="event-item">
     <div class="event-date-box">
@@ -434,8 +439,8 @@
     </div>
   </div>
 
-  <!-- 1ヶ月超えのため参考掲載 -->
-  <div class="section-title">🎂 バースデーイベント（参考：7月開催）</div>
+  <!-- 参考：バースデーイベント（1ヶ月超） -->
+  <div class="section-title" style="color:#7b1fa2;border-left-color:#7b1fa2;">🎂 バースデーイベント（参考：7月開催）</div>
   <div class="event-item">
     <div class="event-date-box" style="background:#7b1fa2;">
       <div class="month">7月</div>
