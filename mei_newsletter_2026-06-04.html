@@ -127,9 +127,7 @@
   .link-btn:hover { background: #1b5e20; transform: translateY(-1px); }
 
   /* セクション */
-  .section {
-    margin-bottom: 24px;
-  }
+  .section { margin-bottom: 24px; }
   .section-title {
     font-size: 17px;
     font-weight: 900;
@@ -137,9 +135,6 @@
     border-bottom: 2px solid var(--green2);
     padding-bottom: 8px;
     margin-bottom: 14px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
   }
 
   /* ニュースカード */
@@ -164,9 +159,23 @@
     border-left: 4px solid #ff6f00;
     background: rgba(255,250,235,0.95);
   }
+  .news-card.pickup {
+    border-left: 4px solid #7b1fa2;
+    background: rgba(250,240,255,0.95);
+  }
   .hot-badge {
     display: inline-block;
     background: #ff6f00;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 900;
+    border-radius: 8px;
+    padding: 3px 10px;
+    margin-bottom: 8px;
+  }
+  .pickup-badge {
+    display: inline-block;
+    background: #7b1fa2;
     color: #fff;
     font-size: 12px;
     font-weight: 900;
@@ -219,20 +228,6 @@
   .event-card:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(46,125,50,0.15);
-  }
-  .event-card.today {
-    background: rgba(255,243,220,0.96);
-    border-left: 4px solid #ff6f00;
-  }
-  .today-badge {
-    display: inline-block;
-    background: #ff6f00;
-    color: #fff;
-    font-size: 12px;
-    font-weight: 900;
-    border-radius: 8px;
-    padding: 3px 10px;
-    margin-bottom: 8px;
   }
   .soon-badge {
     display: inline-block;
@@ -300,8 +295,8 @@
   <!-- 挨拶 -->
   <div class="greeting-card">
     <img src="https://fuyutosan.github.io/mei-news/panda.png" style="background:transparent;" alt="パンダさん">
-    <p>おはようございます🐼 今日もめいちゃんを全力で応援するよ！<br>
-    春ツアー大阪公演まであと<strong>2日</strong>、そして卒スペは今月24日🌸</p>
+    <p>おはようございます🐼 愛生ちゃんの誕生月6月スタート！<br>
+    春ツアー大阪公演まで<strong>あと2日</strong>、卒スペは今月24日🌸</p>
   </div>
 
   <!-- 公式リンク -->
@@ -316,16 +311,17 @@
   <div class="section">
     <div class="section-title">📝 最新ブログ更新</div>
 
-    <a class="news-card" href="https://ameblo.jp/morningmusume15ki/entry-12967901382.html" target="_blank">
-      <div class="card-title">No.2255 エスコンミニライブ♪♪♪</div>
-      <div class="card-summary">エスコンフィールドで行われたミニライブについてレポート！写真もたっぷり🐼</div>
-      <div class="card-source">📅 2026年5月31日 ｜ アメブロ（山﨑愛生）</div>
+    <a class="news-card pickup" href="https://ameblo.jp/morningmusume15ki/entry-12968111623.html" target="_blank">
+      <div class="pickup-badge">🎂 誕生月ブログ</div>
+      <div class="card-title">No.2256 愛生の誕生月だよ！</div>
+      <div class="card-summary">6月は愛生ちゃんの誕生月🎉 バースデーイベントも控えて気分は最高潮のめいちゃんブログ🐼</div>
+      <div class="card-source">📅 2026年6月2日 ｜ アメブロ（山﨑愛生）</div>
     </a>
 
-    <a class="news-card" href="https://ameblo.jp/morningmusume15ki/entry-12967807759.html" target="_blank">
-      <div class="card-title">No.2254 石田さん！</div>
-      <div class="card-summary">石田さんとの思い出トーク♪ めいちゃんの愛あふれるブログ💚</div>
-      <div class="card-source">📅 2026年5月30日 ｜ アメブロ（山﨑愛生）</div>
+    <a class="news-card" href="https://ameblo.jp/morningmusume15ki/entry-12967901382.html" target="_blank">
+      <div class="card-title">No.2255 エスコンミニライブ♪♪♪</div>
+      <div class="card-summary">エスコンフィールドで行われたミニライブをレポート！写真もたっぷり🐼</div>
+      <div class="card-source">📅 2026年5月31日 ｜ アメブロ（山﨑愛生）</div>
     </a>
   </div>
 
@@ -352,21 +348,15 @@
     </a>
 
     <a class="news-card" href="https://www.upfc.jp/helloproject/news_detail.php?%40uid=rdwEdwDwx07vBMps" target="_blank">
-      <div class="card-title">山﨑愛生バースデーイベント in 名古屋 開催決定！</div>
+      <div class="card-title">🎂 山﨑愛生バースデーイベント in 名古屋 開催決定！</div>
       <div class="card-summary">7月9日（木）ENPLEXにてFC限定バースデーイベント。2公演制（18:00〜 / 19:45〜）全席指定￥4,500。</div>
       <div class="card-source">📅 取得日: 2026年6月4日 ｜ ハロプロFC公式</div>
     </a>
 
     <a class="news-card" href="https://www.helloproject.com/morningmusume/" target="_blank">
       <div class="card-title">モーニング娘。'26 77thシングル 9月9日発売予定</div>
-      <div class="card-summary">タイトルは未定ながら、77枚目のシングルが2026年9月9日にリリース予定。めいちゃんの活躍にも期待！</div>
+      <div class="card-summary">タイトル未定の77枚目のシングルが2026年9月9日リリース予定。めいちゃんの活躍にも期待！</div>
       <div class="card-source">📅 取得日: 2026年6月4日（WebSearch経由）｜ ハロー！プロジェクト</div>
-    </a>
-
-    <a class="news-card" href="https://ameblo.jp/morningmusume15ki/entry-12967391493.html" target="_blank">
-      <div class="card-title">No.2251 新メンバー加入します！</div>
-      <div class="card-summary">モーニング娘。'26に新メンバーが加入！めいちゃんのブログで発表されたビッグニュース🎉</div>
-      <div class="card-source">📅 2026年5月26日 ｜ アメブロ（山﨑愛生）</div>
     </a>
   </div>
 
