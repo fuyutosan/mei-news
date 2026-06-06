@@ -3,460 +3,498 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>デイリーめいちゃんニュース 第10号 — 2026年6月7日</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<title>🐼 デイリーめいちゃんニュース 第10号 — 2026年6月7日</title>
 <style>
-  :root {
-    --green1: #2ecc71;
-    --green2: #27ae60;
-    --green3: #1e8449;
-    --orange: #e67e22;
-    --hot: #e74c3c;
-  }
+  @import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;800&display=swap');
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
-    font-family: 'Noto Sans JP', sans-serif;
-    background: #f0f7f0;
+    font-family: 'M PLUS Rounded 1c', 'Hiragino Maru Gothic ProN', sans-serif;
+    background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 40%, #e0f2f1 100%);
     min-height: 100vh;
-    position: relative;
+    padding: 20px 16px 40px;
+    color: #2d4a2d;
   }
 
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url('https://fuyutosan.github.io/mei-news/panda.png');
-    background-size: 100px;
-    opacity: 0.10;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  .wrapper {
+  .container {
     max-width: 680px;
     margin: 0 auto;
-    padding: 16px;
-    position: relative;
-    z-index: 1;
   }
 
-  /* Header */
+  /* HEADER */
   .header {
-    background: linear-gradient(135deg, #2ecc71 0%, #27ae60 50%, #1e8449 100%);
-    border-radius: 20px;
-    padding: 28px 20px 24px;
+    background: linear-gradient(135deg, #2e7d32 0%, #388e3c 40%, #43a047 70%, #66bb6a 100%);
+    border-radius: 24px;
+    padding: 28px 24px 24px;
     text-align: center;
+    color: white;
     margin-bottom: 16px;
-    box-shadow: 0 4px 20px rgba(46,204,113,0.4);
+    box-shadow: 0 8px 32px rgba(46,125,50,0.35);
+    position: relative;
+    overflow: hidden;
   }
 
-  .header-panda-row {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 12px;
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -30px; right: -30px;
+    width: 140px; height: 140px;
+    background: rgba(255,255,255,0.07);
+    border-radius: 50%;
   }
 
-  .header-panda {
-    width: 96px;
-    background: transparent;
-    animation: wobble 2s ease-in-out infinite;
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: -20px;
+    width: 180px; height: 180px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 50%;
   }
 
-  .header-panda-text {
-    color: #fff;
-    font-size: 20px;
-    font-weight: 900;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.2);
-  }
-
-  .header-title {
-    color: #fff;
-    font-size: 24px;
-    font-weight: 900;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    margin-bottom: 6px;
-  }
-
-  .header-meta {
-    color: rgba(255,255,255,0.9);
-    font-size: 14px;
-    font-weight: 700;
-  }
-
-  /* Greeting card */
-  .greeting-card {
-    background: rgba(255,255,255,0.92);
-    backdrop-filter: blur(8px);
-    border-radius: 16px;
-    padding: 16px 20px;
-    margin-bottom: 16px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-  }
-
-  .greeting-card img {
-    width: 44px;
-    background: transparent;
-    flex-shrink: 0;
-  }
-
-  .greeting-text {
-    font-size: 14px;
-    line-height: 1.7;
-    color: #333;
-  }
-
-  /* Links bar */
-  .links-bar {
-    background: rgba(255,255,255,0.92);
-    backdrop-filter: blur(8px);
-    border-radius: 16px;
-    padding: 14px 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-  }
-
-  .links-bar-title {
-    font-size: 13px;
-    font-weight: 700;
-    color: #888;
-    margin-bottom: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-
-  .links-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  .link-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 7px 14px;
-    border-radius: 20px;
-    background: linear-gradient(135deg, #2ecc71, #27ae60);
-    color: #fff;
-    font-size: 13px;
-    font-weight: 700;
-    text-decoration: none;
-    transition: opacity 0.2s;
-  }
-
-  .link-btn:hover { opacity: 0.85; }
-
-  /* Section */
-  .section { margin-bottom: 24px; }
-
-  .section-title {
-    font-size: 18px;
-    font-weight: 900;
-    color: var(--green3);
-    margin-bottom: 12px;
-    padding-bottom: 8px;
-    border-bottom: 3px solid var(--green1);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  /* News Card */
-  .news-card {
-    background: rgba(255,255,255,0.92);
-    backdrop-filter: blur(8px);
-    border-radius: 14px;
-    padding: 16px 18px;
-    margin-bottom: 12px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-    text-decoration: none;
-    display: block;
-    color: inherit;
-    transition: transform 0.15s, box-shadow 0.15s;
-    border-left: 4px solid var(--green1);
-  }
-
-  .news-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.12);
-  }
-
-  .news-card.hot {
-    border-left: 4px solid var(--hot);
-    background: rgba(255, 250, 248, 0.95);
-  }
-
-  .hot-badge {
+  .panda-wrap {
     display: inline-block;
-    background: var(--hot);
-    color: #fff;
-    font-size: 11px;
-    font-weight: 900;
-    padding: 3px 10px;
-    border-radius: 20px;
+    animation: wobble 2.4s ease-in-out infinite;
     margin-bottom: 8px;
-    letter-spacing: 0.03em;
-  }
-
-  .new-badge {
-    display: inline-block;
-    background: #e74c3c;
-    color: #fff;
-    font-size: 11px;
-    font-weight: 900;
-    padding: 3px 10px;
-    border-radius: 20px;
-    margin-bottom: 8px;
-    letter-spacing: 0.03em;
-  }
-
-  .card-title {
-    font-size: 15px;
-    font-weight: 700;
-    color: #222;
-    margin-bottom: 6px;
-    line-height: 1.5;
-  }
-
-  .card-body {
-    font-size: 13px;
-    color: #555;
-    line-height: 1.7;
-    margin-bottom: 8px;
-  }
-
-  .card-source {
-    font-size: 12px;
-    color: #888;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-
-  .source-tag {
-    display: inline-block;
-    background: #f0f7f0;
-    color: var(--green3);
-    font-size: 11px;
-    font-weight: 700;
-    padding: 2px 8px;
-    border-radius: 10px;
-    border: 1px solid var(--green1);
-  }
-
-  /* Event card */
-  .event-card {
-    background: rgba(255,255,255,0.92);
-    backdrop-filter: blur(8px);
-    border-radius: 14px;
-    padding: 16px 18px;
-    margin-bottom: 12px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-    text-decoration: none;
-    display: block;
-    color: inherit;
-    transition: transform 0.15s, box-shadow 0.15s;
-    border-left: 4px solid var(--orange);
-  }
-
-  .event-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.12);
-  }
-
-  .event-card.today {
-    background: rgba(255, 248, 235, 0.97);
-    border-left: 4px solid var(--hot);
-  }
-
-  .event-date-tag {
-    display: inline-block;
-    background: var(--orange);
-    color: #fff;
-    font-size: 12px;
-    font-weight: 900;
-    padding: 3px 12px;
-    border-radius: 20px;
-    margin-bottom: 8px;
-  }
-
-  .event-title {
-    font-size: 15px;
-    font-weight: 700;
-    color: #222;
-    margin-bottom: 4px;
-    line-height: 1.5;
-  }
-
-  .event-venue {
-    font-size: 13px;
-    color: #666;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-  }
-
-  /* No-update */
-  .no-update {
-    background: rgba(255,255,255,0.75);
-    border-radius: 14px;
-    padding: 16px 18px;
-    color: #aaa;
-    font-size: 14px;
-    text-align: center;
-  }
-
-  /* Footer */
-  .footer {
-    text-align: center;
-    padding: 24px 0 16px;
-  }
-
-  .footer-panda {
-    width: 52px;
-    background: transparent;
-    animation: wobble 2s ease-in-out infinite;
-    margin-bottom: 10px;
-  }
-
-  .footer-text {
-    font-size: 14px;
-    color: #555;
-    line-height: 1.7;
   }
 
   @keyframes wobble {
-    0%, 100% { transform: rotate(-5deg); }
-    50% { transform: rotate(5deg); }
+    0%, 100% { transform: rotate(-6deg) scale(1); }
+    50% { transform: rotate(6deg) scale(1.08); }
   }
+
+  .panda-img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 3px solid rgba(255,255,255,0.6);
+    object-fit: cover;
+    background: white;
+  }
+
+  .header h1 {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 0.03em;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    margin-bottom: 4px;
+  }
+
+  .header .subtitle {
+    font-size: 13px;
+    opacity: 0.9;
+    letter-spacing: 0.05em;
+  }
+
+  .header .issue {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 20px;
+    font-size: 12px;
+    padding: 3px 14px;
+    margin-top: 8px;
+    letter-spacing: 0.06em;
+  }
+
+  /* TODAY HOT BANNER */
+  .today-hot {
+    background: linear-gradient(135deg, #b71c1c 0%, #c62828 50%, #e53935 100%);
+    border-radius: 16px;
+    padding: 16px 20px;
+    margin-bottom: 14px;
+    color: white;
+    box-shadow: 0 6px 24px rgba(183,28,28,0.4);
+    border: 2px solid rgba(255,255,255,0.2);
+    animation: pulse-red 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-red {
+    0%, 100% { box-shadow: 0 6px 24px rgba(183,28,28,0.4); }
+    50% { box-shadow: 0 8px 32px rgba(183,28,28,0.65); }
+  }
+
+  .today-hot .hot-label {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    background: rgba(255,255,255,0.25);
+    border-radius: 8px;
+    display: inline-block;
+    padding: 2px 10px;
+    margin-bottom: 8px;
+  }
+
+  .today-hot h3 {
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 1.4;
+    margin-bottom: 6px;
+  }
+
+  .today-hot .hot-detail {
+    font-size: 13px;
+    opacity: 0.92;
+    line-height: 1.6;
+  }
+
+  .today-hot a {
+    color: #ffeb3b;
+    text-decoration: none;
+    font-weight: 700;
+  }
+
+  .deadline-badge {
+    display: inline-block;
+    background: #ffeb3b;
+    color: #b71c1c;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 800;
+    padding: 2px 10px;
+    margin-left: 6px;
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  /* GREETING */
+  .greeting {
+    background: rgba(255,255,255,0.75);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.9);
+    border-radius: 16px;
+    padding: 16px 20px;
+    margin-bottom: 14px;
+    font-size: 14px;
+    line-height: 1.8;
+    box-shadow: 0 4px 16px rgba(46,125,50,0.08);
+    text-align: center;
+    color: #2d4a2d;
+  }
+
+  /* LINKS BAR */
+  .links-bar {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+
+  .link-chip {
+    flex: 1;
+    min-width: 120px;
+    background: rgba(255,255,255,0.8);
+    border: 1.5px solid rgba(46,125,50,0.25);
+    border-radius: 12px;
+    padding: 10px 12px;
+    text-align: center;
+    text-decoration: none;
+    color: #2e7d32;
+    font-size: 12px;
+    font-weight: 700;
+    transition: all 0.2s;
+    box-shadow: 0 2px 8px rgba(46,125,50,0.08);
+  }
+
+  .link-chip:hover {
+    background: #e8f5e9;
+    border-color: #43a047;
+    transform: translateY(-1px);
+  }
+
+  .link-chip .chip-icon { font-size: 18px; display: block; margin-bottom: 3px; }
+
+  /* SECTIONS */
+  .section {
+    background: rgba(255,255,255,0.75);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.9);
+    border-radius: 18px;
+    margin-bottom: 14px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(46,125,50,0.08);
+  }
+
+  .section-header {
+    background: linear-gradient(90deg, #2e7d32 0%, #43a047 100%);
+    color: white;
+    padding: 12px 18px;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .section-body {
+    padding: 14px 18px;
+  }
+
+  /* BLOG CARD */
+  .blog-card {
+    border-left: 4px solid #43a047;
+    padding: 12px 14px;
+    border-radius: 0 10px 10px 0;
+    background: rgba(232,245,233,0.5);
+    margin-bottom: 12px;
+  }
+
+  .blog-card:last-child { margin-bottom: 0; }
+
+  .blog-card .blog-meta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 6px;
+    flex-wrap: wrap;
+  }
+
+  .blog-num {
+    font-size: 11px;
+    font-weight: 800;
+    background: #2e7d32;
+    color: white;
+    border-radius: 6px;
+    padding: 2px 8px;
+  }
+
+  .new-badge {
+    font-size: 11px;
+    font-weight: 800;
+    background: #ff6d00;
+    color: white;
+    border-radius: 6px;
+    padding: 2px 8px;
+    animation: pop 0.8s ease-in-out infinite alternate;
+  }
+
+  @keyframes pop {
+    from { transform: scale(1); }
+    to { transform: scale(1.05); }
+  }
+
+  .blog-date {
+    font-size: 11px;
+    color: #6a6a6a;
+  }
+
+  .blog-card h3 {
+    font-size: 14px;
+    font-weight: 800;
+    margin-bottom: 6px;
+    color: #1b5e20;
+  }
+
+  .blog-card h3 a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .blog-card h3 a:hover { text-decoration: underline; }
+
+  .blog-summary {
+    font-size: 13px;
+    line-height: 1.7;
+    color: #3a5a3a;
+  }
+
+  /* NEWS ITEM */
+  .news-item {
+    display: flex;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(46,125,50,0.1);
+    align-items: flex-start;
+  }
+
+  .news-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .news-icon {
+    font-size: 20px;
+    flex-shrink: 0;
+    line-height: 1.5;
+  }
+
+  .news-content { flex: 1; }
+
+  .news-content .news-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #1b5e20;
+    margin-bottom: 3px;
+    line-height: 1.4;
+  }
+
+  .news-content .news-desc {
+    font-size: 12px;
+    color: #5a7a5a;
+    line-height: 1.6;
+  }
+
+  .news-content a {
+    color: #2e7d32;
+    text-decoration: none;
+    font-size: 11px;
+    background: rgba(46,125,50,0.1);
+    border-radius: 4px;
+    padding: 1px 6px;
+    display: inline-block;
+    margin-top: 3px;
+  }
+
+  /* EVENTS */
+  .event-item {
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(46,125,50,0.1);
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .event-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .event-date-badge {
+    flex-shrink: 0;
+    background: #2e7d32;
+    color: white;
+    border-radius: 10px;
+    padding: 6px 10px;
+    text-align: center;
+    font-size: 11px;
+    font-weight: 800;
+    min-width: 52px;
+    line-height: 1.3;
+  }
+
+  .event-date-badge.upcoming {
+    background: linear-gradient(135deg, #ff6d00, #ff8f00);
+  }
+
+  .event-info { flex: 1; }
+
+  .event-info .event-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #1b5e20;
+    margin-bottom: 3px;
+    line-height: 1.4;
+  }
+
+  .event-info .event-venue {
+    font-size: 12px;
+    color: #5a7a5a;
+  }
+
+  .event-info a {
+    font-size: 11px;
+    color: #2e7d32;
+    text-decoration: none;
+  }
+
+  .fc-badge {
+    display: inline-block;
+    background: #7b1fa2;
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    border-radius: 4px;
+    padding: 1px 6px;
+    margin-left: 4px;
+  }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    padding: 20px 16px;
+    font-size: 12px;
+    color: #5a7a5a;
+    line-height: 1.8;
+  }
+
+  .footer .panda-row { font-size: 20px; margin-bottom: 6px; letter-spacing: 4px; }
+
+  .footer a { color: #2e7d32; text-decoration: none; }
 </style>
 </head>
 <body>
-<div class="wrapper">
+<div class="container">
 
-  <!-- Header -->
+  <!-- HEADER -->
   <div class="header">
-    <div class="header-panda-row">
-      <img src="https://fuyutosan.github.io/mei-news/panda.png" class="header-panda" style="background:transparent;" alt="パンダさん">
-      <span class="header-panda-text">パンダさんパワー！</span>
+    <div class="panda-wrap">
+      <img class="panda-img" src="https://fuyutosan.github.io/mei-news/panda.png" alt="🐼" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+      <div style="display:none;font-size:50px;line-height:70px;">🐼</div>
     </div>
-    <div class="header-title">🌿 デイリーめいちゃんニュース</div>
-    <div class="header-meta">第10号 ｜ 2026年6月7日（日曜日）</div>
+    <h1>🌿 デイリーめいちゃんニュース 🌿</h1>
+    <div class="subtitle">山﨑愛生 応援ニュースレター</div>
+    <div class="issue">第10号 ／ 2026年6月7日（日）</div>
   </div>
 
-  <!-- Greeting -->
-  <div class="greeting-card">
-    <img src="https://fuyutosan.github.io/mei-news/panda.png" style="background:transparent;" alt="パンダさん">
-    <div class="greeting-text">
-      おはようございます！🐼 今日もパンダさんパワー全開で山﨑愛生ちゃんを全力推しましょう！<br>
-      昨日のブログ「No.2257 おめでとう！」ではチームラボでのお出かけレポートが📝 牧野真莉愛さんの卒コンまであと17日！
+  <!-- TODAY HOT BANNER -->
+  <div class="today-hot">
+    <div class="hot-label">🔥 TODAY HOT NEWS — 本日締切！</div>
+    <h3>🎂 山﨑愛生バースデーイベント FC2次受付<span class="deadline-badge">本日23時まで！</span></h3>
+    <div class="hot-detail">
+      📅 6月30日(火)  ①16:50開演 ②19:20開演<br>
+      📍 荒川区民会館 大ホール<br>
+      ⭐ ファンクラブ会員限定イベント<br>
+      <a href="https://www.upfc.jp/helloproject/news_detail.php?@uid=yuBPxzH0LPVSqmJz" target="_blank">→ 申込はこちら（FC会員専用）</a>
     </div>
   </div>
 
-  <!-- Official Links -->
+  <!-- GREETING -->
+  <div class="greeting">
+    🐼 おはようございます！今日もめいちゃん全力推し🌿<br>
+    <strong>バースデーイベントFC2次受付は本日23時まで！</strong>お忘れなく🎂
+  </div>
+
+  <!-- LINKS BAR -->
   <div class="links-bar">
-    <div class="links-bar-title">📎 公式リンク</div>
-    <div class="links-grid">
-      <a href="https://ameblo.jp/morningmusume15ki/" class="link-btn" target="_blank">📝 アメブロ</a>
-      <a href="https://www.instagram.com/mei_yamazaki.official/" class="link-btn" target="_blank">📸 Instagram</a>
-      <a href="https://www.helloproject.com/morningmusume/profile/mei_yamazaki/" class="link-btn" target="_blank">🌿 公式HP</a>
-      <a href="https://x.com/MorningMusumeMg" class="link-btn" target="_blank">🐦 モー娘。'26 X</a>
-    </div>
+    <a class="link-chip" href="https://ameblo.jp/morningmusume15ki/" target="_blank">
+      <span class="chip-icon">📝</span>オフィシャルブログ
+    </a>
+    <a class="link-chip" href="https://www.instagram.com/yamazaki_mei_mm/" target="_blank">
+      <span class="chip-icon">📸</span>めいちゃんInstagram
+    </a>
+    <a class="link-chip" href="https://x.com/yamazaki_mei_mm" target="_blank">
+      <span class="chip-icon">🐦</span>めいちゃんX
+    </a>
+    <a class="link-chip" href="https://x.com/morningmusume_o" target="_blank">
+      <span class="chip-icon">🎤</span>モーニング娘。'26 X公式
+    </a>
   </div>
 
-  <!-- Section 1: Blog -->
+  <!-- BLOG SECTION -->
   <div class="section">
-    <div class="section-title">📝 最新ブログ更新</div>
+    <div class="section-header">📝 最新ブログ</div>
+    <div class="section-body">
 
-    <a href="https://ameblo.jp/morningmusume15ki/entry-12968323316.html" class="news-card" target="_blank">
-      <div class="new-badge">🆕 NEW</div>
-      <div class="card-title">No.2257 おめでとう！ 山﨑愛生</div>
-      <div class="card-body">
-        昨日 20:06 投稿。チームラボへのお出かけレポート🎨 自分の描いたイラストが動くのが楽しい！と報告。ハロメンや先輩、家族以外とのお出かけはレアなめいちゃん。海外観光客がたくさんの不思議な世界に迷い込んだような体験だったとか💚
+      <!-- No.2258 NEW -->
+      <div class="blog-card">
+        <div class="blog-meta">
+          <span class="blog-num">No.2258</span>
+          <span class="new-badge">🆕 NEW</span>
+          <span class="blog-date">2026年6月6日(土)</span>
+        </div>
+        <h3><a href="https://ameblo.jp/morningmusume15ki/entry-12968692771.html" target="_blank">大阪公演•ホール千秋楽♪ 山﨑愛生</a></h3>
+        <div class="blog-summary">
+          春ツアー2度目の大阪！NHK大阪ホール公演は<strong>現メンバーでのホールコンラスト🥺</strong>「一瞬一瞬を大切に、しっかり記憶に残した✨」牧野さんとの最後のツアー、ついに目が合う瞬間が3ヶ所も🩷「最後の最後でまた増えたの嬉しいですし、もう終わりなのかなって寂しいです😭」次は武道館公演！まずは自主練からパンダさんパワーで頑張ります🐼💪 プリキュア×コナンコラボも絶賛チェック中📺
+        </div>
       </div>
-      <div class="card-source">
-        <span class="source-tag">アメブロ</span>
-        投稿日: 2026-06-06
-      </div>
-    </a>
-  </div>
 
-  <!-- Section 2: SNS -->
-  <div class="section">
-    <div class="section-title">📸 SNS更新</div>
-
-    <a href="https://www.instagram.com/mei_yamazaki.official/" class="news-card" target="_blank">
-      <div class="card-title">Instagram @mei_yamazaki.official</div>
-      <div class="card-body">
-        昨日の新規投稿は検索では確認できませんでした。プロフィールページにてご確認ください🐼
-      </div>
-      <div class="card-source">
-        <span class="source-tag">Instagram</span>
-        取得日: 2026-06-07（WebSearch経由）
-      </div>
-    </a>
-  </div>
-
-  <!-- Section 3: News -->
-  <div class="section">
-    <div class="section-title">📰 最新ニュース</div>
-
-    <a href="https://natalie.mu/music/news/667985" class="news-card" target="_blank">
-      <div class="card-title">モーニング娘。'26 牧野真莉愛の卒コンは日本武道館！</div>
-      <div class="card-body">
-        6月24日（水）に日本武道館で「Rays Of Light Final ～牧野真莉愛 卒業スペシャル～」を開催。牧野さんは「目に焼き付けてほしい」とコメント。めいちゃんをはじめモー娘。'26メンバーにとっても大切な1日🎤
-      </div>
-      <div class="card-source">
-        <span class="source-tag">音楽ナタリー</span>
-        2026年6月
-      </div>
-    </a>
-
-    <a href="https://www.helloproject.com/morningmusume/event/detail/4ea880d11a0f7b8e7db5dce2fd1f3dcfc9ad0ce7/" class="news-card" target="_blank">
-      <div class="card-title">モーニング娘。'26 コンサートツアー春「Rays Of Light」全日程完走！</div>
-      <div class="card-body">
-        2026年4月11日〜6月6日の春コンサートツアーが昨日の公演をもって全日程終了。めいちゃんも全力でパフォーマンスしたツアー、お疲れ様でした🌿 次は6/24の武道館スペシャルへ！
-      </div>
-      <div class="card-source">
-        <span class="source-tag">ハロプロ公式</span>
-        2026-06-06 完走
-      </div>
-    </a>
-  </div>
-
-  <!-- Section 4: Events -->
-  <div class="section">
-    <div class="section-title">📅 イベント情報（今後1ヶ月）</div>
-
-    <a href="https://helloproject.com/event/c8d1074b4aa884a020aecbee9a50caa46a849e9d/" class="event-card" target="_blank">
-      <div class="event-date-tag">📅 2026年6月24日（水）</div>
-      <div class="event-title">Rays Of Light Final ～牧野真莉愛 卒業スペシャル～</div>
-      <div class="event-venue">🏟 日本武道館（東京）</div>
-    </a>
-
-    <a href="https://www.upfc.jp/helloproject/news_detail.php?%40uid=rdwEdwDwx07vBMps" class="event-card" target="_blank">
-      <div class="event-date-tag">🎂 2026年7月9日（木）</div>
-      <div class="event-title">ENPLEX × Hello! Project 山﨑愛生バースデーイベント in 名古屋</div>
-      <div class="event-venue">🎭 ミッドランドスクエア シネマ2（愛知）</div>
-    </a>
-  </div>
-
-  <!-- Footer -->
-  <div class="footer">
-    <img src="https://fuyutosan.github.io/mei-news/panda.png" class="footer-panda" style="background:transparent;" alt="パンダさん">
-    <div class="footer-text">
-      パンダさん大好き山﨑愛生でした (^o^)/<br>
-      <span style="font-size:12px;color:#aaa;">デイリーめいちゃんニュース 第10号 — 自動生成</span>
-    </div>
-  </div>
-
-</div>
-</body>
-</html>
+      <!-- No.2257 -->
+      <div class="blog-card">
+        <div class="blog-meta">
+          <span class="blog-num">No.2257</span>
+          <span class="new-badge">🆕 NEW</span>
+          <span class="blog-date">2026年6月6日(土)</span>
+        </div>
+        <h3><a href="https://ameblo.jp/morningmusume15ki/entry-12968323316.html" target="_blank">おめでとう！ 山﨑愛生</a></h3>
+        <div class="blog-summary">
+          誕生日のお祝いコメントへの感謝💚「ウルトラパンダコさんパワーMAXです🐼🐙」チームラボでイラストが動く体験✨ バースデーイベント＆誕生日当日に向けて楽しみが続きます
