@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>デイリーめいちゃんニュース 第16号 — 2026年6月14日</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: #f0f7f0;
+    min-height: 100vh;
+    position: relative;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: url('https://fuyutosan.github.io/mei-news/panda.png');
+    background-repeat: repeat;
+    background-size: 120px;
+    opacity: 0.10;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 16px;
+  }
+
+  /* ヘッダー */
+  .header {
+    background: linear-gradient(135deg, #2d7a4a 0%, #4caf78 50%, #81c995 100%);
+    border-radius: 18px;
+    padding: 24px 20px 20px;
+    text-align: center;
+    color: white;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 16px rgba(45,122,74,0.3);
+  }
+
+  .header-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin-bottom: 12px;
+  }
+
+  .header-top img {
+    width: 96px;
+    background: transparent;
+  }
+
+  .header-power {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    letter-spacing: 0.05em;
+  }
+
+  .header h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  }
+
+  .header .meta {
+    font-size: 0.9rem;
+    opacity: 0.9;
+  }
+
+  @keyframes wobble {
+    0%, 100% { transform: rotate(-4deg); }
+    50% { transform: rotate(4deg); }
+  }
+
+  .wobble { animation: wobble 2.5s ease-in-out infinite; }
+
+  /* 挨拶カード */
+  .greeting-card {
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(8px);
+    border-radius: 14px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    border-left: 4px solid #4caf78;
+  }
+
+  .greeting-card img { width: 44px; flex-shrink: 0; }
+
+  .greeting-card p {
+    font-size: 0.95rem;
+    color: #333;
+    line-height: 1.6;
+  }
+
+  /* リンクバー */
+  .link-bar {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    justify-content: center;
+  }
+
+  .link-bar a {
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(8px);
+    border-radius: 20px;
+    padding: 8px 16px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #2d7a4a;
+    text-decoration: none;
+    border: 2px solid #4caf78;
+    transition: all 0.2s;
+  }
+
+  .link-bar a:hover {
+    background: #4caf78;
+    color: white;
+  }
+
+  /* セクションタイトル */
+  .section {
+    margin-bottom: 20px;
+  }
+
+  .section-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #2d7a4a;
+    border-bottom: 2px solid #4caf78;
+    padding-bottom: 6px;
+    margin-bottom: 12px;
+  }
+
+  /* ニュースカード */
+  .card {
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(8px);
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    display: block;
+    text-decoration: none;
+    color: #333;
+    transition: transform 0.15s, box-shadow 0.15s;
+    position: relative;
+  }
+
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  }
+
+  .card .card-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 4px;
+    line-height: 1.5;
+  }
+
+  .card .card-meta {
+    font-size: 0.8rem;
+    color: #777;
+    margin-bottom: 6px;
+  }
+
+  .card .card-body {
+    font-size: 0.85rem;
+    color: #555;
+    line-height: 1.6;
+  }
+
+  /* バッジ */
+  .badge-new {
+    display: inline-block;
+    background: #ff6b35;
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 8px;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+
+  .badge-today {
+    display: inline-block;
+    background: #ff4500;
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 8px;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+
+  /* イベントカード */
+  .event-card {
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(8px);
+    border-radius: 12px;
+    padding: 12px 16px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    display: block;
+    text-decoration: none;
+    color: #333;
+    transition: transform 0.15s, box-shadow 0.15s;
+    border-left: 4px solid #4caf78;
+  }
+
+  .event-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  }
+
+  .event-card.today {
+    background: rgba(255, 237, 213, 0.95);
+    border-left-color: #ff6b35;
+  }
+
+  .event-date {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #2d7a4a;
+    margin-bottom: 4px;
+  }
+
+  .event-card.today .event-date { color: #c84b00; }
+
+  .event-name {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    line-height: 1.4;
+    margin-bottom: 3px;
+  }
+
+  .event-venue {
+    font-size: 0.82rem;
+    color: #666;
+  }
+
+  .event-note {
+    font-size: 0.78rem;
+    color: #888;
+    margin-top: 3px;
+  }
+
+  /* モバイル推奨テキスト */
+  .sp-note {
+    font-size: 0.75rem;
+    color: #999;
+    margin-top: 4px;
+  }
+
+  /* フッター */
+  .footer {
+    text-align: center;
+    padding: 24px 0 16px;
+    color: #555;
+    font-size: 0.9rem;
+  }
+
+  .footer img {
+    width: 52px;
+    margin-bottom: 8px;
+  }
+
+  .footer .sign {
+    font-weight: 700;
+    color: #2d7a4a;
+    font-size: 1rem;
+  }
+
+  .no-news {
+    background: rgba(255,255,255,0.7);
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 0.85rem;
+    color: #888;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- ヘッダー -->
+  <div class="header">
+    <div class="header-top">
+      <img src="https://fuyutosan.github.io/mei-news/panda.png" class="wobble" alt="パンダさん">
+      <div class="header-power">パンダさんパワー！</div>
+    </div>
+    <h1>🐼 デイリーめいちゃんニュース</h1>
+    <div class="meta">第16号 ｜ 2026年6月14日（日）</div>
+  </div>
+
+  <!-- 挨拶カード -->
+  <div class="greeting-card">
+    <img src="https://fuyutosan.github.io/mei-news/panda.png" alt="パンダさん">
+    <p>おはようございます🐼 今日も愛生ちゃんのいーっぱい良い情報をお届けします！<br>今後のイベントが盛りだくさんで、ニコニコしちゃうね〜！</p>
+  </div>
+
+  <!-- リンクバー -->
+  <div class="link-bar">
+    <a href="https://ameblo.jp/morningmusume15ki/theme-10109826705.html" target="_blank">📝 アメブロ</a>
+    <a href="https://www.instagram.com/mei_yamazaki.official/" target="_blank">📸 Instagram</a>
+    <a href="https://helloproject.com/morningmusume/mei_yamazaki/" target="_blank">🌿 公式HP</a>
+    <a href="https://x.com/MorningMusumeMg" target="_blank">𝕏 モーニング娘。'26</a>
+  </div>
+
+  <!-- 📝 最新ブログ更新 -->
+  <div class="section">
+    <div class="section-title">📝 最新ブログ更新</div>
+
+    <a class="card" href="https://ameblo.jp/morningmusume15ki/entry-12969446757.html" target="_blank">
+      <div class="card-title">No.2261 おめでとう〜</div>
+      <div class="card-meta">📅 2026年6月12日（金）</div>
+      <div class="card-body">18期新メンバー4名加入のお祝い記事。STVラジオ「メイボンソワ」7/4放送回の告知、そして木村屋のパンダさんパンが8月まで延長との嬉しいお知らせも🐼</div>
+    </a>
+  </div>
+
+  <!-- 📸 SNS更新 -->
+  <div class="section">
+    <div class="section-title">📸 SNS更新</div>
+
+    <a class="card" href="https://www.instagram.com/mei_yamazaki.official/p/DZZDI4LEWnc/" target="_blank">
+      <div class="card-title">Instagram — アイドリッシュセブン記念日🌈</div>
+      <div class="card-meta">📅 2026年6月9日（月）</div>
+      <div class="card-body">「今日6/10はIDOLiSH7記念日🌈 おめでとうございます🎉 少し前に妹と『アイドリッシュセブン Harmony Lounge』に行ってきた😊 アップルパイにした🍎🥧 ペロリと食べました😋 また行きたい！」<br><span class="sp-note">📱スマホ推奨（Instagramはアプリで見てね）</span></div>
+    </a>
+  </div>
+
+  <!-- 📰 最新ニュース -->
+  <div class="section">
+    <div class="section-title">📰 最新ニュース</div>
+
+    <a class="card" href="https://ameblo.jp/morningmusume15ki/entry-12969446757.html" target="_blank">
+      <div class="card-title">🐼 パンダさんパンが8月まで延長決定！</div>
+      <div class="card-meta">木村屋總本店 × 山﨑愛生コラボ</div>
+      <div class="card-body">愛生ちゃんブログNo.2261にて告知。大人気のパンダさんパンがさらに楽しめるよ！</div>
+    </a>
+
+    <a class="card" href="https://www.upfc.jp/helloproject/news_detail.php?%40uid=Sw9NVLHe32q6ribg" target="_blank">
+      <div class="card-title">🎂 山﨑愛生バースデーイベント（東京）詳細公開</div>
+      <div class="card-meta">ファンクラブ限定イベント</div>
+      <div class="card-body">2026年6月30日（火）荒川区民会館 大ホール。①開演16:50 ②開演19:20の2部制。もうすぐ🎉</div>
+    </a>
+
+    <a class="card" href="https://www.upfc.jp/helloproject/news_detail.php?%40uid=rdwEdwDwx07vBMps" target="_blank">
+      <div class="card-title">🎤 山﨑愛生バースデーイベント in 名古屋も開催決定！</div>
+      <div class="card-meta">ENPLEX × Hello! Project 定期イベント</div>
+      <div class="card-body">2026年7月9日（木）ミッドランドスクエア シネマ2（愛知）。全席指定 ¥4,500（FC特別価格）。</div>
+    </a>
+  </div>
+
+  <!-- 📅 イベント情報 -->
+  <div class="section">
+    <div class="section-title">📅 イベント情報（今後1ヶ月）</div>
+
+    <a class="event-card" href="https://helloproject.com/event/c8d1074b4aa884a020aecbee9a50caa46a849e9d/" target="_blank">
+      <div class="event-date">📆 2026年6月24日（水）</div>
+      <div class="event-name">Rays Of Light Final ～牧野真莉愛 卒業スペシャル～</div>
+      <div class="event-venue">🏟 日本武道館</div>
+    </a>
+
+    <a class="event-card" href="https://www.upfc.jp/helloproject/news_detail.php?%40uid=Sw9NVLHe32q6ribg" target="_blank">
+      <div class="event-date">📆 2026年6月30日（火）</div>
+      <div class="event-name">🎂 山﨑愛生バースデーイベント</div>
+      <div class="event-venue">🏛 荒川区民会館 大ホール（東京）</div>
+      <div class="event-note">FC限定 ①16:50 ②19:20</div>
+    </a>
+
+    <a class="event-card" href="https://www.upfc.jp/helloproject/news_detail.php?%40uid=rdwEdwDwx07vBMps" target="_blank">
+      <div class="event-date">📆 2026年7月9日（木）</div>
+      <div class="event-name">🎂 ENPLEX × Hello! Project 山﨑愛生バースデーイベント in 名古屋</div>
+      <div class="event-venue">🎬 ミッドランドスクエア シネマ2（愛知）</div>
+    </a>
+
+    <a class="event-card" href="https://www.eventernote.com/actors/%E5%B1%B1%EF%A8%91%E6%84%9B%E7%94%9F/39740" target="_blank">
+      <div class="event-date">📆 2026年7月11日（土）</div>
+      <div class="event-name">ハロ！コン 2026</div>
+      <div class="event-venue">🎵 Niterra日本特殊陶業市民会館 フォレストホール（名古屋）</div>
+    </a>
+  </div>
+
+  <!-- フッター -->
+  <div class="footer">
+    <div>
+      <img src="https://fuyutosan.github.io/mei-news/panda.png" class="wobble" alt="パンダさん">
+    </div>
+    <div class="sign">山﨑愛生ちゃん情報でした(^o^)/</div>
+    <div style="font-size:0.78rem; color:#aaa; margin-top:6px;">デイリーめいちゃんニュース 第16号 ｜ 2026-06-14</div>
+  </div>
+
+</div>
+</body>
+</html>
