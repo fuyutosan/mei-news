@@ -26,6 +26,12 @@
     opacity: 0.10;
     pointer-events: none;
     z-index: 0;
+    animation: scrollBg 12s linear infinite;
+  }
+
+  @keyframes scrollBg {
+    0%   { background-position: 0 0; }
+    100% { background-position: 120px 120px; }
   }
 
   .wrapper {
@@ -311,6 +317,33 @@
     animation: wobble 2.5s ease-in-out infinite;
     display: inline-block;
   }
+
+  /* ふわふわパンダさん */
+  .float-panda {
+    position: fixed;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.55;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.12));
+  }
+
+  @keyframes floatBob {
+    0%   { transform: translateY(0px) rotate(-6deg); }
+    50%  { transform: translateY(-18px) rotate(6deg); }
+    100% { transform: translateY(0px) rotate(-6deg); }
+  }
+
+  @keyframes floatBobR {
+    0%   { transform: translateY(0px) rotate(6deg); }
+    50%  { transform: translateY(-22px) rotate(-4deg); }
+    100% { transform: translateY(0px) rotate(6deg); }
+  }
+
+  @keyframes floatBobSlow {
+    0%   { transform: translateY(0px) rotate(3deg) scale(1); }
+    50%  { transform: translateY(-14px) rotate(-5deg) scale(1.05); }
+    100% { transform: translateY(0px) rotate(3deg) scale(1); }
+  }
 </style>
 </head>
 <body>
@@ -440,5 +473,12 @@
   </div>
 
 </div>
+<!-- ふわふわパンダさんたち -->
+<img src="https://fuyutosan.github.io/mei-news/panda.png" class="float-panda" alt=""
+  style="width:64px; left:8px; top:18%; animation: floatBob 4.2s ease-in-out infinite;">
+<img src="https://fuyutosan.github.io/mei-news/panda.png" class="float-panda" alt=""
+  style="width:48px; right:6px; top:42%; animation: floatBobR 5.1s ease-in-out infinite;">
+<img src="https://fuyutosan.github.io/mei-news/panda.png" class="float-panda" alt=""
+  style="width:56px; left:4px; top:68%; animation: floatBobSlow 6.3s ease-in-out infinite;">
 </body>
 </html>
