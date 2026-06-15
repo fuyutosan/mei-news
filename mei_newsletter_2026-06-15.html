@@ -346,6 +346,24 @@
 
   .sns-mobile-note { font-size: 11px; color: #777; margin-top: 5px; }
 
+  /* アーカイブへのリンク */
+  .archive-link {
+    display: block;
+    text-align: center;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(8px);
+    border: 2px dashed #4caf62;
+    border-radius: 14px;
+    padding: 14px 16px;
+    margin-bottom: 14px;
+    font-size: 14px;
+    font-weight: 900;
+    color: #2d7a3a;
+    text-decoration: none;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .archive-link:hover { transform: translateY(-2px); box-shadow: 0 4px 14px rgba(76,175,98,0.2); }
+
   /* 編集長CTA */
   .editor-cta {
     background: linear-gradient(135deg, #1a5c28 0%, #2d7a3a 100%);
@@ -647,6 +665,11 @@
       <div class="event-venue">📍 Niterra日本特殊陶業市民会館 フォレストホール（名古屋）</div>
     </a>
   </div>
+
+  <!-- アーカイブへのリンク -->
+  <a href="https://fuyutosan.github.io/mei-news/" class="archive-link fade-in">
+    📚 バックナンバー（アーカイブ）はこちら →
+  </a>
 
   <!-- 編集長CTA -->
   <a href="https://fuyutosan.github.io/meimei/" target="_blank" class="editor-cta fade-in">
