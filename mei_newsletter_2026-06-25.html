@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>デイリーめいちゃんニュース 第27号 2026-06-25</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  background: #f0faf2;
+  color: #1a2e1a;
+  cursor: none;
+  min-height: 100vh;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url('https://fuyutosan.github.io/mei-news/panda.png');
+  background-size: 120px 120px;
+  opacity: 0.10;
+  pointer-events: none;
+  z-index: 0;
+  animation: scrollBg 12s linear infinite;
+}
+
+@keyframes scrollBg {
+  0%   { background-position: 0 0; }
+  100% { background-position: 120px 120px; }
+}
+
+@keyframes wobble {
+  0%, 100% { transform: rotate(0deg); }
+  20% { transform: rotate(-8deg); }
+  40% { transform: rotate(8deg); }
+  60% { transform: rotate(-5deg); }
+  80% { transform: rotate(5deg); }
+}
+
+@keyframes floatBob {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-18px); }
+}
+@keyframes floatBobR {
+  0%, 100% { transform: translateY(0px) scaleX(-1); }
+  50% { transform: translateY(-14px) scaleX(-1); }
+}
+@keyframes floatBobSlow {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-22px); }
+}
+
+@keyframes leafFall {
+  0%   { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+}
+
+@keyframes confetti {
+  0%   { transform: translate(0, 0) rotate(0deg); opacity: 1; }
+  100% { transform: translate(var(--dx), var(--dy)) rotate(720deg); opacity: 0; }
+}
+
+@keyframes clickPop {
+  0%   { transform: translate(-50%, -50%) scale(0); opacity: 1; }
+  100% { transform: translate(-50%, -100%) scale(1.5); opacity: 0; }
+}
+
+@keyframes bdConfetti {
+  0%   { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+}
+
+.wobble { animation: wobble 2.5s ease-in-out infinite; display: inline-block; }
+
+#cursor-panda {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  width: 40px;
+  transform: translate(-50%, -50%);
+  transition: left 0.05s, top 0.05s;
+}
+
+.float-panda {
+  position: fixed;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.55;
+}
+
+.wrapper {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 12px 40px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ヘッダー */
+.header {
+  background: linear-gradient(135deg, #2d7a3a 0%, #4caf62 50%, #1a5c28 100%);
+  color: white;
+  border-radius: 0 0 24px 24px;
+  padding: 24px 20px 20px;
+  text-align: center;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 20px rgba(45,122,58,0.35);
+}
+
+.header-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.header-top span {
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+.header h1 {
+  font-size: 1.55rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  line-height: 1.3;
+}
+
+.header-sub {
+  font-size: 0.85rem;
+  margin-top: 6px;
+  opacity: 0.9;
+}
+
+/* 挨拶カード */
+.greeting-card {
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(8px);
+  border-left: 4px solid #4caf62;
+  border-radius: 14px;
+  padding: 14px 16px;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  box-shadow: 0 2px 10px rgba(45,122,58,0.12);
+}
+
+.greeting-card img { width: 44px; flex-shrink: 0; }
+.greeting-text { font-size: 0.9rem; line-height: 1.7; }
+
+/* カウントダウン */
+.countdown-card {
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(8px);
+  border-radius: 18px;
+  padding: 20px;
+  margin-bottom: 14px;
+  text-align: center;
+  box-shadow: 0 3px 16px rgba(45,122,58,0.18);
+  border: 2px solid #c8e6c9;
+}
+
+.countdown-label {
+  font-size: 0.8rem;
+  color: #4caf62;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  margin-bottom: 10px;
+}
+
+.countdown-nums {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.cd-unit {
+  background: linear-gradient(135deg, #2d7a3a, #4caf62);
+  color: white;
+  border-radius: 12px;
+  padding: 8px 14px;
+  min-width: 60px;
+}
+
+.cd-num {
+  font-size: 2rem;
+  font-weight: 900;
+  line-height: 1;
+  display: block;
+}
+
+.cd-lbl {
+  font-size: 0.65rem;
+  opacity: 0.85;
+  display: block;
+  margin-top: 2px;
+}
+
+.birthday-special {
+  display: none;
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: #2d7a3a;
+  padding: 12px;
+  animation: wobble 2.5s ease-in-out infinite;
+}
+
+/* 豆知識カード */
+.trivia-card {
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(8px);
+  border-left: 4px solid #2d7a3a;
+  border-radius: 14px;
+  padding: 14px 16px;
+  margin-bottom: 14px;
+  box-shadow: 0 2px 10px rgba(45,122,58,0.12);
+}
+
+.trivia-label {
+  font-size: 0.75rem;
+  color: #2d7a3a;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  margin-bottom: 6px;
+}
+
+.trivia-text {
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: #1a2e1a;
+}
+
+/* 公式リンクバー */
+.link-bar {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.link-btn {
+  background: #2d7a3a;
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  flex: 1;
+  min-width: 120px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(45,122,58,0.25);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.link-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(45,122,58,0.35);
+}
+
+/* セクション */
+.section-title {
+  font-size: 1rem;
+  font-weight: 900;
+  color: #2d7a3a;
+  margin: 20px 0 10px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #c8e6c9;
+  letter-spacing: 0.04em;
+}
+
+/* ニュースカード */
+.news-card {
+  display: block;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(8px);
+  border-radius: 14px;
+  padding: 14px 16px;
+  margin-bottom: 10px;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 2px 10px rgba(45,122,58,0.10);
+  transition: transform 0.15s, box-shadow 0.15s;
+  border: 1px solid rgba(200,230,200,0.5);
+  position: relative;
+}
+
+.news-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(45,122,58,0.18);
+}
+
+.news-card.read-card::after {
+  content: '✓ 読んだ';
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  font-size: 0.7rem;
+  color: #4caf62;
+  font-weight: 700;
+  background: rgba(200,240,200,0.7);
+  padding: 2px 8px;
+  border-radius: 20px;
+}
+
+.card-label {
+  font-size: 0.72rem;
+  color: #4a7a4a;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.card-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #1a2e1a;
+  line-height: 1.5;
+  margin-bottom: 4px;
+}
+
+.card-desc {
+  font-size: 0.8rem;
+  color: #4a6a4a;
+  line-height: 1.5;
+}
+
+.badge-new {
+  background: #e53935;
+  color: white;
+  font-size: 0.68rem;
+  font-weight: 900;
+  padding: 1px 6px;
+  border-radius: 6px;
+  margin-right: 4px;
+  vertical-align: middle;
+}
+
+/* TODAYバッジ */
+.today-event {
+  background: rgba(255,243,220,0.95);
+  border: 2px solid #ff8f00;
+  border-radius: 14px;
+  padding: 14px 16px;
+  margin-bottom: 10px;
+  position: relative;
+  box-shadow: 0 3px 14px rgba(255,143,0,0.25);
+}
+
+.badge-today {
+  display: inline-block;
+  background: #ff6d00;
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 900;
+  padding: 2px 9px;
+  border-radius: 6px;
+  margin-right: 6px;
+  letter-spacing: 0.04em;
+  vertical-align: middle;
+}
+
+.event-item {
+  background: rgba(255,255,255,0.88);
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin-bottom: 8px;
+  border-left: 3px solid #2d7a3a;
+  box-shadow: 0 1px 6px rgba(45,122,58,0.10);
+}
+
+.event-date {
+  font-size: 0.75rem;
+  color: #4a7a4a;
+  font-weight: 700;
+  margin-bottom: 3px;
+}
+
+.event-name {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #1a2e1a;
+  margin-bottom: 2px;
+}
+
+.event-venue {
+  font-size: 0.78rem;
+  color: #5a7a5a;
+}
+
+/* アーカイブ・CTAカード */
+.archive-card {
+  display: block;
+  text-align: center;
+  border: 2px dashed #4caf62;
+  border-radius: 14px;
+  padding: 14px;
+  margin-bottom: 10px;
+  text-decoration: none;
+  color: #2d7a3a;
+  font-weight: 700;
+  font-size: 0.9rem;
+  background: rgba(255,255,255,0.7);
+  transition: background 0.2s;
+}
+
+.archive-card:hover { background: rgba(200,240,200,0.7); }
+
+.home-card {
+  display: block;
+  background: linear-gradient(135deg, #2d7a3a, #4caf62);
+  color: white;
+  text-decoration: none;
+  border-radius: 14px;
+  padding: 16px;
+  text-align: center;
+  margin-bottom: 16px;
+  font-weight: 700;
+  box-shadow: 0 4px 16px rgba(45,122,58,0.3);
+  transition: transform 0.15s;
+}
+
+.home-card:hover { transform: translateY(-2px); }
+
+/* フッター */
+.footer {
+  text-align: center;
+  padding: 20px 0 10px;
+  opacity: 0.75;
+}
+
+.footer-text {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #2d7a3a;
+  margin-top: 8px;
+}
+
+.footer-sub {
+  font-size: 0.72rem;
+  color: #5a7a5a;
+  margin-top: 4px;
+}
+
+/* フェードイン */
+.fade-in {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (hover: none) {
+  body { cursor: auto; }
+  #cursor-panda { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- カーソル追従パンダさん -->
+<img id="cursor-panda" src="https://fuyutosan.github.io/mei-news/panda.png" alt="">
+
+<!-- ふわふわパンダさん3体 -->
+<img src="https://fuyutosan.github.io/mei-news/panda.png" class="float-panda" style="width:64px; left:8px; top:18%; animation: floatBob 4.2s ease-in-out infinite;" alt="">
+<img src="https://fuyutosan.github.io/mei-news/panda.png" class="float-panda" style="width:48px; right:6px; top:42%; animation: floatBobR 5.1s ease-in-out infinite;" alt="">
+<img src="https://fuyutosan.github.io/mei-news/panda.png" class="float-panda" style="width:56px; left:4px; top:68%; animation: floatBobSlow 6.3s ease-in-out infinite;" alt="">
+
+<div class="wrapper">
+
+  <!-- ヘッダー -->
+  <div class="header">
+    <div class="header-top">
+      <img src="https://fuyutosan.github.io/mei-news/panda.png" class="wobble" style="width:96px; background:transparent;" alt="パンダさん">
+      <span>パンダさんパワー！</span>
+    </div>
+    <h1>デイリーめいちゃんニュース</h1>
+    <div class="header-sub">第27号 ／ 2026年6月25日（木）</div>
+  </div>
+
+  <!-- 挨拶カード -->
+  <div class="greeting-card fade-in">
+    <img src="https://fuyutosan.github.io/mei-news/panda.png" alt="パンダさん">
+    <div class="greeting-text">
+      おはようございます！昨日の武道館で牧野真莉愛さんが卒業して、今日からモーニング娘。'26 の新しい章が始まりました🌸<br>
+      そしてなんと！新曲「Lonely...But not Alone」のPromotion EditがYouTubeで公開されたよ🎵<br>
+      バースデーまであと<strong>3日</strong>！愛生ちゃんの21歳、いーっぱい応援しよう🐼✨
+    </div>
+  </div>
+
+  <!-- バースデーカウントダウン -->
+  <div class="countdown-card fade-in">
+    <div class="countdown-label">🎂 愛生ちゃん21歳バースデーまで…！</div>
+    <div class="countdown-nums" id="countdown-wrap">
+      <div class="cd-unit"><span class="cd-num" id="cd-days">-</span><span class="cd-lbl">日</span></div>
+      <div class="cd-unit"><span class="cd-num" id="cd-hours">-</span><span class="cd-lbl">時間</span></div>
+      <div class="cd-unit"><span class="cd-num" id="cd-mins">-</span><span class="cd-lbl">分</span></div>
+      <div class="cd-unit"><span class="cd-num" id="cd-secs">-</span><span class="cd-lbl">秒</span></div>
+    </div>
+    <div class="birthday-special" id="birthday-special">🎉🐼 Happy Birthday!! めいちゃん 21歳🐼🎉</div>
+  </div>
+
+  <!-- 今日の豆知識 -->
+  <div class="trivia-card fade-in">
+    <div class="trivia-label">🐼 今日の愛生ちゃん豆知識</div>
+    <div class="trivia-text" id="trivia-text">読み込み中…</div>
+  </div>
+
+  <!-- 公式リンクバー -->
+  <div class="link-bar">
+    <a class="link-btn" href="https://ameblo.jp/morningmusume15ki/theme-10109826705.html" target="_blank">📝 アメブロ</a>
+    <a class="link-btn" href="https://www.instagram.com/mei_yamazaki.official/" target="_blank">📸 Instagram</a>
+    <a class="link-btn" href="https://helloproject.com/morningmusume/mei_yamazaki/" target="_blank">🏠 公式HP</a>
+    <a class="link-btn" href="https://x.com/MorningMusumeMg" target="_blank">𝕏 モーニング娘。'26</a>
+  </div>
+
+  <!-- Section 1: ブログ -->
+  <div class="section-title">📝 最新ブログ更新</div>
+
+  <a href="https://ameblo.jp/morningmusume15ki/entry-12970487624.html" target="_blank" class="news-card fade-in" data-card-id="blog-2266-20260622">
+    <span class="card-label">アメブロ ／ 2026-06-22（3日前）</span>
+    <div class="card-title">No.2266「7周年記念日」</div>
+    <div class="card-desc">15期加入7周年記念日！ほまれちゃんのビートボックスの夢、先輩としての決意、武道館・77thシングル9月・パンダさんパン8月延長・バースデーイベント6/30告知が盛りだくさん🎉 本日時点で最新記事です。</div>
+  </a>
+
+  <!-- Section 2: SNS・YouTube -->
+  <div class="section-title">📸 SNS・YouTube更新</div>
+
+  <a href="https://www.instagram.com/mei_yamazaki.official/p/DZzobpVCUDe/" target="_blank" class="news-card fade-in" data-card-id="insta-20260620">
+    <span class="card-label">Instagram ／ 最新確認（2026-06-20） 📱スマホ推奨</span>
+    <div class="card-title">山﨑愛生 Instagram（@mei_yamazaki.official）</div>
+    <div class="card-desc">前回確認（6/20）以降に新着がある可能性あり🐼 スマホでプロフィールページをチェックしてみてね。</div>
+  </a>
+
+  <!-- YouTube サブセクション -->
+  <div style="font-size:0.8rem; font-weight:700; color:#4a7a4a; margin: 10px 0 8px; padding-left:4px;">📹 YouTube</div>
+
+  <a href="https://www.youtube.com/watch?v=1hSOOSaPZZc" target="_blank" class="news-card fade-in" data-card-id="yt-20260624-mm26lonely">
+    <span class="card-label"><span class="badge-new">🆕 NEW</span>YouTube モーニング娘。公式 ／ 2026-06-24</span>
+    <div class="card-title">モーニング娘。'26『Lonely...But not Alone』Promotion Edit</div>
+    <div class="card-desc">🎬 新曲のPromotion Editがついに公開！愛生ちゃんをはじめメンバーの表情に注目だよ🎵 クリックで視聴できます。</div>
+  </a>
+
+  <a href="https://www.youtube.com/shorts/f6ItR4z-tMo" target="_blank" class="news-card fade-in" data-card-id="yt-20260624-makino-graduation">
+    <span class="card-label"><span class="badge-new">🆕 NEW</span>YouTube モーニング娘。公式 ／ 2026-06-24</span>
+    <div class="card-title">#牧野真莉愛 モーニング娘。卒業記念ヒストリー【6/24卒業公演】</div>
+    <div class="card-desc">🎬 昨日の武道館公演で卒業した牧野真莉愛さんの記念ヒストリー動画。たくさんの思い出をぜひ見てね🌸</div>
+  </a>
+
+  <a href="https://www.youtube.com/watch?v=EXzSVa1SDE8" target="_blank" class="news-card fade-in" data-card-id="yt-20260617-halosta647">
+    <span class="card-label">YouTube ハロ！ステ ／ 2026-06-17</span>
+    <div class="card-title">【ハロ！ステ#647】アンジュルム「悔しいわ」LIVE モーニング娘。'26 リハーサル＆本番密着 MC 野中美希＆櫻井梨央</div>
+    <div class="card-desc">🎬 モーニング娘。'26のリハーサルと本番の密着映像！愛生ちゃんの活躍もチェックしてみてね。</div>
+  </a>
+
+  <!-- Section 3: 最新ニュース -->
+  <div class="section-title">📰 最新ニュース</div>
+
+  <div class="news-card fade-in" style="border-left: 3px solid #2d7a3a; background: rgba(232,245,233,0.95);">
+    <span class="card-label">🎵 新曲情報</span>
+    <div class="card-title">新曲「Lonely...But not Alone」Promotion Edit公開！</div>
+    <div class="card-desc">モーニング娘。'26の最新シングルPromotion Editが昨日公開されたよ。YouTubeでチェックできます🎵 77thシングルは2026年9月発売予定！</div>
+  </div>
+
+  <div class="news-card fade-in">
+    <span class="card-label">🌸 卒業情報</span>
+    <div class="card-title">牧野真莉愛さん、昨日6/24の武道館公演で卒業しました</div>
+    <div class="card-desc">15期の先輩・牧野真莉愛さんが昨日の武道館公演をもってモーニング娘。'26を卒業。愛生ちゃんも同期・先輩として長く共に歩んできた大切な仲間。新章の幕開けだよ🌸</div>
+  </div>
+
+  <div class="news-card fade-in">
+    <span class="card-label">🎂 バースデーまであと3日！</span>
+    <div class="card-title">6月28日、愛生ちゃんが21歳に！バースデーイベントも控えてる🐼</div>
+    <div class="card-desc">今週日曜（6/28）が愛生ちゃんの誕生日！そして6/30のFC限定バースデーイベント（荒川区民会館）、7/9名古屋バースデーイベントと続くよ。バースデーweekは盛り上がっていこう🎉</div>
+  </div>
+
+  <div class="news-card fade-in">
+    <span class="card-label">🍞 パンダさんパン情報</span>
+    <div class="card-title">木村屋總本店コラボ「パンダさん」パン、2026年8月まで販売延長中！</div>
+    <div class="card-desc">愛生ちゃんコラボの「パンダさん」パンが好評につき8月まで延長販売中。まだ食べていない方はお早めに🐼🍞</div>
+  </div>
+
+  <!-- Section 4: イベント情報 -->
+  <div class="section-title">📅 イベント情報（今後1ヶ月）</div>
+
+  <div class="event-item fade-in" style="border-left: 3px solid #e91e8c; background: rgba(252,228,236,0.9);">
+    <div class="event-date">2026年6月28日（日）</div>
+    <div class="event-name">🎂 山﨑愛生 21歳のお誕生日！</div>
+    <div class="event-venue">カウントダウン中🐼 一緒にお祝いしよう！</div>
+  </div>
+
+  <div class="event-item fade-in">
+    <div class="event-date">2026年6月30日（火）FC限定</div>
+    <div class="event-name">山﨑愛生バースデーイベント</div>
+    <div class="event-venue">📍 荒川区民会館 大ホール　①16:50 ②19:20</div>
+  </div>
+
+  <div class="event-item fade-in">
+    <div class="event-date">2026年7月9日（木）</div>
+    <div class="event-name">ENPLEX × Hello! Project 山﨑愛生バースデーイベント in 名古屋</div>
+    <div class="event-venue">📍 ミッドランドスクエア シネマ2（愛知）</div>
+  </div>
+
+  <div class="event-item fade-in">
+    <div class="event-date">2026年7月11日（土）</div>
+    <div class="event-name">ハロ！コン 2026</div>
+    <div class="event-venue">📍 Niterra日本特殊陶業市民会館 フォレストホール（名古屋）</div>
+  </div>
+
+  <!-- アーカイブ -->
+  <a href="https://fuyutosan.github.io/mei-news/" class="archive-card fade-in">
+    📚 バックナンバー（アーカイブ）はこちら →
+  </a>
+
+  <!-- メイメイのお家CTA -->
+  <a href="https://fuyutosan.github.io/meimei/" target="_blank" class="home-card fade-in">
+    🏠 このニュースを作っているのは → メイメイのお家
+  </a>
+
+  <!-- フッター -->
+  <div class="footer">
+    <img src="https://fuyutosan.github.io/mei-news/panda.png" class="wobble" style="width:52px; background:transparent;" alt="パンダさん">
+    <div class="footer-text">山﨑愛生ちゃん情報でした(^o^)/</div>
+    <div class="footer-sub">第27号 ／ 2026-06-25</div>
+  </div>
+
+</div><!-- /wrapper -->
+
+<script>
+// 1. カーソル追従パンダさん
+(function() {
+  var el = document.getElementById('cursor-panda');
+  if (!el) return;
+  document.addEventListener('mousemove', function(e) {
+    el.style.left = e.clientX + 'px';
+    el.style.top  = e.clientY + 'px';
+  });
+})();
+
+// 2. クリックで絵文字が飛び散る
+document.addEventListener('click', function(e) {
+  var emojis = ['💚','🎋','🐼','✨','🌿','💚','🎉','🐼','💚'];
+  emojis.forEach(function(em, i) {
+    var el = document.createElement('span');
+    el.textContent = em;
+    el.style.cssText = 'position:fixed;left:' + e.clientX + 'px;top:' + e.clientY + 'px;pointer-events:none;z-index:9998;font-size:1.4rem;animation:clickPop 0.7s ease forwards;animation-delay:' + (i * 0.05) + 's;';
+    document.body.appendChild(el);
+    setTimeout(function() { el.remove(); }, 800);
+  });
+});
+
+// 3. 竹の葉っぱがふわふわ降る
+setInterval(function() {
+  var leaves = ['🌿','💚','🍃','🎋'];
+  var el = document.createElement('span');
+  el.textContent = leaves[Math.floor(Math.random() * leaves.length)];
+  el.style.cssText = 'position:fixed;left:' + (Math.random() * 100) + 'vw;top:-30px;pointer-events:none;z-index:9997;font-size:' + (0.9 + Math.random() * 0.8) + 'rem;animation:leafFall ' + (4 + Math.random() * 4) + 's linear forwards;';
+  document.body.appendChild(el);
+  setTimeout(function() { el.remove(); }, 9000);
+}, 900);
+
+// 4. スクロールフェードイン
+(function() {
+  var items = document.querySelectorAll('.fade-in');
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) { entry.target.classList.add('visible'); }
+    });
+  }, { threshold: 0.1 });
+  items.forEach(function(el) { obs.observe(el); });
+})();
+
+// 5. バースデーカウントダウン
+(function() {
+  var target = new Date('2026-06-28T00:00:00+09:00').getTime();
+  function update() {
+    var now = Date.now();
+    var diff = target - now;
+    if (diff <= 0) {
+      document.getElementById('countdown-wrap').style.display = 'none';
+      document.getElementById('birthday-special').style.display = 'block';
+      startBdConfetti();
+      return;
+    }
+    var d = Math.floor(diff / 86400000);
+    var h = Math.floor((diff % 86400000) / 3600000);
+    var m = Math.floor((diff % 3600000) / 60000);
+    var s = Math.floor((diff % 60000) / 1000);
+    document.getElementById('cd-days').textContent = d;
+    document.getElementById('cd-hours').textContent = h;
+    document.getElementById('cd-mins').textContent = m;
+    document.getElementById('cd-secs').textContent = s;
+  }
+  update();
+  setInterval(update, 1000);
+
+  function startBdConfetti() {
+    setInterval(function() {
+      var emojis = ['🎉','🎂','🐼','💚','✨','🌿','🎊'];
+      var el = document.createElement('span');
+      el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      el.style.cssText = 'position:fixed;left:' + (Math.random() * 100) + 'vw;top:-30px;pointer-events:none;z-index:9996;font-size:' + (1 + Math.random()) + 'rem;animation:bdConfetti ' + (3 + Math.random() * 3) + 's linear forwards;';
+      document.body.appendChild(el);
+      setTimeout(function() { el.remove(); }, 7000);
+    }, 300);
+  }
+})();
+
+// 6. 今日の豆知識ランダム表示
+(function() {
+  var facts = [
+    '誕生日は6月28日。2026年でついに21歳になります🎂',
+    'モーニング娘。15期として2019年6月23日に加入。今年で加入7周年！🎉',
+    '出身地は北海道。北の大地で育った愛生ちゃんです🌿',
+    '血液型はA型。几帳面でしっかり者のイメージ通り！',
+    '身長は約160.6cm（2021年当時）。すらりとした愛生ちゃん。',
+    '左利きなんです！ペンを持つのは左手だよ🐼',
+    '視力が悪くて眼鏡をかけることも。ファンの間では「眼鏡Mei」とも呼ばれてるよ。',
+    'パンダさんが大大大好き！グッズ集めも趣味のひとつ🐼',
+    'コーヒーが苦手。甘いドリンク派です☕',
+    '生魚が苦手（お寿司はNG）。フライ系・焼き系は大丈夫だよ。',
+    '野菜が苦手で生卵も苦手。好き嫌いは愛らしいポイント笑',
+    'オバケが苦手！ホラーはちょっと……🙈',
+    '一番好きなお菓子は「チョコチップクッキー」。1番！って言い切るのが愛生ちゃんらしい。',
+    '醤油ラーメンが好き。シンプルが一番！',
+    'フライドポテト（ポテト）が大好物🍟',
+    'クリームソーダが好き。見た目もかわいいよね🍹',
+    '「ウルトラパンダさんパワーMAX！」が愛生ちゃんの決め台詞🐼✨',
+    'コナン（名探偵コナン）とプリキュアが大好き。オタクな一面もあるよ！',
+    '木村屋總本店とコラボしたパン「パンダさん」が2026年8月まで販売延長中🍞',
+    'STVラジオ「メイボンソワ」でMCを担当中。ラジオパーソナリティも素敵！',
+    'ブログのタイトルには毎回記事番号が付いている（No.○○）。2266号まで続いてるよ！',
+    'ニックネームは「めい」「めいちゃん」「めい氏」「ボブめいち」など色々あるよ。',
+    'ブログを書くたびにパンダさんの絵を描きすぎて、ペンが枯れたことがある🐼',
+    'しりとりで「パンダさん」で締めるのがマイルールらしい（ブログ No.2265より）。',
+    '「パンダ電車に乗りながらパンダ弁当を食べたい」という夢を持っています🚃',
+    '15期（岡村ほまれ・山﨑愛生・北川莉央・kiitos.）の中で最年長が愛生ちゃん。',
+    '「モーニング娘。に山﨑愛生がいることに感動」という言葉がファンには名言として刺さってます。',
+    '好きな言葉は「パンダさんパワー！」。落ち込んだ時に自分に言い聞かせてるとか🐼',
+    'チームラボが大好き！アート体験が心のリフレッシュになるみたい✨',
+    '77thシングルが2026年9月に発売決定！どんな楽曲か楽しみだね🎵',
+    '「パンダコさん」はブログで愛生ちゃんが自分で考案したパンダキャラ。2020年頃に登場！🐼',
+    '2026年1月の武道館公演では嬉し泣きしていたという愛生ちゃん。感受性豊かな一面🐼',
+    '牧野真莉愛さんが2026年6月24日に卒業。15期の先輩として長く共に歩んだ大切な仲間🌸',
+    'モーニング娘。'26の「Lonely...But not Alone」がPromotion Edit公開中！新曲は9月発売予定🎵'
+  ];
+  var idx = Math.floor(Math.random() * facts.length);
+  document.getElementById('trivia-text').textContent = facts[idx];
+})();
+
+// 7. 読んだカードチェック（localStorage）
+(function() {
+  var KEY = 'mei_read_cards_v1';
+  var read;
+  try { read = new Set(JSON.parse(localStorage.getItem(KEY) || '[]')); }
+  catch(e) { read = new Set(); }
+  document.querySelectorAll('[data-card-id]').forEach(function(el) {
+    var id = el.getAttribute('data-card-id');
+    if (read.has(id)) el.classList.add('read-card');
+    el.addEventListener('click', function() {
+      read.add(id);
+      try { localStorage.setItem(KEY, JSON.stringify(Array.from(read))); } catch(e) {}
+      el.classList.add('read-card');
+    });
+  });
+})();
+</script>
+</body>
+</html>
