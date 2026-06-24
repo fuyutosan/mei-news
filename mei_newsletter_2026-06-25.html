@@ -60,11 +60,6 @@ body::before {
   100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
 }
 
-@keyframes confetti {
-  0%   { transform: translate(0, 0) rotate(0deg); opacity: 1; }
-  100% { transform: translate(var(--dx), var(--dy)) rotate(720deg); opacity: 0; }
-}
-
 @keyframes clickPop {
   0%   { transform: translate(-50%, -50%) scale(0); opacity: 1; }
   100% { transform: translate(-50%, -100%) scale(1.5); opacity: 0; }
@@ -101,7 +96,6 @@ body::before {
   z-index: 1;
 }
 
-/* ヘッダー */
 .header {
   background: linear-gradient(135deg, #2d7a3a 0%, #4caf62 50%, #1a5c28 100%);
   color: white;
@@ -141,7 +135,6 @@ body::before {
   opacity: 0.9;
 }
 
-/* 挨拶カード */
 .greeting-card {
   background: rgba(255,255,255,0.92);
   backdrop-filter: blur(8px);
@@ -158,7 +151,6 @@ body::before {
 .greeting-card img { width: 44px; flex-shrink: 0; }
 .greeting-text { font-size: 0.9rem; line-height: 1.7; }
 
-/* カウントダウン */
 .countdown-card {
   background: rgba(255,255,255,0.92);
   backdrop-filter: blur(8px);
@@ -216,7 +208,6 @@ body::before {
   animation: wobble 2.5s ease-in-out infinite;
 }
 
-/* 豆知識カード */
 .trivia-card {
   background: rgba(255,255,255,0.92);
   backdrop-filter: blur(8px);
@@ -241,7 +232,6 @@ body::before {
   color: #1a2e1a;
 }
 
-/* 公式リンクバー */
 .link-bar {
   display: flex;
   gap: 8px;
@@ -269,7 +259,6 @@ body::before {
   box-shadow: 0 4px 14px rgba(45,122,58,0.35);
 }
 
-/* セクション */
 .section-title {
   font-size: 1rem;
   font-weight: 900;
@@ -280,7 +269,6 @@ body::before {
   letter-spacing: 0.04em;
 }
 
-/* ニュースカード */
 .news-card {
   display: block;
   background: rgba(255,255,255,0.92);
@@ -348,30 +336,6 @@ body::before {
   vertical-align: middle;
 }
 
-/* TODAYバッジ */
-.today-event {
-  background: rgba(255,243,220,0.95);
-  border: 2px solid #ff8f00;
-  border-radius: 14px;
-  padding: 14px 16px;
-  margin-bottom: 10px;
-  position: relative;
-  box-shadow: 0 3px 14px rgba(255,143,0,0.25);
-}
-
-.badge-today {
-  display: inline-block;
-  background: #ff6d00;
-  color: white;
-  font-size: 0.7rem;
-  font-weight: 900;
-  padding: 2px 9px;
-  border-radius: 6px;
-  margin-right: 6px;
-  letter-spacing: 0.04em;
-  vertical-align: middle;
-}
-
 .event-item {
   background: rgba(255,255,255,0.88);
   border-radius: 12px;
@@ -400,7 +364,6 @@ body::before {
   color: #5a7a5a;
 }
 
-/* アーカイブ・CTAカード */
 .archive-card {
   display: block;
   text-align: center;
@@ -434,7 +397,6 @@ body::before {
 
 .home-card:hover { transform: translateY(-2px); }
 
-/* フッター */
 .footer {
   text-align: center;
   padding: 20px 0 10px;
@@ -454,7 +416,6 @@ body::before {
   margin-top: 4px;
 }
 
-/* フェードイン */
 .fade-in {
   opacity: 0;
   transform: translateY(16px);
@@ -474,17 +435,14 @@ body::before {
 </head>
 <body>
 
-<!-- カーソル追従パンダさん -->
 <img id="cursor-panda" src="https://fuyutosan.github.io/mei-news/panda.png" alt="">
 
-<!-- ふわふわパンダさん3体 -->
 <img src="https://fuyutosan.github.io/mei-news/panda.png" class="float-panda" style="width:64px; left:8px; top:18%; animation: floatBob 4.2s ease-in-out infinite;" alt="">
 <img src="https://fuyutosan.github.io/mei-news/panda.png" class="float-panda" style="width:48px; right:6px; top:42%; animation: floatBobR 5.1s ease-in-out infinite;" alt="">
 <img src="https://fuyutosan.github.io/mei-news/panda.png" class="float-panda" style="width:56px; left:4px; top:68%; animation: floatBobSlow 6.3s ease-in-out infinite;" alt="">
 
 <div class="wrapper">
 
-  <!-- ヘッダー -->
   <div class="header">
     <div class="header-top">
       <img src="https://fuyutosan.github.io/mei-news/panda.png" class="wobble" style="width:96px; background:transparent;" alt="パンダさん">
@@ -494,17 +452,15 @@ body::before {
     <div class="header-sub">第27号 ／ 2026年6月25日（木）</div>
   </div>
 
-  <!-- 挨拶カード -->
   <div class="greeting-card fade-in">
     <img src="https://fuyutosan.github.io/mei-news/panda.png" alt="パンダさん">
     <div class="greeting-text">
-      おはようございます！昨日の武道館で牧野真莉愛さんが卒業して、今日からモーニング娘。'26 の新しい章が始まりました🌸<br>
-      そしてなんと！新曲「Lonely...But not Alone」のPromotion EditがYouTubeで公開されたよ🎵<br>
-      バースデーまであと<strong>3日</strong>！愛生ちゃんの21歳、いーっぱい応援しよう🐼✨
+      おはようございます！昨夜、愛生ちゃんが武道館の余韻をブログに綴ってくれたよ🌸<br>
+      牧野さんへの想い、ぎゅっと詰まった記事です。そして新MV「Lonely...But not Alone」も公開中🎵<br>
+      バースデーまであと<strong>3日</strong>！今日もパンダさんパワーMAXで応援しよう🐼✨
     </div>
   </div>
 
-  <!-- バースデーカウントダウン -->
   <div class="countdown-card fade-in">
     <div class="countdown-label">🎂 愛生ちゃん21歳バースデーまで…！</div>
     <div class="countdown-nums" id="countdown-wrap">
@@ -516,13 +472,11 @@ body::before {
     <div class="birthday-special" id="birthday-special">🎉🐼 Happy Birthday!! めいちゃん 21歳🐼🎉</div>
   </div>
 
-  <!-- 今日の豆知識 -->
   <div class="trivia-card fade-in">
     <div class="trivia-label">🐼 今日の愛生ちゃん豆知識</div>
     <div class="trivia-text" id="trivia-text">読み込み中…</div>
   </div>
 
-  <!-- 公式リンクバー -->
   <div class="link-bar">
     <a class="link-btn" href="https://ameblo.jp/morningmusume15ki/theme-10109826705.html" target="_blank">📝 アメブロ</a>
     <a class="link-btn" href="https://www.instagram.com/mei_yamazaki.official/" target="_blank">📸 Instagram</a>
@@ -533,10 +487,10 @@ body::before {
   <!-- Section 1: ブログ -->
   <div class="section-title">📝 最新ブログ更新</div>
 
-  <a href="https://ameblo.jp/morningmusume15ki/entry-12970487624.html" target="_blank" class="news-card fade-in" data-card-id="blog-2266-20260622">
-    <span class="card-label">アメブロ ／ 2026-06-22（3日前）</span>
-    <div class="card-title">No.2266「7周年記念日」</div>
-    <div class="card-desc">15期加入7周年記念日！ほまれちゃんのビートボックスの夢、先輩としての決意、武道館・77thシングル9月・パンダさんパン8月延長・バースデーイベント6/30告知が盛りだくさん🎉 本日時点で最新記事です。</div>
+  <a href="https://ameblo.jp/morningmusume15ki/entry-12970706301.html" target="_blank" class="news-card fade-in" data-card-id="blog-2267-20260624">
+    <span class="card-label"><span class="badge-new">🆕 NEW</span>アメブロ ／ 2026-06-24（昨日）</span>
+    <div class="card-title">No.2267「牧野さんLOVEりん」</div>
+    <div class="card-desc">昨夜更新！武道館での牧野真莉愛さんの卒業公演を振り返り、「時間を止められないのが寂しい」と愛生ちゃんの率直な気持ちが綴られてるよ。新曲初パフォーマンスの感動も🌸</div>
   </a>
 
   <!-- Section 2: SNS・YouTube -->
@@ -548,7 +502,6 @@ body::before {
     <div class="card-desc">前回確認（6/20）以降に新着がある可能性あり🐼 スマホでプロフィールページをチェックしてみてね。</div>
   </a>
 
-  <!-- YouTube サブセクション -->
   <div style="font-size:0.8rem; font-weight:700; color:#4a7a4a; margin: 10px 0 8px; padding-left:4px;">📹 YouTube</div>
 
   <a href="https://www.youtube.com/watch?v=1hSOOSaPZZc" target="_blank" class="news-card fade-in" data-card-id="yt-20260624-mm26lonely">
@@ -572,28 +525,28 @@ body::before {
   <!-- Section 3: 最新ニュース -->
   <div class="section-title">📰 最新ニュース</div>
 
-  <div class="news-card fade-in" style="border-left: 3px solid #2d7a3a; background: rgba(232,245,233,0.95);">
-    <span class="card-label">🎵 新曲情報</span>
-    <div class="card-title">新曲「Lonely...But not Alone」Promotion Edit公開！</div>
-    <div class="card-desc">モーニング娘。'26の最新シングルPromotion Editが昨日公開されたよ。YouTubeでチェックできます🎵 77thシングルは2026年9月発売予定！</div>
+  <div class="news-card fade-in" style="border-left: 3px solid #4caf62; background: rgba(232,245,233,0.95);">
+    <span class="card-label">📝 ブログ新着</span>
+    <div class="card-title">「時間を止められないのが寂しい」— 愛生ちゃんの武道館後記</div>
+    <div class="card-desc">牧野真莉愛さんへの感謝と切なさが詰まったブログ No.2267。武道館での「Lonely...But not Alone」初パフォーマンスの感動も語ってくれてるよ🌸</div>
   </div>
 
   <div class="news-card fade-in">
-    <span class="card-label">🌸 卒業情報</span>
-    <div class="card-title">牧野真莉愛さん、昨日6/24の武道館公演で卒業しました</div>
-    <div class="card-desc">15期の先輩・牧野真莉愛さんが昨日の武道館公演をもってモーニング娘。'26を卒業。愛生ちゃんも同期・先輩として長く共に歩んできた大切な仲間。新章の幕開けだよ🌸</div>
+    <span class="card-label">🎵 新曲情報</span>
+    <div class="card-title">新曲「Lonely...But not Alone」Promotion Edit公開！77thシングルは9月9日発売</div>
+    <div class="card-desc">モーニング娘。'26の最新シングルPromotion EditがYouTubeで公開中。リリースは2026年9月9日予定🎵</div>
   </div>
 
   <div class="news-card fade-in">
     <span class="card-label">🎂 バースデーまであと3日！</span>
-    <div class="card-title">6月28日、愛生ちゃんが21歳に！バースデーイベントも控えてる🐼</div>
-    <div class="card-desc">今週日曜（6/28）が愛生ちゃんの誕生日！そして6/30のFC限定バースデーイベント（荒川区民会館）、7/9名古屋バースデーイベントと続くよ。バースデーweekは盛り上がっていこう🎉</div>
+    <div class="card-title">6月28日、愛生ちゃんが21歳に！バースデーweekが始まるよ🐼</div>
+    <div class="card-desc">今週日曜（6/28）が愛生ちゃんの誕生日！そして6/30のFC限定バースデーイベント（荒川区民会館）、7/9名古屋バースデーイベントと続くよ🎉</div>
   </div>
 
   <div class="news-card fade-in">
     <span class="card-label">🍞 パンダさんパン情報</span>
     <div class="card-title">木村屋總本店コラボ「パンダさん」パン、2026年8月まで販売延長中！</div>
-    <div class="card-desc">愛生ちゃんコラボの「パンダさん」パンが好評につき8月まで延長販売中。まだ食べていない方はお早めに🐼🍞</div>
+    <div class="card-desc">愛生ちゃんコラボの「パンダさん」パンが好評につき8月まで延長販売中🐼🍞</div>
   </div>
 
   <!-- Section 4: イベント情報 -->
@@ -623,24 +576,21 @@ body::before {
     <div class="event-venue">📍 Niterra日本特殊陶業市民会館 フォレストホール（名古屋）</div>
   </div>
 
-  <!-- アーカイブ -->
   <a href="https://fuyutosan.github.io/mei-news/" class="archive-card fade-in">
     📚 バックナンバー（アーカイブ）はこちら →
   </a>
 
-  <!-- メイメイのお家CTA -->
   <a href="https://fuyutosan.github.io/meimei/" target="_blank" class="home-card fade-in">
     🏠 このニュースを作っているのは → メイメイのお家
   </a>
 
-  <!-- フッター -->
   <div class="footer">
     <img src="https://fuyutosan.github.io/mei-news/panda.png" class="wobble" style="width:52px; background:transparent;" alt="パンダさん">
     <div class="footer-text">山﨑愛生ちゃん情報でした(^o^)/</div>
     <div class="footer-sub">第27号 ／ 2026-06-25</div>
   </div>
 
-</div><!-- /wrapper -->
+</div>
 
 <script>
 // 1. カーソル追従パンダさん
@@ -745,7 +695,7 @@ setInterval(function() {
     'コナン（名探偵コナン）とプリキュアが大好き。オタクな一面もあるよ！',
     '木村屋總本店とコラボしたパン「パンダさん」が2026年8月まで販売延長中🍞',
     'STVラジオ「メイボンソワ」でMCを担当中。ラジオパーソナリティも素敵！',
-    'ブログのタイトルには毎回記事番号が付いている（No.○○）。2266号まで続いてるよ！',
+    'ブログのタイトルには毎回記事番号が付いている（No.○○）。2267号まで続いてるよ！',
     'ニックネームは「めい」「めいちゃん」「めい氏」「ボブめいち」など色々あるよ。',
     'ブログを書くたびにパンダさんの絵を描きすぎて、ペンが枯れたことがある🐼',
     'しりとりで「パンダさん」で締めるのがマイルールらしい（ブログ No.2265より）。',
@@ -754,11 +704,11 @@ setInterval(function() {
     '「モーニング娘。に山﨑愛生がいることに感動」という言葉がファンには名言として刺さってます。',
     '好きな言葉は「パンダさんパワー！」。落ち込んだ時に自分に言い聞かせてるとか🐼',
     'チームラボが大好き！アート体験が心のリフレッシュになるみたい✨',
-    '77thシングルが2026年9月に発売決定！どんな楽曲か楽しみだね🎵',
+    '77thシングルが2026年9月9日に発売決定！どんな楽曲か楽しみだね🎵',
     '「パンダコさん」はブログで愛生ちゃんが自分で考案したパンダキャラ。2020年頃に登場！🐼',
     '2026年1月の武道館公演では嬉し泣きしていたという愛生ちゃん。感受性豊かな一面🐼',
     '牧野真莉愛さんが2026年6月24日に卒業。15期の先輩として長く共に歩んだ大切な仲間🌸',
-    'モーニング娘。'26の「Lonely...But not Alone」がPromotion Edit公開中！新曲は9月発売予定🎵'
+    'モーニング娘。\'26の「Lonely...But not Alone」Promotion Edit公開中！9月9日発売予定🎵'
   ];
   var idx = Math.floor(Math.random() * facts.length);
   document.getElementById('trivia-text').textContent = facts[idx];
