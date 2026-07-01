@@ -3,31 +3,435 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🐼 デイリーめいちゃんニュース</title>
+<title>🐼 デイリーめいちゃんニュース — まいにち更新中</title>
+<meta name="description" content="山﨑愛生ちゃんの毎朝お届けニュース。ブックマークしておけば、毎朝すぐ読めるよ🐼">
+
+<!-- OGP -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="🐼 デイリーめいちゃんニュース">
+<meta property="og:description" content="山﨑愛生ちゃんの毎朝お届けニュース。ブックマークしておけば毎朝すぐ読めるよ🐼">
+<meta property="og:url" content="https://fuyutosan.github.io/mei-news/">
+<meta property="og:image" content="https://fuyutosan.github.io/mei-news/panda.png">
+
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
-  body { font-family: 'Hiragino Maru Gothic ProN', sans-serif; background: #fff9f0; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; }
-  h1 { color: #ff7eb3; text-align: center; }
-  ul { list-style: none; padding: 0; }
-  li { background: white; margin: 8px 0; border-radius: 12px; padding: 12px 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
-  a { color: #ff7eb3; text-decoration: none; font-weight: bold; }
-  a:hover { text-decoration: underline; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background-color: #f0f7f0;
+    color: #2d4a2d;
+    position: relative;
+    min-height: 100vh;
+    cursor: none;
+  }
+  @media (hover: none) { body { cursor: auto; } }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url('https://fuyutosan.github.io/mei-news/panda.png');
+    background-repeat: repeat;
+    background-size: 120px;
+    opacity: 0.10;
+    pointer-events: none;
+    z-index: 0;
+    animation: scrollBg 12s linear infinite;
+  }
+  @keyframes scrollBg {
+    0%   { background-position: 0 0; }
+    100% { background-position: 120px 120px; }
+  }
+
+  .wrapper {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 16px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ヘッダー */
+  .header {
+    background: linear-gradient(135deg, #2d7a3a 0%, #4caf62 50%, #1a5c28 100%);
+    border-radius: 20px;
+    padding: 26px 20px 22px;
+    color: white;
+    text-align: center;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  }
+  .header-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin-bottom: 12px;
+  }
+  .header-top img { width: 90px; background: transparent; }
+  .panda-power-text {
+    font-size: 21px;
+    font-weight: 900;
+    text-shadow: 1px 2px 4px rgba(0,0,0,0.3);
+    letter-spacing: 1px;
+  }
+  .header h1 {
+    font-size: 23px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+    text-shadow: 1px 2px 4px rgba(0,0,0,0.2);
+  }
+  .header .sub { font-size: 13px; opacity: 0.92; }
+
+  /* 最新号ヒーロー */
+  .hero {
+    background: rgba(255,255,255,0.94);
+    backdrop-filter: blur(8px);
+    border-radius: 20px;
+    padding: 22px;
+    margin-bottom: 16px;
+    border: 2px solid #4caf62;
+    box-shadow: 0 4px 18px rgba(76,175,98,0.2);
+    text-align: center;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .hero:hover { transform: translateY(-3px); box-shadow: 0 8px 26px rgba(76,175,98,0.3); }
+  .hero-badge {
+    display: inline-block;
+    background: #e53935;
+    color: white;
+    font-size: 11px;
+    font-weight: 900;
+    padding: 3px 12px;
+    border-radius: 20px;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+  }
+  .hero-issue { font-size: 14px; color: #2d7a3a; font-weight: 700; margin-bottom: 4px; }
+  .hero-date { font-size: 13px; color: #777; margin-bottom: 10px; }
+  .hero-title { font-size: 18px; font-weight: 900; color: #1a3d1a; line-height: 1.5; margin-bottom: 16px; }
+  .hero-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, #2d7a3a, #4caf62);
+    color: white;
+    font-size: 15px;
+    font-weight: 900;
+    padding: 12px 30px;
+    border-radius: 26px;
+    box-shadow: 0 3px 10px rgba(45,122,58,0.3);
+  }
+
+  /* ブックマークバナー */
+  .bookmark-banner {
+    background: rgba(255,255,255,0.88);
+    backdrop-filter: blur(8px);
+    border-radius: 14px;
+    padding: 12px 18px;
+    margin-bottom: 22px;
+    font-size: 13px;
+    color: #2d4a2d;
+    line-height: 1.6;
+    border-left: 4px solid #f9a825;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .bookmark-banner .star { font-size: 22px; flex-shrink: 0; }
+
+  /* セクションタイトル */
+  .section-title {
+    font-size: 16px;
+    font-weight: 900;
+    color: #2d7a3a;
+    border-bottom: 2px solid #4caf62;
+    padding-bottom: 6px;
+    margin-bottom: 14px;
+  }
+
+  /* バックナンバーグリッド */
+  .archive-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+  .archive-card {
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(8px);
+    border-radius: 14px;
+    padding: 14px 14px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: transform 0.15s, box-shadow 0.15s;
+    border: 1px solid rgba(76,175,98,0.2);
+  }
+  .archive-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(76,175,98,0.18);
+    border-color: rgba(76,175,98,0.5);
+  }
+  .archive-emoji { font-size: 22px; margin-bottom: 6px; }
+  .archive-date { font-size: 14px; font-weight: 900; color: #1a3d1a; line-height: 1.4; }
+  .archive-weekday { font-size: 12px; color: #4caf62; font-weight: 700; }
+  .archive-sub { font-size: 11px; color: #777; margin-top: 6px; line-height: 1.5; }
+
+  /* 編集長CTA */
+  .editor-cta {
+    background: linear-gradient(135deg, #1a5c28 0%, #2d7a3a 100%);
+    border-radius: 20px;
+    padding: 24px 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 4px 20px rgba(45,122,58,0.3);
+    text-decoration: none;
+    display: block;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .editor-cta:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(45,122,58,0.4); }
+  .editor-cta-label { font-size: 11px; letter-spacing: 2px; opacity: 0.8; margin-bottom: 6px; }
+  .editor-cta-title { font-size: 20px; font-weight: 900; margin-bottom: 6px; }
+  .editor-cta-sub { font-size: 13px; opacity: 0.85; line-height: 1.6; margin-bottom: 14px; }
+  .editor-cta-btn {
+    display: inline-block;
+    background: white;
+    color: #2d7a3a;
+    font-size: 14px;
+    font-weight: 900;
+    padding: 10px 24px;
+    border-radius: 24px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  }
+
+  /* フッター */
+  .footer { text-align: center; padding: 24px 16px; color: #2d7a3a; }
+  .footer img { width: 52px; margin-bottom: 10px; }
+  .footer-text { font-size: 15px; font-weight: 700; color: #2d7a3a; }
+
+  /* フェードイン */
+  .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  /* wobble */
+  @keyframes wobble {
+    0%, 100% { transform: rotate(0deg); }
+    20% { transform: rotate(-8deg); }
+    40% { transform: rotate(8deg); }
+    60% { transform: rotate(-5deg); }
+    80% { transform: rotate(5deg); }
+  }
+  .wobble { animation: wobble 2.5s ease-in-out infinite; display: inline-block; }
+
+  /* ふわふわ固定パンダさん */
+  .float-panda {
+    position: fixed;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.5;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.12));
+  }
+  @keyframes fpBob  { 0%,100%{transform:translateY(0) rotate(-6deg)} 50%{transform:translateY(-18px) rotate(6deg)} }
+  @keyframes fpBobR { 0%,100%{transform:translateY(0) rotate(6deg)}  50%{transform:translateY(-22px) rotate(-4deg)} }
+  @keyframes fpSlow { 0%,100%{transform:translateY(0) rotate(3deg) scale(1)} 50%{transform:translateY(-14px) rotate(-5deg) scale(1.05)} }
+
+  /* カーソル追従パンダさん */
+  #cursor-panda {
+    position: fixed;
+    width: 36px;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    opacity: 0.85;
+    filter: drop-shadow(0 2px 6px rgba(0,0,0,0.2));
+    transition: left 0.08s, top 0.08s;
+  }
+  @media (hover: none) { #cursor-panda { display: none !important; } }
 </style>
 </head>
 <body>
-<h1>🐼 デイリーめいちゃんニュース</h1>
-<p style="text-align:center">山﨑愛生ちゃんの毎朝お届けニュース</p>
-<ul id="list"></ul>
+
+<img id="cursor-panda" src="https://fuyutosan.github.io/mei-news/panda.png" alt="">
+
+<div class="wrapper">
+
+  <!-- ヘッダー -->
+  <div class="header">
+    <div class="header-top">
+      <img src="https://fuyutosan.github.io/mei-news/panda.png" alt="パンダさん" class="wobble">
+      <div class="panda-power-text">パンダさんパワー！</div>
+    </div>
+    <h1>🐼 デイリーめいちゃんニュース</h1>
+    <div class="sub">山﨑愛生ちゃんの毎朝お届けニュース</div>
+  </div>
+
+  <!-- 最新号ヒーロー -->
+  <a class="hero fade-in" id="hero-card" href="#">
+    <div class="hero-badge">🆕 最新号</div>
+    <div class="hero-issue" id="hero-issue"></div>
+    <div class="hero-date" id="hero-date"></div>
+    <div class="hero-title" id="hero-title"></div>
+    <span class="hero-btn">📰 今日のニュースを読む →</span>
+  </a>
+
+  <!-- ブックマークバナー -->
+  <div class="bookmark-banner fade-in">
+    <span class="star">⭐</span>
+    <span>このページを <strong>ブックマーク</strong> しておくと、毎朝すぐ最新ニュースが読めるよ🐼 探さなくてOK！</span>
+  </div>
+
+  <!-- バックナンバー -->
+  <div class="fade-in">
+    <div class="section-title">📚 バックナンバー</div>
+    <div class="archive-grid" id="archive-grid"></div>
+  </div>
+
+  <!-- 編集長CTA -->
+  <a href="https://fuyutosan.github.io/meimei/" target="_blank" class="editor-cta fade-in">
+    <div class="editor-cta-label">このニュースを作っているのは…</div>
+    <div class="editor-cta-title">🐼 パンダさん秘書 メイメイのお家</div>
+    <div class="editor-cta-sub">
+      山﨑愛生ちゃんへの愛を毎朝お届けするAI秘書メイメイの、<br>ホームページはこちらです。
+    </div>
+    <span class="editor-cta-btn">メイメイのお家を見にいく →</span>
+  </a>
+
+  <!-- フッター -->
+  <div class="footer">
+    <div><img src="https://fuyutosan.github.io/mei-news/panda.png" alt="パンダさん" class="wobble"></div>
+    <div class="footer-text">山﨑愛生ちゃん情報でした(^o^)/</div>
+  </div>
+
+</div>
+
+<!-- ふわふわ固定パンダさん3頭 -->
+<img src="https://fuyutosan.github.io/mei-news/panda.png" class="float-panda" alt=""
+  style="width:60px; left:6px; top:20%; animation:fpBob 4.4s ease-in-out infinite;">
+<img src="https://fuyutosan.github.io/mei-news/panda.png" class="float-panda" alt=""
+  style="width:46px; right:4px; top:46%; animation:fpBobR 5.2s ease-in-out infinite;">
+<img src="https://fuyutosan.github.io/mei-news/panda.png" class="float-panda" alt=""
+  style="width:54px; left:3px; top:72%; animation:fpSlow 6.6s ease-in-out infinite;">
+
 <script>
-const issues = [
-  // 自動追加されます
-  { date: "2026-05-28", issue: "001", file: "mei_newsletter_2026-05-28.html" },
+// =====================
+// バックナンバーデータ（新しい順）
+// ⚠️ 自動追記ルール: 新しい号は必ずこの配列の先頭（↓のすぐ下）に1行足す
+// 形式: { date:"YYYY-MM-DD", file:"mei_newsletter_YYYY-MM-DD.html", title:"見出し（任意・空でOK）", emoji:"🐼" }
+// =====================
+const ISSUES = [
+  { date:"2026-07-02", file:"mei_newsletter_2026-07-02.html", title:"バーイベ振り返りブログNEW／ハロ！ステ#651・小田さくらゲスト回🐼", emoji:"🐼" },
+  { date:"2026-07-01", file:"mei_newsletter_2026-07-01.html", title:"バーイベ大成功！小田さくらゲスト・グッズ通販開始🐼", emoji:"🎉" },
+  { date:"2026-06-30", file:"mei_newsletter_2026-06-30.html", title:"本日バーイベ当日🔥 ブログ「おめでとう♪」NEW・荒川区民会館🎂", emoji:"🎉" },
+  { date:"2026-06-29", file:"mei_newsletter_2026-06-29.html", title:"祝☆21歳ブログNEW！明日6/30バーイベ・カウントダウン22歳へ🐼", emoji:"🐼" },
+  { date:"2026-06-28", file:"mei_newsletter_2026-06-28.html", title:"Happy Birthday!! めいちゃん 21歳🎂 バースデー当日号", emoji:"🎂" },
+  { date:"2026-06-27", file:"mei_newsletter_2026-06-27.html", title:"バースデー前夜🎂 21歳まであと1日！カウントダウン最終章", emoji:"🎂" },
+  { date:"2026-06-26", file:"mei_newsletter_2026-06-26.html", title:"春ツアー振り返りブログNEW・バースデーまであと2日💪", emoji:"🐼" },
+  { date:"2026-06-25", file:"mei_newsletter_2026-06-25.html", title:"新MV公開！牧野まりあ卒業・バースデーまで3日🎵", emoji:"🎵" },
+  { date:"2026-06-24", file:"mei_newsletter_2026-06-24.html", title:"今日は武道館！牧野まりあ卒業スペシャル🎤 バースデーまで4日", emoji:"🎤" },
+  { date:"2026-06-23", file:"mei_newsletter_2026-06-23.html", title:"7周年おめでとう！武道館明日・バースデーまで5日🐼", emoji:"🎉" },
+  { date:"2026-06-22", file:"mei_newsletter_2026-06-22.html", title:"バースデーまであと6日！Insta NEW・ウルフカット姿🐼", emoji:"💚" },
+  { date:"2026-06-21", file:"mei_newsletter_2026-06-21.html", title:"バースデーまであと7日！ハロ！ステ＆ポーチ中身NEW動画🐼", emoji:"🐼" },
+  { date:"2026-06-20", file:"mei_newsletter_2026-06-20.html", title:"バースデーまであと8日！バーイベ×2＆ハロコン🎂", emoji:"🎂" },
+  { date:"2026-06-19", file:"mei_newsletter_2026-06-19.html", title:"もっちゅりんドーナツ♪ / バースデーまで9日", emoji:"🍩" },
+  { date:"2026-06-18", file:"mei_newsletter_2026-06-18.html", title:"バースデーまであと10日！カウントダウン本格スタート🎂", emoji:"🎂" },
+  { date:"2026-06-17", file:"mei_newsletter_2026-06-17.html", title:"高瀬さん卒業公演 & バーイベまで11日！", emoji:"🐼" },
+  { date:"2026-06-16", file:"mei_newsletter_2026-06-16.html", title:"バーイベまで14日！6/30荒川 & 7/9名古屋", emoji:"🎂" },
+  { date:"2026-06-15", file:"mei_newsletter_2026-06-15.html", title:"コナン×プリキュア / 牧野真莉愛 卒業＆バーイベ情報", emoji:"🔮" },
+  { date:"2026-06-14", file:"mei_newsletter_2026-06-14.html", title:"", emoji:"🐼" },
+  { date:"2026-06-13", file:"mei_newsletter_2026-06-13.html", title:"", emoji:"🎋" },
+  { date:"2026-06-12", file:"mei_newsletter_2026-06-12.html", title:"", emoji:"🌿" },
+  { date:"2026-06-11", file:"mei_newsletter_2026-06-11.html", title:"", emoji:"💚" },
+  { date:"2026-06-10", file:"mei_newsletter_2026-06-10.html", title:"", emoji:"🐼" },
+  { date:"2026-06-08", file:"mei_newsletter_2026-06-08.html", title:"", emoji:"✨" },
+  { date:"2026-06-07", file:"mei_newsletter_2026-06-07.html", title:"", emoji:"🎋" },
+  { date:"2026-06-06", file:"mei_newsletter_2026-06-06.html", title:"", emoji:"🌿" },
+  { date:"2026-06-05", file:"mei_newsletter_2026-06-05.html", title:"", emoji:"💚" },
+  { date:"2026-06-04", file:"mei_newsletter_2026-06-04.html", title:"", emoji:"🐼" },
+  { date:"2026-06-03", file:"mei_newsletter_2026-06-03.html", title:"", emoji:"🎋" },
+  { date:"2026-06-02", file:"mei_newsletter_2026-06-02.html", title:"", emoji:"🌿" },
+  { date:"2026-06-01", file:"mei_newsletter_2026-06-01.html", title:"", emoji:"💚" },
+  { date:"2026-05-31", file:"mei_newsletter_2026-05-31.html", title:"", emoji:"🐼" },
+  { date:"2026-05-30", file:"mei_newsletter_2026-05-30.html", title:"", emoji:"🎋" },
+  { date:"2026-05-28", file:"mei_newsletter_2026-05-28.html", title:"創刊号", emoji:"🎉" },
 ];
-const ul = document.getElementById('list');
-[...issues].reverse().forEach(i => {
-  const li = document.createElement('li');
-  li.innerHTML = `<a href="${i.file}">📰 第${i.issue}号 (${i.date})</a>`;
-  ul.appendChild(li);
-});
+
+const WD = ['日','月','火','水','木','金','土'];
+function fmtDate(s) {
+  const d = new Date(s + 'T00:00:00+09:00');
+  return { full: (d.getMonth()+1) + '月' + d.getDate() + '日', wd: WD[d.getDay()] };
+}
+
+// 最新号ヒーロー
+(function(){
+  const latest = ISSUES[0];
+  const f = fmtDate(latest.date);
+  document.getElementById('hero-card').href = latest.file;
+  document.getElementById('hero-issue').textContent = '第' + (ISSUES.length) + '号 ／ ' + latest.date.slice(0,4) + '年';
+  document.getElementById('hero-date').textContent = f.full + '（' + f.wd + '）';
+  document.getElementById('hero-title').textContent = latest.title || 'きょうのめいちゃんニュース';
+})();
+
+// バックナンバーグリッド（最新号以外）
+(function(){
+  const grid = document.getElementById('archive-grid');
+  ISSUES.slice(1).forEach(it => {
+    const f = fmtDate(it.date);
+    const a = document.createElement('a');
+    a.href = it.file;
+    a.className = 'archive-card';
+    a.innerHTML =
+      '<div class="archive-emoji">' + (it.emoji || '🐼') + '</div>' +
+      '<div class="archive-date">' + f.full + '</div>' +
+      '<div class="archive-weekday">（' + f.wd + '）</div>' +
+      (it.title ? '<div class="archive-sub">' + it.title + '</div>' : '');
+    grid.appendChild(a);
+  });
+})();
+
+// スクロールフェードイン
+(function(){
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.06 });
+  document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+})();
+
+// カーソル追従パンダさん
+(function(){
+  const el = document.getElementById('cursor-panda');
+  if (!el || window.matchMedia('(hover: none)').matches) return;
+  document.addEventListener('mousemove', e => {
+    el.style.left = e.clientX + 'px';
+    el.style.top  = e.clientY + 'px';
+  });
+})();
+
+// クリックでハート＆竹が飛び散る
+(function(){
+  const emojis = ['💚','🎋','🐼','🌿','✨','💚','🎋','⭐'];
+  document.addEventListener('click', e => {
+    for (let i = 0; i < 9; i++) {
+      const el = document.createElement('span');
+      el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      const size = 14 + Math.random() * 18;
+      el.style.cssText = 'position:fixed;left:' + e.clientX + 'px;top:' + e.clientY + 'px;font-size:' + size + 'px;pointer-events:none;z-index:9998;transition:transform .7s ease-out,opacity .7s ease-out;opacity:1;';
+      document.body.appendChild(el);
+      const angle = Math.random() * Math.PI * 2;
+      const dist  = 35 + Math.random() * 70;
+      requestAnimationFrame(() => {
+        el.style.transform = 'translate(' + (Math.cos(angle)*dist) + 'px,' + (Math.sin(angle)*dist - 40) + 'px)';
+        el.style.opacity = '0';
+      });
+      setTimeout(() => el.remove(), 750);
+    }
+  });
+})();
 </script>
 </body>
 </html>
