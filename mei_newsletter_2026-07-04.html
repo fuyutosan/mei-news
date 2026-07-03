@@ -357,6 +357,97 @@
     100% { transform: translateY(-80px) scale(1.5); opacity: 0; }
   }
 
+  /* オープニング演出（💌ニュースが届いたよ） */
+  #opening {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    background: linear-gradient(160deg, #2d7a3a 0%, #4caf62 55%, #1a5c28 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 22px;
+    cursor: pointer;
+    animation: opFadeOut 0.5s ease 2.3s forwards;
+  }
+  @keyframes opFadeOut {
+    to { opacity: 0; visibility: hidden; }
+  }
+  .op-envelope {
+    position: relative;
+    width: 190px;
+    height: 130px;
+    animation: opPop 0.45s cubic-bezier(.34,1.56,.64,1) both;
+  }
+  @keyframes opPop {
+    0% { transform: scale(0.2) rotate(-8deg); opacity: 0; }
+    100% { transform: scale(1) rotate(0deg); opacity: 1; }
+  }
+  .op-body {
+    position: absolute;
+    inset: 0;
+    background: #fffdf6;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  }
+  .op-body::after {
+    content: '💚';
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 22px;
+  }
+  .op-flap {
+    position: absolute;
+    top: 0; left: 0;
+    width: 0; height: 0;
+    border-left: 95px solid transparent;
+    border-right: 95px solid transparent;
+    border-top: 62px solid #e8f5e9;
+    transform-origin: top center;
+    z-index: 3;
+    filter: drop-shadow(0 2px 3px rgba(0,0,0,0.12));
+    animation: opFlapOpen 0.55s ease 0.5s forwards;
+  }
+  @keyframes opFlapOpen {
+    to { transform: rotateX(180deg); }
+  }
+  .op-panda {
+    position: absolute;
+    left: 50%;
+    bottom: 22px;
+    width: 84px;
+    transform: translateX(-50%) translateY(24px);
+    opacity: 0;
+    z-index: 2;
+    animation: opPandaUp 0.7s cubic-bezier(.34,1.56,.64,1) 0.95s forwards;
+  }
+  @keyframes opPandaUp {
+    to { transform: translateX(-50%) translateY(-58px); opacity: 1; }
+  }
+  .op-text {
+    color: white;
+    font-size: 18px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    text-align: center;
+    padding: 0 20px;
+    opacity: 0;
+    animation: opTextIn 0.5s ease 1.25s forwards;
+  }
+  @keyframes opTextIn {
+    0% { opacity: 0; transform: translateY(12px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  .op-skip {
+    position: absolute;
+    bottom: 22px;
+    color: rgba(255,255,255,0.75);
+    font-size: 11px;
+  }
+
   /* ストリークカード用の軽い強調（自己ベスト更新時） */
   #streak-card.is-best {
     border-left: 4px solid #ff9a3c;
@@ -374,6 +465,17 @@
 </style>
 </head>
 <body>
+
+<!-- オープニング演出（💌ニュースが届いたよ） -->
+<div id="opening" aria-hidden="true">
+  <div class="op-envelope">
+    <img class="op-panda" src="https://fuyutosan.github.io/mei-news/panda.png" alt="">
+    <div class="op-body"></div>
+    <div class="op-flap"></div>
+  </div>
+  <div class="op-text">💌 きょうのめいちゃんニュースが届いたよ〜！</div>
+  <div class="op-skip">タップでスキップ</div>
+</div>
 
 <!-- カーソルパンダ -->
 <img id="cursor-panda" src="https://fuyutosan.github.io/mei-news/panda.png" alt="">
@@ -834,6 +936,38 @@ document.querySelectorAll('[data-card-id]').forEach(card => {
   } catch (e) {
     // localStorageが使えない環境ではストリーク非表示のまま何もしない
   }
+})();
+
+// 9. オープニング演出（💌ニュースが届いたよ）
+(function () {
+  const op = document.getElementById('opening');
+  if (!op) return;
+  let closed = false;
+  function close() {
+    if (closed) return;
+    closed = true;
+    op.style.display = 'none';
+  }
+  op.addEventListener('click', close);
+  setTimeout(close, 2900);
+  // パンダさんが飛び出す瞬間にきらきらバースト
+  setTimeout(() => {
+    if (closed) return;
+    const emojis = ['✨','💌','💚','🎋','✨','🐼','💚','✨'];
+    const cx = window.innerWidth / 2;
+    const cy = window.innerHeight / 2;
+    emojis.forEach((emoji, i) => {
+      const el = document.createElement('div');
+      el.className = 'click-emoji';
+      el.style.zIndex = 10001;
+      el.textContent = emoji;
+      el.style.left = (cx + (Math.random() - 0.5) * 220) + 'px';
+      el.style.top  = (cy + (Math.random() - 0.5) * 160) + 'px';
+      el.style.animationDelay = (i * 0.05) + 's';
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 1600);
+    });
+  }, 1000);
 })();
 </script>
 
