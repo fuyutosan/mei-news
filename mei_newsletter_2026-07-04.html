@@ -357,6 +357,11 @@
     100% { transform: translateY(-80px) scale(1.5); opacity: 0; }
   }
 
+  /* ストリークカード用の軽い強調（自己ベスト更新時） */
+  #streak-card.is-best {
+    border-left: 4px solid #ff9a3c;
+  }
+
   /* YouTubeサブセクション */
   .yt-sub-label {
     margin-top: 14px;
@@ -408,6 +413,25 @@
     </div>
   </div>
 
+  <!-- ストリークカード -->
+  <div class="card" id="streak-card" style="display:none;">
+    <div id="streak-text" style="font-size:15px; font-weight:700; color:#2d7a3a;"></div>
+    <div id="streak-best" style="font-size:12px; color:#777; margin-top:4px;"></div>
+    <div id="streak-message" style="font-size:14px; color:#444; margin-top:6px; line-height:1.5;"></div>
+  </div>
+
+  <!-- ☀️ きょうの愛生ちゃん -->
+  <div class="section">
+    <div class="section-title">☀️ きょうの愛生ちゃん</div>
+
+    <a href="https://ameblo.jp/morningmusume15ki/entry-12971612939.html"
+       target="_blank" class="news-card fade-in event-today" data-card-id="today-20260704-01">
+      <span class="card-label"><span class="badge-today">🔥 TODAY</span>ラジオ ／ STVラジオ 今夜21:00〜</span>
+      <div class="card-title">🎙️ 「山﨑愛生のメイボンソワ」21歳初回放送！</div>
+      <div class="card-desc">愛生ちゃんが21歳になって初めての「メイボンソワ」が今夜21時からオンエアだよ🐼 どんな1年にしたいか、本人の言葉で聞けるチャンス！ラジコで聴き逃し配信もチェックしてね✨</div>
+    </a>
+  </div>
+
   <!-- 公式リンクバー -->
   <div class="link-bar">
     <a href="https://ameblo.jp/morningmusume15ki/theme-10109826705.html"
@@ -434,7 +458,7 @@
        target="_blank" class="news-card fade-in" data-card-id="blog-2274">
       <span class="card-label"><span class="badge-new">🆕 NEW</span>アメブロ ／ 2026-07-02</span>
       <div class="card-title">No.2274 お知らせあるよ！</div>
-      <div class="card-desc">お知らせ盛りだくさんの一本📝 ハロ！コン2026（愛知・大阪・東京で7〜8月開催）、新シングル「Lonely...But not Alone／タイトル未定B」9月9日発売、パンダさんパン8月まで販売延長、STVラジオ「メイボンソワ」は今夜21時から21歳初放送、8/26には18期新メンバーおひろめFCイベントも！愛生ちゃんの夏がぎゅっと詰まってるよ💚</div>
+      <div class="card-desc">お知らせ盛りだくさんの一本📝 ハロ！コン2026、新シングル9月9日発売、パンダさんパン8月まで延長、ラジオは今夜21歳初放送、8/26には18期新メンバーおひろめFCイベントも！「パンダさんパワー、たーっぷり充電出来ましたね」の「たーっぷり」、愛生ちゃんがうれしい時によく使う伸ばし言葉だよ。今日は盛りだくさんすぎて充電もマックスかもね🐼</div>
     </a>
   </div>
 
@@ -446,7 +470,7 @@
        target="_blank" class="news-card fade-in" data-card-id="insta-mei-20260630-repeat">
       <span class="card-label">Instagram 山﨑愛生 公式 ／ 2026-06-30 📱スマホ推奨</span>
       <div class="card-title">🎉 バースデーイベント終了！小田さくらさんゲスト回の振り返り（引き続き最新）</div>
-      <div class="card-desc">今日時点でまだ最新の投稿だよ。「応援してくださった皆さん、ありがとうございました♡ スペシャルゲストの小田さくらさん💜 一緒に歌って踊ってお話して遊んで楽しかった😆」——たくさんの写真付き投稿📸</div>
+      <div class="card-desc">今日時点でまだ最新の投稿だよ。「応援してくださった皆さん、ありがとうございました♡」「一緒に歌って踊ってお話して遊んで楽しかった😆」——今日の注目ポイントは小田さくらさんとの掛け合い。写真もたくさんで、当日の楽しさがそのまま伝わってくるよ📸🐼</div>
     </a>
 
     <div class="yt-sub-label">📹 YouTube</div>
@@ -501,6 +525,18 @@
       <span class="card-label">2026-07-11（土）〜07-12（日）</span>
       <div class="card-title">ハロ！コン 2026（Niterra日本特殊陶業市民会館 フォレストホール・名古屋）</div>
       <div class="card-desc">モーニング娘。'26・アンジュルム・Juice=Juiceなど出演のハロプロ夏コンサート。「わがままリクエスト」企画も！愛生ちゃんも出演予定だよ🐼</div>
+    </a>
+  </div>
+
+  <!-- セクション5: あの日のめいちゃん -->
+  <div class="section">
+    <div class="section-title">🕰️ あの日のめいちゃん</div>
+
+    <a href="https://ameblo.jp/morningmusume15ki/theme-10109826705.html"
+       target="_blank" class="news-card fade-in" data-card-id="anohi-20260704">
+      <span class="card-label">あの日のめいちゃん ／ 2021-07-07（No.722）</span>
+      <div class="card-title">🎋 七夕の願い事は「パンダさんに会いに行けますように」</div>
+      <div class="card-desc">🐼 今日は「あの日のめいちゃん」！2021年の七夕、めいちゃんは短冊に「パンダさんに会いに行けますように」ってお願いしたんだよ。もう1つは「皆さんと一緒にワイワイ出来るライブが出来ますように」。あの頃の願い、今はちゃんと叶ってるといいな〜✨</div>
     </a>
   </div>
 
@@ -711,6 +747,94 @@ document.querySelectorAll('[data-card-id]').forEach(card => {
     card.classList.add('read-card');
   });
 });
+
+// 8. ストリーク（連続閲覧記録）
+(function () {
+  try {
+    const STREAK_KEY = 'mei_news_streak_v1';
+
+    function todayStr() {
+      const d = new Date();
+      const y = d.getFullYear();
+      const m = String(d.getMonth() + 1).padStart(2, '0');
+      const day = String(d.getDate()).padStart(2, '0');
+      return y + '-' + m + '-' + day;
+    }
+    function yesterdayStr() {
+      const d = new Date();
+      d.setDate(d.getDate() - 1);
+      const y = d.getFullYear();
+      const m = String(d.getMonth() + 1).padStart(2, '0');
+      const day = String(d.getDate()).padStart(2, '0');
+      return y + '-' + m + '-' + day;
+    }
+
+    const today = todayStr();
+    let data;
+    try {
+      data = JSON.parse(localStorage.getItem(STREAK_KEY) || 'null');
+    } catch (e) {
+      data = null;
+    }
+    if (!data || typeof data.streak !== 'number') {
+      data = { lastVisit: '', streak: 0, best: 0 };
+    }
+
+    let isNewDay = false;
+    let hitBest = false;
+
+    if (data.lastVisit === today) {
+      // 同日再訪: 変化なし
+    } else if (data.lastVisit === yesterdayStr()) {
+      data.streak += 1;
+      data.lastVisit = today;
+      isNewDay = true;
+    } else {
+      data.streak = 1;
+      data.lastVisit = today;
+      isNewDay = true;
+    }
+
+    if (data.streak > data.best) {
+      data.best = data.streak;
+      if (isNewDay) hitBest = true;
+    }
+
+    localStorage.setItem(STREAK_KEY, JSON.stringify(data));
+
+    const card = document.getElementById('streak-card');
+    const textEl = document.getElementById('streak-text');
+    const bestEl = document.getElementById('streak-best');
+    const msgEl = document.getElementById('streak-message');
+    if (card && textEl && bestEl && msgEl) {
+      textEl.textContent = '🔥 連続' + data.streak + '日目だよ！';
+      bestEl.textContent = 'これまでのベスト記録：' + data.best + '日';
+
+      let message;
+      if (hitBest && data.streak > 1) {
+        message = '🐼 自己ベスト更新だよ！へへへ、ここまで続けてくれて本当に嬉しいな〜！これからもパンダさんと一緒にがんばろうね！';
+      } else if (data.streak === 1) {
+        message = '🐼 今日から連続閲覧スタートだよ！毎日ちょっとずつ、パンダさんと一緒に続けていこうね〜へへへ。';
+      } else if (data.streak >= 2 && data.streak <= 6) {
+        message = '🐼 いい調子！パンダさんも応援してるよ〜、明日もまた覗きに来てね！';
+      } else {
+        message = '🐼 すごいすごい！こんなに続けてくれるなんて、パンダさんも感動だよ〜！へへへ、これからもよろしくね！';
+      }
+      msgEl.textContent = message;
+      card.style.display = 'block';
+      if (hitBest && data.streak > 1) {
+        card.classList.add('is-best');
+      }
+
+      const milestones = [3, 7, 14, 30];
+      if (isNewDay && milestones.indexOf(data.streak) !== -1 && typeof launchConfetti === 'function') {
+        launchConfetti();
+      }
+    }
+  } catch (e) {
+    // localStorageが使えない環境ではストリーク非表示のまま何もしない
+  }
+})();
 </script>
 
 </body>
