@@ -215,6 +215,26 @@
   .footer img { width: 52px; margin-bottom: 10px; }
   .footer-text { font-size: 15px; font-weight: 700; color: #2d7a3a; }
 
+  /* シェアボタン */
+  .share-label { font-size: 12px; color: #4caf62; font-weight: 700; margin: 16px 0 8px; }
+  .share-bar { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+  .share-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 20px;
+    border-radius: 24px;
+    color: white;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    transition: transform 0.15s, opacity 0.15s;
+  }
+  .share-btn:hover { transform: translateY(-2px); opacity: 0.9; }
+  .share-x { background: #000; }
+  .share-line { background: #06c755; }
+
   /* フェードイン */
   .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
   .fade-in.visible { opacity: 1; transform: translateY(0); }
@@ -306,6 +326,13 @@
   <div class="footer">
     <div><img src="https://fuyutosan.github.io/mei-news/panda.png" alt="パンダさん" class="wobble"></div>
     <div class="footer-text">山﨑愛生ちゃん情報でした(^o^)/</div>
+    <div class="share-label">🐼 このニュースをシェアする</div>
+    <div class="share-bar">
+      <a class="share-btn share-x" target="_blank" rel="noopener"
+         href="https://twitter.com/intent/tweet?url=https%3A%2F%2Ffuyutosan.github.io%2Fmei-news%2F&text=%F0%9F%90%BC%20%E3%83%87%E3%82%A4%E3%83%AA%E3%83%BC%E3%82%81%E3%81%84%E3%81%A1%E3%82%83%E3%82%93%E3%83%8B%E3%83%A5%E3%83%BC%E3%82%B9">𝕏 シェア</a>
+      <a class="share-btn share-line" target="_blank" rel="noopener"
+         href="https://social-plugins.line.me/lineit/share?url=https%3A%2F%2Ffuyutosan.github.io%2Fmei-news%2F">LINEでシェア</a>
+    </div>
   </div>
 
 </div>
