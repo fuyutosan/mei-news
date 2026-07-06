@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>デイリーめいちゃんニュース 第39号 2026-07-07</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 0;
+    font-family: 'Noto Sans JP', sans-serif;
+    background: #f0f8f1;
+    cursor: none;
+    position: relative;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url('https://fuyutosan.github.io/mei-news/panda.png');
+    background-size: 120px;
+    opacity: 0.10;
+    z-index: 0;
+    pointer-events: none;
+    animation: scrollBg 12s linear infinite;
+  }
+  @keyframes scrollBg {
+    0%   { background-position: 0 0; }
+    100% { background-position: 120px 120px; }
+  }
+  .wrapper {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 16px;
+    position: relative;
+    z-index: 1;
+  }
+  /* ヘッダー */
+  .header {
+    background: linear-gradient(135deg, #2d7a3a 0%, #4caf62 50%, #1a5c28 100%);
+    border-radius: 16px;
+    padding: 24px 20px 20px;
+    color: white;
+    text-align: center;
+    margin-bottom: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .header h1 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: 1px;
+  }
+  .header .meta {
+    font-size: 14px;
+    opacity: 0.9;
+    margin-top: 6px;
+  }
+  @keyframes wobble {
+    0%, 100% { transform: rotate(0deg); }
+    20% { transform: rotate(-8deg); }
+    40% { transform: rotate(8deg); }
+    60% { transform: rotate(-5deg); }
+    80% { transform: rotate(5deg); }
+  }
+  .wobble { animation: wobble 2.5s ease-in-out infinite; display: inline-block; }
+
+  /* カード共通 */
+  .card {
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(8px);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+  /* 挨拶カード */
+  .greeting-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    border-left: 4px solid #4caf62;
+  }
+
+  /* バースデーカウントダウン */
+  #countdown-section { margin-bottom: 12px; }
+  .countdown-card {
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(8px);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+  .countdown-title { font-size: 14px; color: #555; margin-bottom: 8px; }
+  .countdown-nums {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .cd-box {
+    background: linear-gradient(135deg, #2d7a3a, #4caf62);
+    color: white;
+    border-radius: 10px;
+    padding: 10px 14px;
+    text-align: center;
+    min-width: 64px;
+  }
+  .cd-num { font-size: 28px; font-weight: 900; line-height: 1; }
+  .cd-label { font-size: 11px; opacity: 0.9; margin-top: 2px; }
+
+  /* バースデースペシャル */
+  #birthday-special {
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4, #ffecd2);
+    border-radius: 16px;
+    padding: 28px 20px;
+    text-align: center;
+    margin-bottom: 12px;
+    box-shadow: 0 4px 20px rgba(255,100,100,0.25);
+  }
+  .bday-emoji-row { font-size: 32px; margin-bottom: 10px; }
+  .bday-title {
+    font-size: 26px;
+    font-weight: 900;
+    color: #c0392b;
+    margin: 8px 0;
+    animation: bdayPulse 1.5s ease-in-out infinite;
+  }
+  @keyframes bdayPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.04); }
+  }
+  .bday-sub {
+    font-size: 15px;
+    color: #555;
+    margin-top: 10px;
+    line-height: 1.7;
+  }
+  .bday-bottom { font-size: 28px; margin-top: 14px; animation: wobble 2.5s ease-in-out infinite; display: inline-block; }
+
+  /* 公式リンクバー */
+  .link-bar {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+  }
+  .link-btn {
+    background: #2d7a3a;
+    color: white;
+    border-radius: 10px;
+    flex: 1;
+    min-width: 120px;
+    text-align: center;
+    padding: 10px 8px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+    transition: opacity 0.2s, transform 0.2s;
+    display: block;
+  }
+  .link-btn:hover { opacity: 0.85; transform: translateY(-2px); }
+
+  /* 豆知識カード */
+  .trivia-card {
+    border-left: 4px solid #2d7a3a;
+    margin-bottom: 12px;
+  }
+  .trivia-label { font-size: 12px; color: #2d7a3a; font-weight: 700; margin-bottom: 6px; }
+  #trivia-text { font-size: 14px; color: #333; line-height: 1.6; }
+
+  /* セクション */
+  .section { margin-bottom: 20px; }
+  .section-title {
+    font-size: 16px;
+    font-weight: 900;
+    color: #2d7a3a;
+    border-bottom: 2px solid #4caf62;
+    padding-bottom: 6px;
+    margin-bottom: 12px;
+  }
+
+  /* ニュースカード */
+  .news-card {
+    display: block;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(8px);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .news-card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.12); }
+  .card-label { font-size: 11px; color: #888; margin-bottom: 4px; display: block; }
+  .card-title { font-size: 15px; font-weight: 700; color: #222; margin-bottom: 6px; line-height: 1.4; }
+  .card-desc { font-size: 13px; color: #555; line-height: 1.5; }
+  .badge-new {
+    display: inline-block;
+    background: #e74c3c;
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-right: 4px;
+  }
+  .badge-today {
+    display: inline-block;
+    background: #ff7f00;
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-right: 4px;
+  }
+  /* TODAYカード */
+  .event-today {
+    background: rgba(255,200,100,0.22);
+    border: 2px solid #ff7f00;
+  }
+  /* 読んだカード */
+  .news-card.read-card { opacity: 0.6; }
+  .news-card.read-card::after {
+    content: '✓ 読んだ';
+    display: block;
+    font-size: 11px;
+    color: #4caf62;
+    margin-top: 4px;
+    font-weight: 700;
+  }
+
+  /* fade-in */
+  .fade-in { opacity: 0; transform: translateY(10px); }
+  .fade-in.visible { opacity: 1; transform: translateY(0); transition: opacity 0.5s, transform 0.5s; }
+
+  /* アーカイブ導線 */
+  .archive-link {
+    display: block;
+    border: 2px dashed #aaa;
+    border-radius: 10px;
+    padding: 14px 16px;
+    text-align: center;
+    text-decoration: none;
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 12px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .archive-link:hover { border-color: #2d7a3a; color: #2d7a3a; }
+
+  /* 編集長CTA */
+  .cta-card {
+    display: block;
+    background: linear-gradient(135deg, #2d7a3a, #4caf62);
+    border-radius: 12px;
+    padding: 16px 20px;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    font-weight: 700;
+    font-size: 14px;
+    margin-bottom: 12px;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  .cta-card:hover { opacity: 0.9; transform: translateY(-2px); }
+
+  /* フッター */
+  .footer {
+    text-align: center;
+    padding: 20px 16px;
+    background: rgba(255,255,255,0.7);
+    border-radius: 12px;
+    margin-bottom: 12px;
+  }
+  .footer-text { font-size: 14px; font-weight: 700; color: #333; margin: 10px 0 4px; }
+  .footer-meta { font-size: 11px; color: #888; }
+
+  /* ふわふわパンダ（固定3体） */
+  .float-panda {
+    position: fixed;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.45;
+  }
+  @keyframes floatBob {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-14px); }
+  }
+  @keyframes floatBobR {
+    0%, 100% { transform: translateY(0px) rotate(5deg); }
+    50% { transform: translateY(-10px) rotate(-5deg); }
+  }
+  @keyframes floatBobSlow {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-18px); }
+  }
+
+  /* カーソルパンダ */
+  #cursor-panda {
+    position: fixed;
+    width: 36px;
+    height: 36px;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+  }
+  @media (hover: none) { #cursor-panda { display: none; } }
+
+  /* 葉っぱ */
+  .leaf {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9998;
+    animation: leafFall 3s linear forwards;
+  }
+  @keyframes leafFall {
+    0%   { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+  }
+
+  /* コンフェッティ */
+  .confetti {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9997;
+    animation: confettiFall 3.5s linear forwards;
+  }
+  @keyframes confettiFall {
+    0%   { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+  }
+
+  /* クリック絵文字 */
+  .click-emoji {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9998;
+    font-size: 20px;
+    animation: floatUp 1.2s ease-out forwards;
+  }
+  @keyframes floatUp {
+    0%   { transform: translateY(0) scale(1); opacity: 1; }
+    100% { transform: translateY(-80px) scale(1.5); opacity: 0; }
+  }
+
+  /* オープニング演出（💌ニュースが届いたよ） */
+  #opening {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    background: linear-gradient(160deg, #2d7a3a 0%, #4caf62 55%, #1a5c28 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 22px;
+    cursor: pointer;
+    animation: opFadeOut 0.5s ease 2.3s forwards;
+  }
+  @keyframes opFadeOut {
+    to { opacity: 0; visibility: hidden; }
+  }
+  .op-envelope {
+    position: relative;
+    width: 190px;
+    height: 130px;
+    animation: opPop 0.45s cubic-bezier(.34,1.56,.64,1) both;
+  }
+  @keyframes opPop {
+    0% { transform: scale(0.2) rotate(-8deg); opacity: 0; }
+    100% { transform: scale(1) rotate(0deg); opacity: 1; }
+  }
+  .op-body {
+    position: absolute;
+    inset: 0;
+    background: #fffdf6;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  }
+  .op-body::after {
+    content: '💚';
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 22px;
+  }
+  .op-flap {
+    position: absolute;
+    top: 0; left: 0;
+    width: 0; height: 0;
+    border-left: 95px solid transparent;
+    border-right: 95px solid transparent;
+    border-top: 62px solid #e8f5e9;
+    transform-origin: top center;
+    z-index: 3;
+    filter: drop-shadow(0 2px 3px rgba(0,0,0,0.12));
+    animation: opFlapOpen 0.55s ease 0.5s forwards;
+  }
+  @keyframes opFlapOpen {
+    to { transform: rotateX(180deg); }
+  }
+  .op-heart {
+    position: absolute;
+    left: 50%;
+    top: 44%;
+    font-size: 30px;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 4;
+    text-shadow: 0 0 22px rgba(150,255,180,0.95);
+    animation: opHeartRush 1.25s ease-out forwards;
+  }
+  @keyframes opHeartRush {
+    0%   { transform: translate(-50%, -50%) scale(0.25); opacity: 0; }
+    18%  { opacity: 1; }
+    70%  { opacity: 0.85; }
+    100% { transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(9); opacity: 0; }
+  }
+  .op-text {
+    color: white;
+    font-size: 18px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    text-align: center;
+    padding: 0 20px;
+    opacity: 0;
+    animation: opTextIn 0.5s ease 1.25s forwards;
+  }
+  @keyframes opTextIn {
+    0% { opacity: 0; transform: translateY(12px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  .op-skip {
+    position: absolute;
+    bottom: 22px;
+    color: rgba(255,255,255,0.75);
+    font-size: 11px;
+  }
+
+  /* ストリークカード用の軽い強調（自己ベスト更新時） */
+  #streak-card.is-best {
+    border-left: 4px solid #ff9a3c;
+  }
+
+  /* YouTubeサブセクション */
+  .yt-sub-label {
+    margin-top: 14px;
+    padding-left: 4px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #444;
+    margin-bottom: 8px;
+  }
+</style>
+</head>
+<body>
+
+<!-- オープニング演出（💌ニュースが届いたよ） -->
+<div id="opening" aria-hidden="true">
+  <div class="op-envelope">
+    <div class="op-body"></div>
+    <div class="op-flap"></div>
+  </div>
+  <div class="op-text">💌 めいちゃんからニュースが届いたよ〜！</div>
+  <div class="op-skip">タップでスキップ</div>
+</div>
+
+<!-- カーソルパンダ -->
+<img id="cursor-panda" src="https://fuyutosan.github.io/mei-news/panda.png" alt="">
+
+<!-- ふわふわパンダ（固定3体） -->
+<img src="https://fuyutosan.github.io/mei-news/panda.png" class="float-panda"
+     style="width:64px; left:8px; top:18%; animation: floatBob 4.2s ease-in-out infinite;" alt="">
+<img src="https://fuyutosan.github.io/mei-news/panda.png" class="float-panda"
+     style="width:48px; right:6px; top:42%; animation: floatBobR 5.1s ease-in-out infinite;" alt="">
+<img src="https://fuyutosan.github.io/mei-news/panda.png" class="float-panda"
+     style="width:56px; left:4px; top:68%; animation: floatBobSlow 6.3s ease-in-out infinite;" alt="">
+
+<div class="wrapper">
+
+  <!-- ヘッダー -->
+  <div class="header">
+    <div class="header-top">
+      <img src="https://fuyutosan.github.io/mei-news/panda.png" class="wobble"
+           style="width:96px;background:transparent;" alt="パンダさん">
+      <span style="font-size:15px; font-weight:700;">パンダさんパワー！</span>
+    </div>
+    <h1>デイリーめいちゃんニュース</h1>
+    <div class="meta">第39号 ／ 2026年7月7日（火）</div>
+  </div>
+
+  <!-- 挨拶カード -->
+  <div class="card greeting-card">
+    <img src="https://fuyutosan.github.io/mei-news/panda.png"
+         style="width:44px;flex-shrink:0;background:transparent;" alt="">
+    <div>
+      <div style="font-size:16px; font-weight:900; color:#2d7a3a; margin-bottom:6px;">
+        おはよう🐼 今日は静かな一日みたいだよ
+      </div>
+      <div style="font-size:14px; color:#444; line-height:1.6;">
+        新しいブログ・SNS更新はお休み中みたい。でも大事なお知らせが1つ！7/9名古屋バースデーイベント向けの「お悩み募集」、締切は明日7/8(水)12時までだよ〜。応募したい人は忘れずにね🐼 今日はちょうど七夕だから、あの日のめいちゃんコーナーでは昔の七夕エピソードも紹介するよ🎋
+      </div>
+    </div>
+  </div>
+
+  <!-- ストリークカード -->
+  <div class="card" id="streak-card" style="display:none;">
+    <div id="streak-text" style="font-size:15px; font-weight:700; color:#2d7a3a;"></div>
+    <div id="streak-best" style="font-size:12px; color:#777; margin-top:4px;"></div>
+    <div id="streak-message" style="font-size:14px; color:#444; margin-top:6px; line-height:1.5;"></div>
+  </div>
+
+  <!-- ☀️ きょうの愛生ちゃん -->
+  <div class="section">
+    <div class="section-title">☀️ きょうの愛生ちゃん</div>
+
+    <a href="https://ameblo.jp/morningmusume15ki/entry-12971818096.html"
+       target="_blank" class="news-card fade-in" data-card-id="today-20260707-01">
+      <span class="card-label">もうすぐ ／ 締切2026-07-08</span>
+      <div class="card-title">✉️ お悩み募集、締切は明日12時まで！</div>
+      <div class="card-desc">7/9名古屋バースデーイベント向けのお悩み募集企画、締切は明日7/8(水)12時だよ。応募したい笹友さんは今日中に忘れずにね🐼</div>
+    </a>
+  </div>
+
+  <!-- 公式リンクバー -->
+  <div class="link-bar">
+    <a href="https://ameblo.jp/morningmusume15ki/theme-10109826705.html"
+       target="_blank" class="link-btn">📝 アメブロ</a>
+    <a href="https://www.instagram.com/mei_yamazaki.official/"
+       target="_blank" class="link-btn">📸 Instagram</a>
+    <a href="https://helloproject.com/morningmusume/mei_yamazaki/"
+       target="_blank" class="link-btn">🏠 公式HP</a>
+    <a href="https://x.com/MorningMusumeMg"
+       target="_blank" class="link-btn">𝕏 モーニング娘。'26</a>
+  </div>
+
+  <!-- 今日の豆知識 -->
+  <div class="card trivia-card">
+    <div class="trivia-label">📚 今日の愛生ちゃん豆知識</div>
+    <div id="trivia-text">読み込み中…</div>
+  </div>
+
+  <!-- セクション1: ブログ -->
+  <div class="section">
+    <div class="section-title">📝 最新ブログ更新</div>
+
+    <a href="https://ameblo.jp/morningmusume15ki/entry-12971818096.html"
+       target="_blank" class="news-card fade-in" data-card-id="blog-2275-repeat2">
+      <span class="card-label">アメブロ ／ 2026-07-05（引き続き最新）</span>
+      <div class="card-title">No.2275 募集してます！</div>
+      <div class="card-desc">7/9名古屋バースデーイベントに向けたお悩み募集回。締切は明日7/8(水)12時だよ📝 「話したいことが相手に上手く伝わらないのはどうしたらいい！？」など、愛生ちゃん自身の等身大の悩みも公開してくれてるよ。</div>
+    </a>
+  </div>
+
+  <!-- セクション4: イベント情報 -->
+  <div class="section">
+    <div class="section-title">📅 イベント情報（今後1ヶ月）</div>
+
+    <a href="https://www.upfc.jp/helloproject/news_detail.php?@uid=rdwEdwDwx07vBMps"
+       target="_blank" class="news-card fade-in" data-card-id="event-20260709-nagoya">
+      <span class="card-label">2026-07-09（木）</span>
+      <div class="card-title">ENPLEX × Hello! Project 山﨑愛生バースデーイベント in 名古屋</div>
+      <div class="card-desc">愛知・ミッドランドスクエア シネマ2での開催。トーク＆ライブ約50分＋終演後お見送り会あり。お悩み募集企画も実施中だよ！</div>
+    </a>
+
+    <a href="https://helloproject.com/event/834702844b0eeabba750140bdc23f933aca995235808971579a50fd5f1dc9248/"
+       target="_blank" class="news-card fade-in" data-card-id="event-20260711-halocon">
+      <span class="card-label">2026-07-11（土）〜07-12（日）</span>
+      <div class="card-title">ハロ！コン 2026（Niterra日本特殊陶業市民会館 フォレストホール・名古屋）</div>
+      <div class="card-desc">モーニング娘。'26・アンジュルム・Juice=Juiceなど出演のハロプロ夏コンサート。「わがままリクエスト」企画も！愛生ちゃんも出演予定だよ🐼</div>
+    </a>
+  </div>
+
+  <!-- セクション5: あの日のめいちゃん -->
+  <div class="section">
+    <div class="section-title">🕰️ あの日のめいちゃん</div>
+
+    <a href="https://ameblo.jp/morningmusume15ki/entry-12752252248.html"
+       target="_blank" class="news-card fade-in" data-card-id="anohi-20260707">
+      <span class="card-label">あの日のめいちゃん ／ 2022-07-07（No.1087）</span>
+      <div class="card-title">🎋 七夕の短冊に込めた願い事</div>
+      <div class="card-desc">🐼 今日は「あの日のめいちゃん」！2022年の七夕、めいちゃんは短冊に「メンバーや皆さんと一緒に、パンダさんに会いに行けますように」ってお願いしたんだよ。今日も同じ7月7日、あの願いはちゃんと今の愛生ちゃんに繋がってるんだなあってしみじみするね🐼</div>
+    </a>
+  </div>
+
+  <!-- アーカイブ入口 -->
+  <a href="https://fuyutosan.github.io/mei-news/" class="archive-link fade-in">
+    📚 バックナンバー（アーカイブ）はこちら →
+  </a>
+
+  <!-- 編集長CTA -->
+  <a href="https://fuyutosan.github.io/meimei/" target="_blank" class="cta-card fade-in">
+    🐼 このニュースを作っているのは → メイメイのお家
+  </a>
+
+  <!-- バースデーカウントダウン（通常時／次は22歳・誕生日が遠いので一番下） -->
+  <div id="countdown-section" style="display:none;">
+    <div class="countdown-card">
+      <div class="countdown-title">🎂 愛生ちゃん 22歳のお誕生日まで…（気が早いけどカウント中🐼）</div>
+      <div class="countdown-nums">
+        <div class="cd-box"><div class="cd-num" id="cd-days">0</div><div class="cd-label">日</div></div>
+        <div class="cd-box"><div class="cd-num" id="cd-hours">0</div><div class="cd-label">時間</div></div>
+        <div class="cd-box"><div class="cd-num" id="cd-minutes">0</div><div class="cd-label">分</div></div>
+        <div class="cd-box"><div class="cd-num" id="cd-seconds">0</div><div class="cd-label">秒</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- バースデースペシャル（当日のみ表示・次回2027-06-28） -->
+  <div id="birthday-special" style="display:none;">
+    <div class="bday-emoji-row">🎉🐼🎂🐼🎉</div>
+    <div class="bday-title">Happy Birthday!! めいちゃん 22歳</div>
+    <div class="bday-sub">
+      山﨑愛生ちゃん、22歳のお誕生日おめでとうございます！<br>
+      パンダさんパワーでいっぱい応援してるよ🌿
+    </div>
+    <div class="bday-bottom">🐼✨🎋💚🎂💚🎋✨🐼</div>
+  </div>
+
+  <!-- フッター -->
+  <div class="footer">
+    <img src="https://fuyutosan.github.io/mei-news/panda.png" class="wobble"
+         style="width:52px;background:transparent;" alt="パンダさん">
+    <div class="footer-text">山﨑愛生ちゃん情報でした(^o^)/</div>
+    <div class="footer-meta">第39号 ／ 2026年7月7日</div>
+  </div>
+
+</div><!-- /wrapper -->
+
+<script>
+// 1. カーソル追従パンダ
+const cursorPanda = document.getElementById('cursor-panda');
+document.addEventListener('mousemove', e => {
+  cursorPanda.style.left = e.clientX + 'px';
+  cursorPanda.style.top  = e.clientY + 'px';
+});
+
+// 2. クリックで絵文字が飛び散る
+document.addEventListener('click', e => {
+  const emojis = ['💚','🎋','🐼','✨','🎂','🌿','💚','🐼','🎉'];
+  emojis.forEach((emoji, i) => {
+    const el = document.createElement('div');
+    el.className = 'click-emoji';
+    el.textContent = emoji;
+    el.style.left = (e.clientX + (Math.random()-0.5)*60) + 'px';
+    el.style.top  = (e.clientY + (Math.random()-0.5)*40) + 'px';
+    el.style.animationDelay = (i * 0.05) + 's';
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 1400);
+  });
+});
+
+// 3. 竹の葉っぱがふわふわ降る
+setInterval(() => {
+  const leaves = ['🌿','💚','🍃','🎋'];
+  const el = document.createElement('div');
+  el.className = 'leaf';
+  el.textContent = leaves[Math.floor(Math.random() * leaves.length)];
+  el.style.left = Math.random() * 100 + 'vw';
+  el.style.top  = '-30px';
+  el.style.fontSize = (16 + Math.random() * 12) + 'px';
+  el.style.animationDuration = (2.5 + Math.random() * 2) + 's';
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 5000);
+}, 900);
+
+// 4. スクロールフェードイン
+const fadeEls = document.querySelectorAll('.fade-in');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.1 });
+fadeEls.forEach(el => observer.observe(el));
+
+// バースデーコンフェッティ
+let confettiRunning = false;
+function launchConfetti() {
+  if (confettiRunning) return;
+  confettiRunning = true;
+  const colors = ['#ff6b6b','#ffd93d','#6bcb77','#4d96ff','#ff9a3c','#ff63c3','#a8ff63','#ff6baf'];
+  let count = 0;
+  const interval = setInterval(() => {
+    for (let i = 0; i < 10; i++) {
+      const el = document.createElement('div');
+      el.className = 'confetti';
+      el.style.background  = colors[Math.floor(Math.random() * colors.length)];
+      el.style.left   = Math.random() * 100 + 'vw';
+      el.style.top    = '-10px';
+      el.style.width  = (6 + Math.random() * 8) + 'px';
+      el.style.height = (6 + Math.random() * 8) + 'px';
+      el.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+      el.style.animationDuration = (2 + Math.random() * 2.5) + 's';
+      el.style.animationDelay   = (Math.random() * 0.5) + 's';
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 6000);
+    }
+    count++;
+    if (count > 40) clearInterval(interval);
+  }, 200);
+}
+
+// 5. バースデーカウントダウン（次回＝22歳・2027-06-28）
+function updateCountdown() {
+  const target = new Date('2027-06-28T00:00:00+09:00');
+  const now    = new Date();
+  const diff   = target - now;
+  if (diff <= 0) {
+    document.getElementById('countdown-section').style.display = 'none';
+    document.getElementById('birthday-special').style.display  = 'block';
+    launchConfetti();
+    return;
+  }
+  document.getElementById('countdown-section').style.display = 'block';
+  document.getElementById('birthday-special').style.display  = 'none';
+  const days    = Math.floor(diff / 86400000);
+  const hours   = Math.floor((diff % 86400000) / 3600000);
+  const minutes = Math.floor((diff % 3600000)  / 60000);
+  const seconds = Math.floor((diff % 60000)    / 1000);
+  document.getElementById('cd-days').textContent    = String(days).padStart(2,'0');
+  document.getElementById('cd-hours').textContent   = String(hours).padStart(2,'0');
+  document.getElementById('cd-minutes').textContent = String(minutes).padStart(2,'0');
+  document.getElementById('cd-seconds').textContent = String(seconds).padStart(2,'0');
+}
+setInterval(updateCountdown, 1000);
+updateCountdown();
+
+// 6. 今日の豆知識ランダム表示
+const facts = [
+  '6/28にめいちゃんは21歳になりました🎂 加入後8回目、北研時代から数えると10回目の誕生日なんだって🐼',
+  '21歳の目標は「自分らしく楽しむ」「色々に挑戦」「身体ケア」「お仕事皆勤賞」。前向きな愛生ちゃんらしい目標だね✨',
+  '誕生日にはダンスレッスン中にメンバーがチョコケーキでお祝いしてくれたんだって🍫🎂（ブログ No.2270より）',
+  'モーニング娘。15期として2019年6月23日に加入。今年で加入7周年！🎉',
+  '出身地は北海道。北の大地で育った愛生ちゃんです🌿',
+  '血液型はA型。几帳面でしっかり者のイメージ通り！',
+  '身長は約160.6cm（2021年当時）。すらりとした愛生ちゃん。',
+  '左利きなんです！ペンを持つのは左手だよ🐼',
+  '視力が悪くて眼鏡をかけることも。ファンの間では「眼鏡Mei」とも呼ばれてるよ。',
+  'パンダさんが大大大好き！グッズ集めも趣味のひとつ🐼',
+  'コーヒーが苦手。甘いドリンク派です☕',
+  '生魚が苦手（お寿司はNG）。フライ系・焼き系は大丈夫だよ。',
+  '野菜が苦手で生卵も苦手。好き嫌いは愛らしいポイント笑',
+  'オバケが苦手！ホラーはちょっと……🙈',
+  '一番好きなお菓子は「チョコチップクッキー」。1番！って言い切るのが愛生ちゃんらしい。',
+  '醤油ラーメンが好き。シンプルが一番！',
+  'フライドポテト（ポテト）が大好物🍟',
+  'クリームソーダが好き。見た目もかわいいよね🍹',
+  '「ウルトラパンダさんパワーMAX！」が愛生ちゃんの決め台詞🐼✨',
+  'コナン（名探偵コナン）とプリキュアが大好き。オタクな一面もあるよ！',
+  '木村屋總本店とコラボしたパン「パンダさん」、8月まで直営店・オンラインで販売継続中🍞',
+  'STVラジオ「メイボンソワ」でMCを担当中。第1土曜21時からの放送だよ🎙️',
+  'ブログのタイトルには毎回記事番号が付いている（No.○○）。No.2275まで続いてるよ！',
+  'ニックネームは「めい」「めいちゃん」「めい氏」「ボブめいち」など色々あるよ。',
+  'ブログを書くたびにパンダさんの絵を描きすぎて、ペンが枯れたことがある🐼',
+  'しりとりで「パンダさん」で締めるのがマイルールらしい（ブログ No.2265より）。',
+  '「パンダ電車に乗りながらパンダ弁当を食べたい」という夢を持っています🚃',
+  '15期（岡村ほまれ・山﨑愛生・北川莉央・kiitos.）の中で最年長が愛生ちゃん。',
+  '「モーニング娘。に山﨑愛生がいることに感動」という言葉がファンには名言として刺さってます。',
+  '好きな言葉は「パンダさんパワー！」。落ち込んだ時に自分に言い聞かせてるとか🐼',
+  'チームラボが大好き！アート体験が心のリフレッシュになるみたい✨',
+  '77thシングル「Lonely...But not Alone」が2026年9月9日に発売決定！🎵',
+  '「パンダコさん」はブログで愛生ちゃんが自分で考案したパンダキャラ。2020年頃に登場！🐼',
+  '牧野真莉愛さんが2026年6月24日に卒業。15期の先輩として長く共に歩んだ大切な仲間🌸',
+  '2019年7月12日が初ブログ投稿日。そこからNo.2275まで書き続けてるって、すごいことだよね📝',
+  'バースデー前夜のブログ（No.2269）では「大好きがお仕事に繋がった」という名言も残してくれたよ🐼✨',
+  '21歳の誕生日、産まれた瞬間（0時）にInstagramを投稿しようとしたら1分過ぎちゃったんだって笑（ブログ No.2271より）🕛',
+  '同じ6/28はメンバー・櫻井梨央ちゃんの加入記念日でもあるんだよ。お祝いが重なる特別な日🎂',
+  'いちごのケーキへの憧れをこっそり告白。チョコケーキでお祝いしてもらったけど、いつかいちごケーキも…という乙女な一面🍓',
+  '6/30のバースデーイベントには先輩の小田さくらさんがスペシャルゲストで登場！一緒に歌って踊って大盛り上がりだったよ💜',
+  'バースデー記念グッズはリバーシブルアクリルスタンドやマフラータオルなど全6種類。9月上旬にお届け予定だよ🐼',
+  'バーイベ振り返りブログ（No.2273）では「愛がたーーーっくさん生まれました」「こんなに幸せでいいんですか！？！？」と感激を綴ってくれたよ💚',
+  '5月(MAY)から誕生日の6月まで続く期間を「めいの月」と呼んでいるよ。愛生ちゃんならではの言葉遊びだね✨',
+  '新曲「Lonely...But not Alone」MVでは、めいちゃんはマイクから出てくるシーンがお気に入りなんだって🎬',
+  '7/9名古屋バースデーイベントに向けて、ファンからのお悩みを募集中だよ（応募締切7/8水12時）✉️',
+  '8/26には18期の新メンバー4人（杉原明紗さん・安田美結さん・鈴木もあさん・石川華望さん）のおひろめFCイベントも開催予定だよ💐',
+  '2021年7月には「THE MUSIC DAY」でAKB48の横山由依さんとパンダさんポーズを披露。「パンダさんパワー」がTwitterトレンド入りしたよ🐼',
+  '2022年の七夕、めいちゃんは短冊に「メンバーや皆さんと一緒に、パンダさんに会いに行けますように」ってお願いしてたよ🎋'
+];
+document.getElementById('trivia-text').textContent =
+  facts[Math.floor(Math.random() * facts.length)];
+
+// 7. 読んだカードチェック（localStorage）
+const STORAGE_KEY = 'mei_read_cards_v1';
+let readCards = new Set(JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'));
+function markRead(id) {
+  readCards.add(id);
+  localStorage.setItem(STORAGE_KEY, JSON.stringify([...readCards]));
+}
+document.querySelectorAll('[data-card-id]').forEach(card => {
+  if (readCards.has(card.dataset.cardId)) card.classList.add('read-card');
+  card.addEventListener('click', () => {
+    markRead(card.dataset.cardId);
+    card.classList.add('read-card');
+  });
+});
+
+// 8. ストリーク（連続閲覧記録）
+(function () {
+  try {
+    const STREAK_KEY = 'mei_news_streak_v1';
+
+    function todayStr() {
+      const d = new Date();
+      const y = d.getFullYear();
+      const m = String(d.getMonth() + 1).padStart(2, '0');
+      const day = String(d.getDate()).padStart(2, '0');
+      return y + '-' + m + '-' + day;
+    }
+    function yesterdayStr() {
+      const d = new Date();
+      d.setDate(d.getDate() - 1);
+      const y = d.getFullYear();
+      const m = String(d.getMonth() + 1).padStart(2, '0');
+      const day = String(d.getDate()).padStart(2, '0');
+      return y + '-' + m + '-' + day;
+    }
+
+    const today = todayStr();
+    let data;
+    try {
+      data = JSON.parse(localStorage.getItem(STREAK_KEY) || 'null');
+    } catch (e) {
+      data = null;
+    }
+    if (!data || typeof data.streak !== 'number') {
+      data = { lastVisit: '', streak: 0, best: 0 };
+    }
+
+    let isNewDay = false;
+    let hitBest = false;
+
+    if (data.lastVisit === today) {
+      // 同日再訪: 変化なし
+    } else if (data.lastVisit === yesterdayStr()) {
+      data.streak += 1;
+      data.lastVisit = today;
+      isNewDay = true;
+    } else {
+      data.streak = 1;
+      data.lastVisit = today;
+      isNewDay = true;
+    }
+
+    if (data.streak > data.best) {
+      data.best = data.streak;
+      if (isNewDay) hitBest = true;
+    }
+
+    localStorage.setItem(STREAK_KEY, JSON.stringify(data));
+
+    const card = document.getElementById('streak-card');
+    const textEl = document.getElementById('streak-text');
+    const bestEl = document.getElementById('streak-best');
+    const msgEl = document.getElementById('streak-message');
+    if (card && textEl && bestEl && msgEl) {
+      textEl.textContent = '🔥 連続' + data.streak + '日目だよ！';
+      bestEl.textContent = 'これまでのベスト記録：' + data.best + '日';
+
+      let message;
+      if (hitBest && data.streak > 1) {
+        message = '🐼 自己ベスト更新だよ！へへへ、ここまで続けてくれて本当に嬉しいな〜！これからもパンダさんと一緒にがんばろうね！';
+      } else if (data.streak === 1) {
+        message = '🐼 今日から連続閲覧スタートだよ！毎日ちょっとずつ、パンダさんと一緒に続けていこうね〜へへへ。';
+      } else if (data.streak >= 2 && data.streak <= 6) {
+        message = '🐼 いい調子！パンダさんも応援してるよ〜、明日もまた覗きに来てね！';
+      } else {
+        message = '🐼 すごいすごい！こんなに続けてくれるなんて、パンダさんも感動だよ〜！へへへ、これからもよろしくね！';
+      }
+      msgEl.textContent = message;
+      card.style.display = 'block';
+      if (hitBest && data.streak > 1) {
+        card.classList.add('is-best');
+      }
+
+      const milestones = [3, 7, 14, 30];
+      if (isNewDay && milestones.indexOf(data.streak) !== -1 && typeof launchConfetti === 'function') {
+        launchConfetti();
+      }
+    }
+  } catch (e) {
+    // localStorageが使えない環境ではストリーク非表示のまま何もしない
+  }
+})();
+
+// 9. オープニング演出（💌ニュースが届いたよ）
+(function () {
+  const op = document.getElementById('opening');
+  if (!op) return;
+  let closed = false;
+  function close() {
+    if (closed) return;
+    closed = true;
+    op.style.display = 'none';
+  }
+  op.addEventListener('click', close);
+  setTimeout(close, 2900);
+  // 封が開いたら💚が画面に向かってふわんふわんと迫ってくる（めいちゃんの色と気持ちが届くイメージ）
+  setTimeout(() => {
+    if (closed) return;
+    for (let i = 0; i < 9; i++) {
+      setTimeout(() => {
+        if (closed) return;
+        const el = document.createElement('div');
+        el.className = 'op-heart';
+        el.textContent = '💚';
+        el.style.setProperty('--dx', ((Math.random() - 0.5) * 360) + 'px');
+        el.style.setProperty('--dy', ((Math.random() - 0.6) * 300) + 'px');
+        op.appendChild(el);
+        setTimeout(() => el.remove(), 1400);
+      }, i * 160);
+    }
+  }, 850);
+})();
+</script>
+
+</body>
+</html>
