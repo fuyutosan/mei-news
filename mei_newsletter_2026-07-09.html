@@ -452,11 +452,6 @@
     font-size: 11px;
   }
 
-  /* ストリークカード用の軽い強調（自己ベスト更新時） */
-  #streak-card.is-best {
-    border-left: 4px solid #ff9a3c;
-  }
-
   /* YouTubeサブセクション */
   .yt-sub-label {
     margin-top: 14px;
@@ -516,13 +511,6 @@
         そして昨日のブログでは、後輩・弓桁朱琴さんの成人祝いと一緒に、めいちゃん自身の大事な発表もあったの…メンバーカラーが8/8からブライトグリーン→ブルーに変わるんだって！新しい愛生カラー、楽しみだね🐼✨
       </div>
     </div>
-  </div>
-
-  <!-- ストリークカード -->
-  <div class="card" id="streak-card" style="display:none;">
-    <div id="streak-text" style="font-size:15px; font-weight:700; color:#2d7a3a;"></div>
-    <div id="streak-best" style="font-size:12px; color:#777; margin-top:4px;"></div>
-    <div id="streak-message" style="font-size:14px; color:#444; margin-top:6px; line-height:1.5;"></div>
   </div>
 
   <!-- ☀️ きょうの愛生ちゃん -->
@@ -826,95 +814,7 @@ document.querySelectorAll('[data-card-id]').forEach(card => {
   });
 });
 
-// 8. ストリーク（連続閲覧記録）
-(function () {
-  try {
-    const STREAK_KEY = 'mei_news_streak_v1';
-
-    function todayStr() {
-      const d = new Date();
-      const y = d.getFullYear();
-      const m = String(d.getMonth() + 1).padStart(2, '0');
-      const day = String(d.getDate()).padStart(2, '0');
-      return y + '-' + m + '-' + day;
-    }
-    function yesterdayStr() {
-      const d = new Date();
-      d.setDate(d.getDate() - 1);
-      const y = d.getFullYear();
-      const m = String(d.getMonth() + 1).padStart(2, '0');
-      const day = String(d.getDate()).padStart(2, '0');
-      return y + '-' + m + '-' + day;
-    }
-
-    const today = todayStr();
-    let data;
-    try {
-      data = JSON.parse(localStorage.getItem(STREAK_KEY) || 'null');
-    } catch (e) {
-      data = null;
-    }
-    if (!data || typeof data.streak !== 'number') {
-      data = { lastVisit: '', streak: 0, best: 0 };
-    }
-
-    let isNewDay = false;
-    let hitBest = false;
-
-    if (data.lastVisit === today) {
-      // 同日再訪: 変化なし
-    } else if (data.lastVisit === yesterdayStr()) {
-      data.streak += 1;
-      data.lastVisit = today;
-      isNewDay = true;
-    } else {
-      data.streak = 1;
-      data.lastVisit = today;
-      isNewDay = true;
-    }
-
-    if (data.streak > data.best) {
-      data.best = data.streak;
-      if (isNewDay) hitBest = true;
-    }
-
-    localStorage.setItem(STREAK_KEY, JSON.stringify(data));
-
-    const card = document.getElementById('streak-card');
-    const textEl = document.getElementById('streak-text');
-    const bestEl = document.getElementById('streak-best');
-    const msgEl = document.getElementById('streak-message');
-    if (card && textEl && bestEl && msgEl) {
-      textEl.textContent = '🔥 連続' + data.streak + '日目だよ！';
-      bestEl.textContent = 'これまでのベスト記録：' + data.best + '日';
-
-      let message;
-      if (hitBest && data.streak > 1) {
-        message = '🐼 自己ベスト更新だよ！へへへ、ここまで続けてくれて本当に嬉しいな〜！これからもパンダさんと一緒にがんばろうね！';
-      } else if (data.streak === 1) {
-        message = '🐼 今日から連続閲覧スタートだよ！毎日ちょっとずつ、パンダさんと一緒に続けていこうね〜へへへ。';
-      } else if (data.streak >= 2 && data.streak <= 6) {
-        message = '🐼 いい調子！パンダさんも応援してるよ〜、明日もまた覗きに来てね！';
-      } else {
-        message = '🐼 すごいすごい！こんなに続けてくれるなんて、パンダさんも感動だよ〜！へへへ、これからもよろしくね！';
-      }
-      msgEl.textContent = message;
-      card.style.display = 'block';
-      if (hitBest && data.streak > 1) {
-        card.classList.add('is-best');
-      }
-
-      const milestones = [3, 7, 14, 30];
-      if (isNewDay && milestones.indexOf(data.streak) !== -1 && typeof launchConfetti === 'function') {
-        launchConfetti();
-      }
-    }
-  } catch (e) {
-    // localStorageが使えない環境ではストリーク非表示のまま何もしない
-  }
-})();
-
-// 9. オープニング演出（💌ニュースが届いたよ）
+// 8. オープニング演出（💌ニュースが届いたよ）
 (function () {
   const op = document.getElementById('opening');
   if (!op) return;
