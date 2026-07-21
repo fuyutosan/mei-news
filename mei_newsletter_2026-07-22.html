@@ -439,6 +439,15 @@
     color: #444;
     margin-bottom: 8px;
   }
+  .video-slot { margin-bottom: 14px; }
+  .video-facade { position: relative; display: block; width: 100%; aspect-ratio: 16/9;
+    border: 0; padding: 0; border-radius: 12px; overflow: hidden; cursor: pointer; background: #000; }
+  .video-facade img { width: 100%; height: 100%; object-fit: cover; }
+  .video-play { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+    font-size: 2.2rem; color: #fff; background: rgba(0,0,0,0.25);
+    text-shadow: 0 2px 8px rgba(0,0,0,0.6); transition: background 0.2s; }
+  .video-facade:hover .video-play { background: rgba(45,122,58,0.45); }
+  .video-slot iframe { width: 100%; aspect-ratio: 16/9; border: 0; border-radius: 12px; display: block; }
 </style>
 </head>
 <body>
@@ -540,6 +549,32 @@
       <div class="card-title">「ハロ通GAMES」小田さくら・岡村ほまれ・山﨑愛生・櫻井梨央『リズム天国 ミラクルスターズ』</div>
       <div class="card-desc">🎬 昨夜21時に生配信されたゲーム実況番組のアーカイブだよ。ブログで「まじで楽しみすぎてやばい！！！」と綴っていためいちゃんの本番の様子、ぜひ見てみてね🐼</div>
     </a>
+  </div>
+
+  <div class="section fade-in">
+    <div class="section-title">🎥 めいちゃん動画コーナー</div>
+    <p style="font-size:0.8rem; color:#555; margin:0 0 10px;">タップするとその場で見られるよ🐼（音が出るから気をつけてね）</p>
+    <div class="video-slot" data-vid="Lq4Vxnp_fUw">
+      <span class="card-label">🆕 今日の新着 ／ 「ハロ通GAMES」めいちゃん出演回（リズム天国 ミラクルスターズ）</span>
+      <button class="video-facade" data-vid="Lq4Vxnp_fUw" aria-label="動画を再生">
+        <img src="https://i.ytimg.com/vi/Lq4Vxnp_fUw/hqdefault.jpg" alt="" loading="lazy">
+        <span class="video-play">▶</span>
+      </button>
+    </div>
+    <div class="video-slot" data-vid="1hSOOSaPZZc">
+      <span class="card-label">🎵 新曲MV ／ モーニング娘。'26『Lonely...But not Alone』Promotion Edit</span>
+      <button class="video-facade" data-vid="1hSOOSaPZZc" aria-label="動画を再生">
+        <img src="https://i.ytimg.com/vi/1hSOOSaPZZc/hqdefault.jpg" alt="" loading="lazy">
+        <span class="video-play">▶</span>
+      </button>
+    </div>
+    <div class="video-slot" data-vid="_8X8kolcSJ8">
+      <span class="card-label">🍞 パンダさんパン ／ 山﨑愛生×木村屋總本店【パンダさん(パン)製作プロジェクト】</span>
+      <button class="video-facade" data-vid="_8X8kolcSJ8" aria-label="動画を再生">
+        <img src="https://i.ytimg.com/vi/_8X8kolcSJ8/hqdefault.jpg" alt="" loading="lazy">
+        <span class="video-play">▶</span>
+      </button>
+    </div>
   </div>
 
   <div class="section">
@@ -812,6 +847,18 @@ document.querySelectorAll('[data-card-id]').forEach(card => {
     }
   }, 850);
 })();
+
+// 9. 動画ファサード（タップで初めてiframeを差し込む）
+document.querySelectorAll('.video-facade').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var vid = btn.dataset.vid;
+    var f = document.createElement('iframe');
+    f.src = 'https://www.youtube-nocookie.com/embed/' + vid + '?autoplay=1&playsinline=1';
+    f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+    f.allowFullscreen = true;
+    btn.replaceWith(f);
+  });
+});
 </script>
 
 </body>
