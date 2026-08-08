@@ -85,7 +85,7 @@
     display: flex;
     align-items: flex-start;
     gap: 12px;
-    border-left: 4px solid #2A5FD0;
+    border-left: 4px solid #4CAF62;
   }
 
   #countdown-section { margin-bottom: 12px; }
@@ -166,10 +166,10 @@
   .link-btn:hover { opacity: 0.85; transform: translateY(-2px); }
 
   .trivia-card {
-    border-left: 4px solid #0033A0;
+    border-left: 4px solid #4CAF62;
     margin-bottom: 12px;
   }
-  .trivia-label { font-size: 12px; color: #0033A0; font-weight: 700; margin-bottom: 6px; }
+  .trivia-label { font-size: 12px; color: #2E7D3A; font-weight: 700; margin-bottom: 6px; }
   #trivia-text { font-size: 14px; color: #333; line-height: 1.6; }
 
   .section { margin-bottom: 20px; }
@@ -227,7 +227,7 @@
     content: '✓ 読んだ';
     display: block;
     font-size: 11px;
-    color: #2A5FD0;
+    color: #2E7D3A;
     margin-top: 4px;
     font-weight: 700;
   }
@@ -740,7 +740,7 @@ document.addEventListener('mousemove', e => {
 });
 
 document.addEventListener('click', e => {
-  const emojis = ['💙','🩵','🐼','✨','🎂','💙','🩵','🐼','🎉'];
+  const emojis = ['💙','🩵','🐼','✨','🎋','💚','💙','🐼','🎉'];
   emojis.forEach((emoji, i) => {
     const el = document.createElement('div');
     el.className = 'click-emoji';
@@ -754,7 +754,7 @@ document.addEventListener('click', e => {
 });
 
 setInterval(() => {
-  const leaves = ['💙','🩵','✨','🐼'];
+  const leaves = ['💙','🩵','🎋','💚','✨','🐼'];
   const el = document.createElement('div');
   el.className = 'leaf';
   el.textContent = leaves[Math.floor(Math.random() * leaves.length)];
@@ -987,7 +987,7 @@ document.querySelectorAll('[data-card-id]').forEach(card => {
         if (closed) return;
         const el = document.createElement('div');
         el.className = 'op-heart';
-        el.textContent = '💙';
+        el.textContent = (i % 3 === 2) ? '💚' : '💙';
         el.style.setProperty('--dx', ((Math.random() - 0.5) * 360) + 'px');
         el.style.setProperty('--dy', ((Math.random() - 0.6) * 300) + 'px');
         op.appendChild(el);
