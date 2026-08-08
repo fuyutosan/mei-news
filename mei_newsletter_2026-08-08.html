@@ -10,7 +10,7 @@
   body {
     margin: 0; padding: 0;
     font-family: 'Noto Sans JP', sans-serif;
-    background: #f0f8f1;
+    background: #EEF3FB;
     cursor: none;
     position: relative;
   }
@@ -37,7 +37,7 @@
     z-index: 1;
   }
   .header {
-    background: linear-gradient(135deg, #2d7a3a 0%, #4caf62 50%, #1a5c28 100%);
+    background: linear-gradient(135deg, #0033A0 0%, #2A5FD0 50%, #00246E 100%);
     border-radius: 16px;
     padding: 24px 20px 20px;
     color: white;
@@ -85,7 +85,7 @@
     display: flex;
     align-items: flex-start;
     gap: 12px;
-    border-left: 4px solid #4caf62;
+    border-left: 4px solid #2A5FD0;
   }
 
   #countdown-section { margin-bottom: 12px; }
@@ -105,7 +105,7 @@
     flex-wrap: wrap;
   }
   .cd-box {
-    background: linear-gradient(135deg, #2d7a3a, #4caf62);
+    background: linear-gradient(135deg, #0033A0, #2A5FD0);
     color: white;
     border-radius: 10px;
     padding: 10px 14px;
@@ -150,7 +150,7 @@
     margin-bottom: 12px;
   }
   .link-btn {
-    background: #2d7a3a;
+    background: #0033A0;
     color: white;
     border-radius: 10px;
     flex: 1;
@@ -166,18 +166,18 @@
   .link-btn:hover { opacity: 0.85; transform: translateY(-2px); }
 
   .trivia-card {
-    border-left: 4px solid #2d7a3a;
+    border-left: 4px solid #0033A0;
     margin-bottom: 12px;
   }
-  .trivia-label { font-size: 12px; color: #2d7a3a; font-weight: 700; margin-bottom: 6px; }
+  .trivia-label { font-size: 12px; color: #0033A0; font-weight: 700; margin-bottom: 6px; }
   #trivia-text { font-size: 14px; color: #333; line-height: 1.6; }
 
   .section { margin-bottom: 20px; }
   .section-title {
     font-size: 16px;
     font-weight: 900;
-    color: #2d7a3a;
-    border-bottom: 2px solid #4caf62;
+    color: #0033A0;
+    border-bottom: 2px solid #2A5FD0;
     padding-bottom: 6px;
     margin-bottom: 12px;
   }
@@ -227,7 +227,7 @@
     content: '✓ 読んだ';
     display: block;
     font-size: 11px;
-    color: #4caf62;
+    color: #2A5FD0;
     margin-top: 4px;
     font-weight: 700;
   }
@@ -247,11 +247,11 @@
     margin-bottom: 12px;
     transition: border-color 0.2s, color 0.2s;
   }
-  .archive-link:hover { border-color: #2d7a3a; color: #2d7a3a; }
+  .archive-link:hover { border-color: #0033A0; color: #0033A0; }
 
   .cta-card {
     display: block;
-    background: linear-gradient(135deg, #2d7a3a, #4caf62);
+    background: linear-gradient(135deg, #0033A0, #2A5FD0);
     border-radius: 12px;
     padding: 16px 20px;
     text-align: center;
@@ -341,7 +341,7 @@
     position: fixed;
     inset: 0;
     z-index: 10000;
-    background: linear-gradient(160deg, #2d7a3a 0%, #4caf62 55%, #1a5c28 100%);
+    background: linear-gradient(160deg, #0033A0 0%, #2A5FD0 55%, #00246E 100%);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -371,7 +371,7 @@
     box-shadow: 0 10px 30px rgba(0,0,0,0.25);
   }
   .op-body::after {
-    content: '💚';
+    content: '💙';
     position: absolute;
     bottom: 8px;
     left: 50%;
@@ -384,7 +384,7 @@
     width: 0; height: 0;
     border-left: 95px solid transparent;
     border-right: 95px solid transparent;
-    border-top: 62px solid #e8f5e9;
+    border-top: 62px solid #E3ECFB;
     transform-origin: top center;
     z-index: 3;
     filter: drop-shadow(0 2px 3px rgba(0,0,0,0.12));
@@ -401,7 +401,7 @@
     opacity: 0;
     pointer-events: none;
     z-index: 4;
-    text-shadow: 0 0 22px rgba(150,255,180,0.95);
+    text-shadow: 0 0 22px rgba(140,180,255,0.95);
     animation: opHeartRush 1.25s ease-out forwards;
   }
   @keyframes opHeartRush {
@@ -446,7 +446,7 @@
   .video-play { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
     font-size: 2.2rem; color: #fff; background: rgba(0,0,0,0.25);
     text-shadow: 0 2px 8px rgba(0,0,0,0.6); transition: background 0.2s; }
-  .video-facade:hover .video-play { background: rgba(45,122,58,0.45); }
+  .video-facade:hover .video-play { background: rgba(0,51,160,0.45); }
   .video-slot iframe { width: 100%; aspect-ratio: 16/9; border: 0; border-radius: 12px; display: block; }
 </style>
 </head>
@@ -486,7 +486,7 @@
     <img src="https://fuyutosan.github.io/mei-news/panda.png"
          style="width:44px;flex-shrink:0;background:transparent;" alt="">
     <div>
-      <div style="font-size:16px; font-weight:900; color:#2d7a3a; margin-bottom:6px;">
+      <div style="font-size:16px; font-weight:900; color:#0033A0; margin-bottom:6px;">
         おはよう🐼 いよいよ今日から、ハロ！コン東京公演だよ🎤
       </div>
       <div style="font-size:14px; color:#444; line-height:1.6;">
@@ -558,7 +558,7 @@
        target="_blank" class="news-card fade-in" data-card-id="insta-20260805-i7">
       <span class="card-label">Instagram 山﨑愛生 公式 ／ 2026-08-05（📱スマホ推奨）</span>
       <div class="card-title">📸 げたさんとのお出かけ中に、そーちゃんとてんてんに遭遇！</div>
-      <div class="card-desc">弓桁朱琴さん（げたさん）とお出かけしていたら、アイドリッシュセブンの逢坂壮五くん・九条天くんに偶然会えたんだって😄 本人の言葉は「知らないで行ったからびっくりで、すごいテンション上がった🤗」。九条天くんはメイボンソワで名言を紹介していた推しキャラだから、偶然の再会っぷりがうれしいね🐼💚</div>
+      <div class="card-desc">弓桁朱琴さん（げたさん）とお出かけしていたら、アイドリッシュセブンの逢坂壮五くん・九条天くんに偶然会えたんだって😄 本人の言葉は「知らないで行ったからびっくりで、すごいテンション上がった🤗」。九条天くんはメイボンソワで名言を紹介していた推しキャラだから、偶然の再会っぷりがうれしいね🐼💙</div>
     </a>
 
     <div class="yt-sub-label">📹 YouTube</div>
@@ -612,7 +612,7 @@
        target="_blank" class="news-card fade-in" data-card-id="news-20260806-pandapan">
       <span class="card-label">木村屋總本店コラボ ／ 発売中（8月まで）</span>
       <div class="card-title">🍞「パンダさん」パン、8月いっぱいで販売終了</div>
-      <div class="card-desc">めいちゃんが製作から関わった木村屋總本店さんとのコラボパン「パンダさん」は、直営店25店舗とオンラインショップで8月まで🐼 延長に延長を重ねて夏まで来たけれど、残りはこの1ヶ月。ブログで毎回「いーっぱいゲットしてね😋」と案内してくれている、めいちゃんの自慢のお仕事だよ💚</div>
+      <div class="card-desc">めいちゃんが製作から関わった木村屋總本店さんとのコラボパン「パンダさん」は、直営店25店舗とオンラインショップで8月まで🐼 延長に延長を重ねて夏まで来たけれど、残りはこの1ヶ月。ブログで毎回「いーっぱいゲットしてね😋」と案内してくれている、めいちゃんの自慢のお仕事だよ💙</div>
     </a>
   </div>
 
@@ -720,7 +720,7 @@
       山﨑愛生ちゃん、22歳のお誕生日おめでとうございます！<br>
       パンダさんパワーでいっぱい応援してるよ🌿
     </div>
-    <div class="bday-bottom">🐼✨🎋💚🎂💚🎋✨🐼</div>
+    <div class="bday-bottom">🐼✨🩵💙🎂💙🩵✨🐼</div>
   </div>
 
   <div class="footer">
@@ -740,7 +740,7 @@ document.addEventListener('mousemove', e => {
 });
 
 document.addEventListener('click', e => {
-  const emojis = ['💚','🎋','🐼','✨','🎂','🌿','💚','🐼','🎉'];
+  const emojis = ['💙','🩵','🐼','✨','🎂','💙','🩵','🐼','🎉'];
   emojis.forEach((emoji, i) => {
     const el = document.createElement('div');
     el.className = 'click-emoji';
@@ -754,7 +754,7 @@ document.addEventListener('click', e => {
 });
 
 setInterval(() => {
-  const leaves = ['🌿','💚','🍃','🎋'];
+  const leaves = ['💙','🩵','✨','🐼'];
   const el = document.createElement('div');
   el.className = 'leaf';
   el.textContent = leaves[Math.floor(Math.random() * leaves.length)];
@@ -987,7 +987,7 @@ document.querySelectorAll('[data-card-id]').forEach(card => {
         if (closed) return;
         const el = document.createElement('div');
         el.className = 'op-heart';
-        el.textContent = '💚';
+        el.textContent = '💙';
         el.style.setProperty('--dx', ((Math.random() - 0.5) * 360) + 'px');
         el.style.setProperty('--dy', ((Math.random() - 0.6) * 300) + 'px');
         op.appendChild(el);
