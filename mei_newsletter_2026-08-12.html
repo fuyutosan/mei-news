@@ -1141,6 +1141,13 @@ document.querySelectorAll('.video-shuffle').forEach(function(btn){
       tidyCJKWhitespace(el);
       parser.applyToElement(el);
       repairEmoji(el);
+      /* 見出しは1行で収まるうえ、動画づくりが見出しの文字で位置を探すので、
+         ゼロ幅スペースを入れたままだと見つけられなくなる。ここだけ取り除く。 */
+      el.querySelectorAll('.section-title').forEach(t => {
+        const w2 = document.createTreeWalker(t, NodeFilter.SHOW_TEXT);
+        let m;
+        while((m = w2.nextNode())) m.nodeValue = m.nodeValue.split('​').join('');
+      });
     });
   }catch(e){ /* 読み込めなくてもCSSだけで最低限は効く */ }
 </script>
