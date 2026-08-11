@@ -1111,6 +1111,28 @@ document.querySelectorAll('.video-shuffle').forEach(function(btn){
       );
     }
   }
+  /* BudouXは絵文字の内側（サロゲートペアの間）にもゼロ幅スペースを入れてしまうことがあり、
+     そうなると絵文字が豆腐（□□）に化ける。入れたあとに、その位置のものだけ取り除く。 */
+  function repairEmoji(root){
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+    let n;
+    while((n = walker.nextNode())){
+      const t = n.nodeValue;
+      if (t.indexOf('​') === -1) continue;
+      let out = '';
+      for (let i = 0; i < t.length; i++) {
+        if (t[i] === '​') {
+          const prev = t.charCodeAt(i - 1), next = t.charCodeAt(i + 1);
+          const insidePair = prev >= 0xD800 && prev <= 0xDBFF && next >= 0xDC00 && next <= 0xDFFF;
+          const beforeMod  = next === 0xFE0F || next === 0xFE0E || next === 0x200D || (next >= 0xDC00 && next <= 0xDFFF);
+          const afterZWJ   = prev === 0x200D;
+          if (insidePair || beforeMod || afterZWJ) continue;   /* この位置のZWSPは捨てる */
+        }
+        out += t[i];
+      }
+      if (out !== t) n.nodeValue = out;
+    }
+  }
   try{
     const { loadDefaultJapaneseParser } =
       await import('https://cdn.jsdelivr.net/npm/budoux@0.6.2/+esm');
@@ -1118,6 +1140,7 @@ document.querySelectorAll('.video-shuffle').forEach(function(btn){
     document.querySelectorAll('.wrapper').forEach(el => {
       tidyCJKWhitespace(el);
       parser.applyToElement(el);
+      repairEmoji(el);
     });
   }catch(e){ /* 読み込めなくてもCSSだけで最低限は効く */ }
 </script>
