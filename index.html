@@ -24,8 +24,15 @@
     position: relative;
     min-height: 100vh;
     cursor: none;
+    /* 日本語の改行を壊さないための土台（japanese-line-breaks スキルの4点セット） */
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+    text-wrap: pretty;
   }
   @media (hover: none) { body { cursor: auto; } }
+  h1, h2, h3, h4 { text-wrap: balance; }
+  .nb { white-space: nowrap; }
+  .url, code { word-break: break-all; }
 
   body::before {
     content: '';
@@ -352,6 +359,7 @@
 // 形式: { date:"YYYY-MM-DD", file:"mei_newsletter_YYYY-MM-DD.html", title:"見出し（任意・空でOK）", emoji:"🐼" }
 // =====================
 const ISSUES = [
+  { date:"2026-09-11", file:"mei_newsletter_2026-09-11.html", title:"大阪キャンペーン / めいりーコンビ誕生", emoji:"🐙" },
   { date:"2026-09-10", file:"mei_newsletter_2026-09-10.html", title:"本日HMV NAMBAトーク会 / 華望ちゃん13歳お祝い", emoji:"🔥" },
   { date:"2026-09-09", file:"mei_newsletter_2026-09-09.html", title:"明日はHMV NAMBAトーク会 / あの日のめいちゃん", emoji:"🐼" },
   { date:"2026-09-08", file:"mei_newsletter_2026-09-08.html", title:"9/10 HMV NAMBAトーク会もうすぐ", emoji:"🐼" },
@@ -529,6 +537,30 @@ function fmtDate(s) {
     }
   });
 })();
+</script>
+
+<!-- BudouX（日本語の文節の切れ目でだけ折り返す） -->
+<script type="module">
+  function tidyCJKWhitespace(root){
+    const CJK = /[　-ヿ㐀-䶿一-鿿ｦ-ﾟ]/;
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+    let n;
+    while((n = walker.nextNode())){
+      n.nodeValue = n.nodeValue.replace(
+        /([^\s])[ \t]*\n[ \t]*([^\s])/g,
+        (m, a, b) => CJK.test(a) && CJK.test(b) ? a + b : a + ' ' + b
+      );
+    }
+  }
+  try{
+    const { loadDefaultJapaneseParser } =
+      await import('https://cdn.jsdelivr.net/npm/budoux@0.6.2/+esm');
+    const parser = loadDefaultJapaneseParser();
+    document.querySelectorAll('.wrapper').forEach(el => {
+      tidyCJKWhitespace(el);
+      parser.applyToElement(el);
+    });
+  }catch(e){ /* 読み込めなくてもCSSだけで最低限は効く */ }
 </script>
 </body>
 </html>
