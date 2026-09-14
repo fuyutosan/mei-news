@@ -2,6 +2,12 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
+<script>
+// 旧アドレス（github.io）で開いた人は、新アドレス（Cloudflare Pages）へ移す。アクセス数を1か所で数えるため（2026-09-14）
+if(location.hostname==='fuyutosan.github.io'){
+  location.replace('https://mei-news.pages.dev'+location.pathname.replace(/^\/mei-news/i,'')+location.search+location.hash);
+}
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>デイリーめいちゃんニュース — 第29号 2026年6月27日</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,7 +25,7 @@ body::before {
   content: '';
   position: fixed;
   inset: 0;
-  background-image: url('https://fuyutosan.github.io/mei-news/panda.png');
+  background-image: url('https://mei-news.pages.dev/panda.png');
   background-repeat: repeat;
   background-size: 120px;
   opacity: 0.10;
@@ -346,19 +352,19 @@ a.news-card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0
 <body>
 
 <!-- カーソル追従パンダさん -->
-<img id="cursor-panda" src="https://fuyutosan.github.io/mei-news/panda.png" alt="🐼">
+<img id="cursor-panda" src="https://mei-news.pages.dev/panda.png" alt="🐼">
 
 <!-- ふわふわパンダさん固定3体 -->
-<img src="https://fuyutosan.github.io/mei-news/panda.png" class="float-panda" style="width:64px; left:8px; top:18%; animation: floatBob 4.2s ease-in-out infinite;" alt="🐼">
-<img src="https://fuyutosan.github.io/mei-news/panda.png" class="float-panda" style="width:48px; right:6px; top:42%; animation: floatBobR 5.1s ease-in-out infinite;" alt="🐼">
-<img src="https://fuyutosan.github.io/mei-news/panda.png" class="float-panda" style="width:56px; left:4px; top:68%; animation: floatBobSlow 6.3s ease-in-out infinite;" alt="🐼">
+<img src="https://mei-news.pages.dev/panda.png" class="float-panda" style="width:64px; left:8px; top:18%; animation: floatBob 4.2s ease-in-out infinite;" alt="🐼">
+<img src="https://mei-news.pages.dev/panda.png" class="float-panda" style="width:48px; right:6px; top:42%; animation: floatBobR 5.1s ease-in-out infinite;" alt="🐼">
+<img src="https://mei-news.pages.dev/panda.png" class="float-panda" style="width:56px; left:4px; top:68%; animation: floatBobSlow 6.3s ease-in-out infinite;" alt="🐼">
 
 <div class="container">
 
   <!-- ヘッダー -->
   <div class="header">
     <div class="header-top">
-      <img src="https://fuyutosan.github.io/mei-news/panda.png" class="wobble" style="width:96px;background:transparent;" alt="パンダさん">
+      <img src="https://mei-news.pages.dev/panda.png" class="wobble" style="width:96px;background:transparent;" alt="パンダさん">
       <span class="panda-power-text">パンダさんパワー！</span>
     </div>
     <h1>デイリーめいちゃんニュース</h1>
@@ -367,7 +373,7 @@ a.news-card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0
 
   <!-- 挨拶カード -->
   <div class="card greeting-card fade-in">
-    <img src="https://fuyutosan.github.io/mei-news/panda.png" style="width:44px;flex-shrink:0;" alt="🐼">
+    <img src="https://mei-news.pages.dev/panda.png" style="width:44px;flex-shrink:0;" alt="🐼">
     <div class="greeting-text">
       こんにちは！パンダさん秘書のメイメイです🐼<br>
       <strong>明日2026年6月28日は、山﨑愛生ちゃんの21歳お誕生日！！</strong><br>
@@ -505,7 +511,7 @@ a.news-card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0
   </div>
 
   <!-- アーカイブ -->
-  <a href="https://fuyutosan.github.io/mei-news/" class="archive-card fade-in">
+  <a href="https://mei-news.pages.dev/" class="archive-card fade-in">
     📚 バックナンバー（アーカイブ）はこちら →
   </a>
 
@@ -516,7 +522,7 @@ a.news-card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0
 
   <!-- フッター -->
   <div class="footer fade-in">
-    <img src="https://fuyutosan.github.io/mei-news/panda.png" class="wobble" style="width:52px;" alt="🐼">
+    <img src="https://mei-news.pages.dev/panda.png" class="wobble" style="width:52px;" alt="🐼">
     <div class="footer-tagline">山﨑愛生ちゃん情報でした(^o^)/</div>
     <div class="footer-meta">第29号 ／ 2026年6月27日</div>
   </div>

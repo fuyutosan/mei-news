@@ -2,6 +2,12 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
+<script>
+// 旧アドレス（github.io）で開いた人は、新アドレス（Cloudflare Pages）へ移す。アクセス数を1か所で数えるため（2026-09-14）
+if(location.hostname==='fuyutosan.github.io'){
+  location.replace('https://mei-news.pages.dev'+location.pathname.replace(/^\/mei-news/i,'')+location.search+location.hash);
+}
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>デイリーめいちゃんニュース 第9号 — 2026年6月5日</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
@@ -18,7 +24,7 @@
     content: '';
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
-    background-image: url('https://fuyutosan.github.io/mei-news/panda.png');
+    background-image: url('https://mei-news.pages.dev/panda.png');
     background-size: 100px;
     opacity: 0.10;
     z-index: 0;
@@ -211,7 +217,7 @@
 
   <div class="header">
     <div class="header-panda-row">
-      <img src="https://fuyutosan.github.io/mei-news/panda.png" class="header-panda" style="background:transparent;" alt="パンダさん">
+      <img src="https://mei-news.pages.dev/panda.png" class="header-panda" style="background:transparent;" alt="パンダさん">
       <span class="header-panda-text">パンダさんパワー！</span>
     </div>
     <h1>🌿 デイリーめいちゃんニュース 🌿</h1>
@@ -219,7 +225,7 @@
   </div>
 
   <div class="greeting-card">
-    <img src="https://fuyutosan.github.io/mei-news/panda.png" style="background:transparent;" alt="パンダさん">
+    <img src="https://mei-news.pages.dev/panda.png" style="background:transparent;" alt="パンダさん">
     <p>おはようございます🌿 今日も<strong>山﨑愛生（めいちゃん）</strong>の最新情報をお届けします🐼<br>明日は春ツアー大阪公演！パンダさんパワーで応援しよう💚</p>
   </div>
 
@@ -334,7 +340,7 @@
   </div>
 
   <div class="footer">
-    <img src="https://fuyutosan.github.io/mei-news/panda.png" class="footer-panda" style="background:transparent;" alt="パンダさん">
+    <img src="https://mei-news.pages.dev/panda.png" class="footer-panda" style="background:transparent;" alt="パンダさん">
     <p>パンダさん大好き山﨑愛生でした (^o^)/</p>
     <small>デイリーめいちゃんニュース 第9号 ／ 2026-06-05 自動生成</small>
   </div>

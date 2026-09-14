@@ -2,6 +2,12 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
+<script>
+// 旧アドレス（github.io）で開いた人は、新アドレス（Cloudflare Pages）へ移す。アクセス数を1か所で数えるため（2026-09-14）
+if(location.hostname==='fuyutosan.github.io'){
+  location.replace('https://mei-news.pages.dev'+location.pathname.replace(/^\/mei-news/i,'')+location.search+location.hash);
+}
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>デイリーめいちゃんニュース 第12号 — 2026年6月10日</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
@@ -25,7 +31,7 @@
     content: '';
     position: fixed;
     inset: 0;
-    background-image: url('https://fuyutosan.github.io/mei-news/panda.png');
+    background-image: url('https://mei-news.pages.dev/panda.png');
     background-size: 100px;
     opacity: 0.10;
     pointer-events: none;
@@ -278,7 +284,7 @@
   <!-- HEADER -->
   <div class="header">
     <div style="display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:12px;">
-      <img src="https://fuyutosan.github.io/mei-news/panda.png" class="header-panda" style="background:transparent;" alt="パンダさん">
+      <img src="https://mei-news.pages.dev/panda.png" class="header-panda" style="background:transparent;" alt="パンダさん">
       <span style="color:#fff;font-size:20px;font-weight:900;text-shadow:0 2px 8px rgba(0,0,0,0.2);">パンダさんパワー！</span>
     </div>
     <h1>デイリーめいちゃんニュース</h1>
@@ -288,7 +294,7 @@
 
   <!-- GREETING -->
   <div class="greeting">
-    <img src="https://fuyutosan.github.io/mei-news/panda.png" style="background:transparent;" alt="パンダさん">
+    <img src="https://mei-news.pages.dev/panda.png" style="background:transparent;" alt="パンダさん">
     <p>おはようございます🌿 今日もめいちゃん推し活、全力でいきましょう！バーイベまであと20日、武道館まであと14日🐼✨</p>
   </div>
 
@@ -382,7 +388,7 @@
 
   <!-- FOOTER -->
   <div class="footer">
-    <img src="https://fuyutosan.github.io/mei-news/panda.png" style="background:transparent;" alt="パンダさん">
+    <img src="https://mei-news.pages.dev/panda.png" style="background:transparent;" alt="パンダさん">
     <p>パンダさん大好き山﨑愛生ちゃん情報でした(^o^)/</p>
     <div class="copyright">デイリーめいちゃんニュース 第12号 — 2026年6月10日発行</div>
   </div>

@@ -2,6 +2,12 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
+<script>
+// 旧アドレス（github.io）で開いた人は、新アドレス（Cloudflare Pages）へ移す。アクセス数を1か所で数えるため（2026-09-14）
+if(location.hostname==='fuyutosan.github.io'){
+  location.replace('https://mei-news.pages.dev'+location.pathname.replace(/^\/mei-news/i,'')+location.search+location.hash);
+}
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>デイリーめいちゃんニュース 第15号 — 2026年6月13日</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
@@ -17,7 +23,7 @@
     content: '';
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
-    background-image: url('https://fuyutosan.github.io/mei-news/panda.png');
+    background-image: url('https://mei-news.pages.dev/panda.png');
     background-repeat: repeat;
     background-size: 80px 80px;
     opacity: 0.10;
@@ -168,7 +174,7 @@
   <div class="header">
     <div class="header-top">
       <span class="panda-wobble">
-        <img src="https://fuyutosan.github.io/mei-news/panda.png" style="width:96px;background:transparent;" alt="パンダさん">
+        <img src="https://mei-news.pages.dev/panda.png" style="width:96px;background:transparent;" alt="パンダさん">
       </span>
       <span class="panda-power-text">パンダさんパワー！</span>
     </div>
@@ -178,7 +184,7 @@
 
   <!-- 挨拶カード -->
   <div class="greeting-card">
-    <img src="https://fuyutosan.github.io/mei-news/panda.png" style="width:44px;flex-shrink:0;background:transparent;" alt="パンダさん">
+    <img src="https://mei-news.pages.dev/panda.png" style="width:44px;flex-shrink:0;background:transparent;" alt="パンダさん">
     <div>
       おはようございます🐼 今日も山﨑愛生ちゃんの最新情報をお届けするよ！<br>
       新着ブログあり！18期メンバー4名加入を祝う愛生ちゃんの声が届いたよ。パンダさんパンの延長も嬉しいニュースだね〜！
@@ -284,7 +290,7 @@
   <div class="footer">
     <div class="footer-line">
       <span class="panda-wobble">
-        <img src="https://fuyutosan.github.io/mei-news/panda.png" style="width:52px;background:transparent;" alt="パンダさん">
+        <img src="https://mei-news.pages.dev/panda.png" style="width:52px;background:transparent;" alt="パンダさん">
       </span>
       山﨑愛生ちゃん情報でした(^o^)/
     </div>

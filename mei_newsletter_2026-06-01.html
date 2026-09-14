@@ -2,6 +2,12 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
+<script>
+// 旧アドレス（github.io）で開いた人は、新アドレス（Cloudflare Pages）へ移す。アクセス数を1か所で数えるため（2026-09-14）
+if(location.hostname==='fuyutosan.github.io'){
+  location.replace('https://mei-news.pages.dev'+location.pathname.replace(/^\/mei-news/i,'')+location.search+location.hash);
+}
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>デイリーめいちゃんニュース 第005号 — 2026年6月1日(月)</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
@@ -28,7 +34,7 @@
     content: '';
     position: fixed;
     inset: 0;
-    background-image: url(https://fuyutosan.github.io/mei-news/panda.png);
+    background-image: url(https://mei-news.pages.dev/panda.png);
     background-size: 100px;
     opacity: 0.10;
     pointer-events: none;
@@ -324,7 +330,7 @@
   <!-- HEADER -->
   <div class="header">
     <div class="header-panda-row">
-      <img src="https://fuyutosan.github.io/mei-news/panda.png" class="header-panda" style="background:transparent;" alt="パンダさん">
+      <img src="https://mei-news.pages.dev/panda.png" class="header-panda" style="background:transparent;" alt="パンダさん">
       <span class="header-panda-text">パンダさんパワー！</span>
     </div>
     <h1>🌿 デイリーめいちゃんニュース</h1>
@@ -333,7 +339,7 @@
 
   <!-- GREETING -->
   <div class="greeting-card">
-    <img src="https://fuyutosan.github.io/mei-news/panda.png" alt="パンダさん">
+    <img src="https://mei-news.pages.dev/panda.png" alt="パンダさん">
     <div class="greeting-text">
       おはようございます🌿 パンダさんです！<br>
       今日も元気なめいちゃん情報をお届けするよ〜🐼<br>
@@ -468,7 +474,7 @@
 
   <!-- FOOTER -->
   <div class="footer">
-    <img src="https://fuyutosan.github.io/mei-news/panda.png" alt="パンダさん">
+    <img src="https://mei-news.pages.dev/panda.png" alt="パンダさん">
     パンダさん大好き山﨑愛生でした (^o^)/<br>
     <span style="font-size:12px;color:#888;font-weight:400;">デイリーめいちゃんニュース 第005号 ｜ 2026年6月1日(月)</span>
   </div>
